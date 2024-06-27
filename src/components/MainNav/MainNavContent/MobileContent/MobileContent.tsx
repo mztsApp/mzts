@@ -4,7 +4,6 @@ import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { Cross1Icon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { v4 as uuid } from "uuid";
-import { Button, ChevronDownIcon } from "@radix-ui/themes";
 import { NavListType } from "../../MainNav.types";
 
 interface MobileContentProps {
@@ -49,9 +48,7 @@ const MobileContent = (props: MobileContentProps) => {
                       className="flex flex-col w-full"
                     >
                       <Accordion.Trigger className="flex justify-between items-center w-full uppercase px-5 py-2">
-                        {accordionTitle}
-
-                        <ChevronDownIcon className="w-3.5 h-3.5" />
+                        {accordionTitle}V
                       </Accordion.Trigger>
 
                       <Accordion.Content className="w-sceen">
@@ -93,7 +90,7 @@ const MobileContent = (props: MobileContentProps) => {
 
           <NavigationMenu.Item className="flex w-full px-5">
             <Link passHref href="/" className="pt-4">
-              <Button>Zaloguj się</Button>
+              <button>Zaloguj się</button>
             </Link>
           </NavigationMenu.Item>
         </NavigationMenu.List>

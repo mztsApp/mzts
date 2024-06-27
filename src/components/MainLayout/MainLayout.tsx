@@ -1,15 +1,18 @@
 import { ValueOf } from "@/types";
 import React from "react";
-import { LAYOUT_VARIANTS } from "./Layout.constants";
+import { LAYOUT_VARIANTS } from "./MainLayout.constants";
 import { MainNav } from "../MainNav";
 import Image from "next/image";
+import { Box } from "../Box";
 
-interface LayoutProps extends React.PropsWithChildren {
+interface MainLayoutProps extends React.PropsWithChildren {
   variant?: ValueOf<typeof LAYOUT_VARIANTS>;
 }
 
+//TODO: fix displaying of layout (height and other place style)
+
 //TODO: add variant for user panel
-const Layout = (props: LayoutProps) => {
+const MainLayout = (props: MainLayoutProps) => {
   const { children, variant = LAYOUT_VARIANTS.DEFAULT } = props;
 
   return (
@@ -78,4 +81,4 @@ const Layout = (props: LayoutProps) => {
   );
 };
 
-export { Layout };
+export { MainLayout };

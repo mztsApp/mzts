@@ -3,9 +3,41 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background: #010005;
+  --secondaryitem: #200e5f;
+  --text: #f5f3fc;
+  --accent: #6240ed;
+  --primaryItem: linear-gradient(0deg, #6240ed, #6240ed),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.3) 7.29%,
+      rgba(255, 255, 255, 0) 65.62%
+    ),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2));
+  --headingGradientEnd: linear-gradient(
+    86.49deg,
+    #c5b8f1 -0.16%,
+    #dcd7ed 25.62%,
+    #c9c0ea 46.24%,
+    #a890fa 67.97%,
+    #3a1f94 85.2%,
+    #3609d2 94.82%
+  );
+  --headingGradientStart: linear-gradient(
+    266.95deg,
+    #3a1f94 -5.44%,
+    #f2f0f7 20.71%,
+    #e8e7eb 52.22%,
+    rgba(54, 9, 210, 0.88) 91.06%,
+    #3609d2 99.63%
+  );
+
+  --button-primary: linear-gradient(
+    0deg,
+    rgba(98, 64, 237, 1) 60%,
+    rgba(56, 35, 141, 1) 100%
+  );
+  --button-secondary: #948e8e;
 }
 
 @media (prefers-color-scheme: dark) {

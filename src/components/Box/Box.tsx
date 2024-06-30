@@ -1,7 +1,7 @@
 import React from "react";
 import { ValueOf } from "@/types";
 import { BOX_ALLOWED_TAG, BOX_SIZE_VARIANT } from "./Box.constants";
-import classNames from "classnames";
+import { twMerge } from "tailwind-merge";
 
 interface BoxCustomProps extends React.PropsWithChildren {
   boxSize?: ValueOf<typeof BOX_SIZE_VARIANT>;
@@ -45,7 +45,7 @@ const Box = (props: BoxCustomProps) => {
 
   return (
     <Component
-      className={classNames(
+      className={twMerge(
         sizeClass,
         "flex justify-center items-center gap-4 bg-[#9747FF]",
         externalClassName
@@ -53,10 +53,7 @@ const Box = (props: BoxCustomProps) => {
       {...restProps}
     >
       <InnerComponent
-        internalClassName={classNames(
-          internalClassName,
-          "w-full max-w-[90rem]"
-        )}
+        internalClassName={twMerge(internalClassName, "w-full max-w-[90rem]")}
         boxSize={boxSize}
       >
         {children}

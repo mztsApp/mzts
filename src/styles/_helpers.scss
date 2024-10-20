@@ -1,0 +1,21 @@
+$base-font-size: 16;
+
+@function pxToRem($values...) {
+  $result: ();
+
+  @each $value in $values {
+    @if ($value == auto) {
+      $value: auto;
+    } @else if (unit($value) == 'px') {
+      $value: (strip-unit($value) / $base-font-size) * 1rem;
+    } @else if (type-of($value) == 'number' and unitless($value)) {
+      $value: $value / $base-font-size * 1rem;
+    } @else {
+      $value: $value;
+    }
+
+    $result: append($result, $value);
+  }
+
+  @return $result;
+}

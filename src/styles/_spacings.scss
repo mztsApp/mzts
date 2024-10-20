@@ -1,0 +1,13 @@
+@use '../styles/helpers';
+
+$xxSmall: helpers.pxToRem(4);
+$xSmall: helpers.pxToRem(8);
+$small: helpers.pxToRem(16);
+$medium: helpers.pxToRem(24);
+
+$large: helpers.pxToRem(32);
+$xLarge: helpers.pxToRem(48);
+$xxLarge: helpers.pxToRem(64);
+
+$spacious: helpers.pxToRem(80);
+$huge: helpers.pxToRem(112);

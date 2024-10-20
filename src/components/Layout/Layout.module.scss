@@ -1,0 +1,15 @@
+@use '../../styles/gradients';
+@use '../../styles/typography';
+@use '../../styles/helpers';
+@use '../../styles/screens';
+@use '/src/styles/spacings';
+
+.layout {
+    display: flex;
+    flex-direction: column;
+    gap: spacings.$medium;
+    text-transform: uppercase;
+
+    @include typography.h1;
+    @include gradients.textGradient(left);
+}

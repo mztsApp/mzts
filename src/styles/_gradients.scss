@@ -1,0 +1,22 @@
+// text gradients:
+
+@mixin textGradient($direction: right) {
+    @if $direction == left {
+        background-image: linear-gradient(270deg, #FBFBFB -1.96%, #D9D7DF 16.78%, #EDEDED 34.02%, #CBC6DC 50.23%, #AAA1CC 57.95%, #3A1F94 86.8%, #3609D2 96.81%);
+    } @else if $direction == bottom {
+        background-image: linear-gradient(180deg, #FBFBFB -1.96%, #D9D7DF 16.78%, #EDEDED 34.02%, #CBC6DC 50.23%, #AAA1CC 57.95%, #3A1F94 86.8%, #3609D2 96.81%);
+    } @else if $direction == top {
+        background-image: linear-gradient(0deg, #FBFBFB -1.96%, #D9D7DF 16.78%, #EDEDED 34.02%, #CBC6DC 50.23%, #AAA1CC 57.95%, #3A1F94 86.8%, #3609D2 96.81%);
+    } @else {
+        background-image: linear-gradient(90deg, #FBFBFB -1.96%, #D9D7DF 16.78%, #EDEDED 34.02%, #CBC6DC 50.23%, #AAA1CC 57.95%, #3A1F94 86.8%, #3609D2 96.81%);
+    }
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+// gradients backgrounds:
+
+@mixin gradient ($direction, $variant) {
+    
+}

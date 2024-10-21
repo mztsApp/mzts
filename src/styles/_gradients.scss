@@ -1,4 +1,4 @@
-// text gradients:
+// text gradients: top | right | bottom | left
 
 @mixin textGradient($direction: right) {
     @if $direction == left {
@@ -15,8 +15,44 @@
     -webkit-text-fill-color: transparent;
 }
 
-// gradients backgrounds:
+// gradients backgrounds - (item variant)
+// $direction: top | right | bottom | left 
 
-@mixin gradient ($direction, $variant) {
-    
+@mixin gradientItemVariant($direction: top) {
+    @if $direction == right {
+        background: linear-gradient(91deg, rgba(94, 54, 235, 0.87) 0.87%, rgba(139, 114, 242, 0.68) 100.77%), linear-gradient(90deg, #7E5DF4 0%, #7E5DF4 100%), linear-gradient(270deg, rgba(255, 255, 255, 0.30) 7.29%, rgba(255, 255, 255, 0.00) 65.62%);
+    } @else if $direction == bottom {
+        background: linear-gradient(181deg, rgba(94, 54, 235, 0.87) 0.87%, rgba(139, 114, 242, 0.68) 100.77%), linear-gradient(180deg, #7E5DF4 0%, #7E5DF4 100%), linear-gradient(360deg, rgba(255, 255, 255, 0.30) 7.29%, rgba(255, 255, 255, 0.00) 65.62%);
+    } @else if $direction == left {
+        background: linear-gradient(271deg, rgba(94, 54, 235, 0.87) 0.87%, rgba(139, 114, 242, 0.68) 100.77%), linear-gradient(270deg, #7E5DF4 0%, #7E5DF4 100%), linear-gradient(90deg, rgba(255, 255, 255, 0.30) 7.29%, rgba(255, 255, 255, 0.00) 65.62%);
+    } @else {
+        background: linear-gradient(1deg, rgba(94, 54, 235, 0.87) 0.87%, rgba(139, 114, 242, 0.68) 100.77%), linear-gradient(0deg, #7E5DF4 0%, #7E5DF4 100%), linear-gradient(180deg, rgba(255, 255, 255, 0.30) 7.29%, rgba(255, 255, 255, 0.00) 65.62%);
+    }
+}
+
+// gradients backgrounds - (look like text variant)
+// $direction: top | right | bottom | left 
+
+@mixin gradientSeparatorVariant($direction: top) {
+    @if $direction == right {
+        background: linear-gradient(175deg, #F4F4F4 42.66%, #F3F1F8 52.5%, rgba(144, 132, 185, 0.71) 60.13%, rgba(133, 118, 186, 0.85) 68.04%, rgba(117, 89, 212, 0.90) 68.38%, rgba(46, 16, 148, 0.94) 99.76%);
+    } @else if $direction == bottom {
+        background: linear-gradient(265deg, #F4F4F4 42.66%, #F3F1F8 52.5%, rgba(144, 132, 185, 0.71) 60.13%, rgba(133, 118, 186, 0.85) 68.04%, rgba(117, 89, 212, 0.90) 68.38%, rgba(46, 16, 148, 0.94) 99.76%);
+    } @else if $direction == left {
+        background: linear-gradient(355deg, #F4F4F4 42.66%, #F3F1F8 52.5%, rgba(144, 132, 185, 0.71) 60.13%, rgba(133, 118, 186, 0.85) 68.04%, rgba(117, 89, 212, 0.90) 68.38%, rgba(46, 16, 148, 0.94) 99.76%);
+    } @else {
+        background: linear-gradient(85deg, #F4F4F4 42.66%, #F3F1F8 52.5%, rgba(144, 132, 185, 0.71) 60.13%, rgba(133, 118, 186, 0.85) 68.04%, rgba(117, 89, 212, 0.90) 68.38%, rgba(46, 16, 148, 0.94) 99.76%);
+    }
+}
+
+// boxGradient
+// $direction: top | right | bottom | left
+// $variant: item | separator
+
+@mixin boxGradient ($direction: top, $variant: item) {
+    @if $variant == separator {
+        @include gradientSeparatorVariant($direction)
+    } @else {
+        @include gradientItemVariant($direction)
+    }
 }

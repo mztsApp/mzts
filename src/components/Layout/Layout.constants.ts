@@ -1,4 +1,4 @@
-export const LAYOUT_COMPONENTS = {
+export const LAYOUT_COMPONENT = {
   MAIN: "main",
   ARTICLE: "article",
   DIV: "div",

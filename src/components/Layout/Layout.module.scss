@@ -5,6 +5,7 @@
 @use '/src/styles/spacings';
 @use '/src/styles/colors';
 @use '/src/styles/boxShadows';
+@use '/src/styles/textEllipsis';
 
 .layout {
     display: flex;
@@ -12,19 +13,6 @@
     align-items: center;
     gap: spacings.$medium;
     width: 100%;
-
-    &_title {
-        @include typography.h1;
-        @include gradients.textGradient;
-    }
-
-    &_description {
-        width: helpers.pxToRem(400);
-        color: colors.$text;
-        text-transform: uppercase;
-
-        @include typography.body;
-    }
 
     &_separator {
         width: 90%;
@@ -42,9 +30,27 @@
         box-shadow: boxShadows.$default-shadow;
     }
 
+    &_iconContainer {
+        display: flex;
+        justify-content: center;
+        gap: spacings.$small;
+        width: helpers.pxToRem(200);
+    }
+
     &_icon {
-        width: 30px;
-        height: 30px;
+        width: helpers.pxToRem(30);
+        height: helpers.pxToRem(30);
         fill: colors.$accent;
+
+        &__default {
+            fill: colors.$sideText;
+        }
+    }
+
+    &_textContainer {
+        width: helpers.pxToRem(400);
+        text-align: center;
+
+        @include textEllipsis.createTextEllipsis(5)
     }
 }

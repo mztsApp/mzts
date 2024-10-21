@@ -1,0 +1,83 @@
+@use '../../styles/typography';
+@use '../../styles/colors';
+@use '../../styles/gradients';
+
+.typography {
+    color: colors.$text;
+
+    @include typography.body;
+
+    &__uppercase {
+        text-transform: uppercase
+    }
+
+    //variants
+
+    &__h1 {
+        @include typography.h1;
+        @include gradients.textGradient;
+    }
+
+    &__h2 {
+        @include typography.h2;
+        @include gradients.textGradient;
+    }
+
+    &__h3 {
+        @include typography.h3;
+        @include gradients.textGradient;
+    }
+
+    &__h4 {
+        @include typography.h4;
+        @include gradients.textGradient;
+    }
+
+    &__subtitle {
+        @include typography.subtitle;
+    }
+
+    &__body2 {
+        @include typography.body2;
+    }
+
+    &__buttonText {
+        @include typography.buttonText;
+    }
+
+    &__helperText {
+        @include typography.helperText;
+    }
+
+    //colors
+
+    &__backgroundColor {
+        color: colors.$background;
+    }
+
+    &__sideTextColor {
+        color: colors.$sideText;
+    }
+
+    &__accentColor {
+        color: colors.$accent;
+    }
+
+    //gradient colors
+
+    &__gradientTop {
+        @include gradients.textGradient(top);
+    }
+
+    &__gradientRight {
+        @include gradients.textGradient;
+    }
+
+    &__gradientBottom {
+        @include gradients.textGradient(bottom);
+    }
+
+    &__gradientLeft {
+        @include gradients.textGradient(left);
+    }
+}

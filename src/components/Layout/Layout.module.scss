@@ -41,4 +41,10 @@
         background: colors.$accent;
         box-shadow: boxShadows.$default-shadow;
     }
+
+    &_icon {
+        width: 30px;
+        height: 30px;
+        fill: colors.$accent;
+    }
 }

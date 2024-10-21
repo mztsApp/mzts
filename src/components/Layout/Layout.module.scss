@@ -3,13 +3,42 @@
 @use '../../styles/helpers';
 @use '../../styles/screens';
 @use '/src/styles/spacings';
+@use '/src/styles/colors';
+@use '/src/styles/boxShadows';
 
 .layout {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: spacings.$medium;
-    text-transform: uppercase;
+    width: 100%;
 
-    @include typography.h1;
-    @include gradients.textGradient(left);
+    &_title {
+        @include typography.h1;
+        @include gradients.textGradient;
+    }
+
+    &_description {
+        width: helpers.pxToRem(400);
+        color: colors.$text;
+        text-transform: uppercase;
+
+        @include typography.body;
+    }
+
+    &_separator {
+        width: 90%;
+        height: helpers.pxToRem(5);
+
+        @include gradients.boxGradient(left, separator);
+    }
+
+    &_box {
+        width: helpers.pxToRem(200);
+        height: helpers.pxToRem(200);
+        transition: width 400ms ease-in-out;
+        margin: helpers.pxToRem(10, auto);
+        background: colors.$accent;
+        box-shadow: boxShadows.$default-shadow;
+    }
 }

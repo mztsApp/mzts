@@ -2,6 +2,7 @@ import React from "react";
 import { LAYOUT_COMPONENT } from "./Layout.constants";
 import styles from "./Layout.module.scss";
 import { ValueOf } from "@/types";
+import ChevronRight from "/src/assets/icons/chevronRight.svg";
 
 interface LayoutRootProps extends React.PropsWithChildren {
   as: ValueOf<typeof LAYOUT_COMPONENT>;
@@ -22,6 +23,8 @@ export const Layout = ({ children, as: LayoutHTMLTag }: LayoutRootProps) => {
       </p>
 
       <div className={styles.layout_box} />
+
+      <ChevronRight className={styles.layout_icon} />
     </LayoutHTMLTag>
   );
 };

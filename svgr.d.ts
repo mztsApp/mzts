@@ -1,8 +1,6 @@
 declare module "*.svg" {
-  import { FC, HTMLAttributes, SVGProps } from "react";
-  const content: FC<
-    SVGProps<SVGElement> & HTMLAttributes<HTMLElement>["className"]
-  >;
+  import { FC, SVGProps } from "react";
+  const content: FC<SVGProps<SVGElement>>;
   export default content;
 }
 

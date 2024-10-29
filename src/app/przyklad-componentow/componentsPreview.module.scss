@@ -1,7 +1,12 @@
+@use '/src/styles/gradients';
+@use '/src/styles/typography';
 @use '/src/styles/helpers';
 @use '/src/styles/screens';
 @use '/src/styles/spacings';
 @use '/src/styles/colors';
+@use '/src/styles/boxShadows';
+@use '/src/styles/textEllipsis';
+
 
 .componentPreview {
     display: flex;

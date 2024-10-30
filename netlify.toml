@@ -1,0 +1,10 @@
+[build]
+  publish = ".next"
+  command = "npm run build"
+  edge_functions = "netlify/edge-functions"
+
+[dev]
+  functions = "netlify/functions"
+
+[[plugins]]
+package = "@netlify/plugin-nextjs"

@@ -1,2 +1,2 @@
-export * from "./ValueOf";
-export * from "./NextLinkType";
+export * from './ValueOf';
+export * from './NextLinkType';

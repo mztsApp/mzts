@@ -2,55 +2,54 @@
 @use './screens';
 
 @mixin getTypographyValues($size, $weight) {
-    font-size: helpers.pxToRem($size);
-    font-weight: $weight;
-  }
-  
-  
-  @mixin h1 {
-    @include getTypographyValues(36, 700);
+  font-size: helpers.pxToRem($size);
+  font-weight: $weight;
+}
 
-    @include screens.lg {
-      @include getTypographyValues(72, 700);
-    };
-  }
-  
-  @mixin h2 {
-    @include getTypographyValues(34, 700);
+@mixin h1 {
+  @include getTypographyValues(36, 700);
 
-    @include screens.lg {
-      @include getTypographyValues(48, 700);
-    };
+  @include screens.lg {
+    @include getTypographyValues(72, 700);
   }
-  
-  @mixin h3 {
-    @include getTypographyValues(20, 700);
+}
 
-    @include screens.lg {
-      @include getTypographyValues(24, 700);
-    };
+@mixin h2 {
+  @include getTypographyValues(34, 700);
+
+  @include screens.lg {
+    @include getTypographyValues(48, 700);
   }
-  
-  @mixin h4 {
-    @include getTypographyValues(20, 700);
+}
+
+@mixin h3 {
+  @include getTypographyValues(20, 700);
+
+  @include screens.lg {
+    @include getTypographyValues(24, 700);
   }
-  
-  @mixin body {
-    @include getTypographyValues(18, 500);
-  }
-  
-  @mixin subtitle {
-    @include getTypographyValues(16, 600);
-  }
-  
-  @mixin body2 {
-    @include getTypographyValues(16, 400);
-  }
-  
-  @mixin buttonText {
-    @include getTypographyValues(14, 500);
-  }
-  
-  @mixin helperText {
-    @include getTypographyValues(12, 400);
-  }
+}
+
+@mixin h4 {
+  @include getTypographyValues(20, 700);
+}
+
+@mixin body {
+  @include getTypographyValues(18, 500);
+}
+
+@mixin subtitle {
+  @include getTypographyValues(16, 600);
+}
+
+@mixin body2 {
+  @include getTypographyValues(16, 400);
+}
+
+@mixin buttonText {
+  @include getTypographyValues(14, 500);
+}
+
+@mixin helperText {
+  @include getTypographyValues(12, 400);
+}

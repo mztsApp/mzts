@@ -1,7 +1,7 @@
 @mixin createTextEllipsis($lines: 5) {
-    overflow: clip;
-    display: -webkit-box;
-    -webkit-line-clamp: $lines;
-    -webkit-box-orient: vertical;
-    text-overflow: ellipsis;
+  overflow: clip;
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
 }

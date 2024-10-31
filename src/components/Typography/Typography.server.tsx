@@ -1,12 +1,14 @@
-import { ValueOf } from "@/types";
-import React from "react";
+import React from 'react';
+import { twMerge } from 'tailwind-merge';
+
+import { ValueOf } from '@/types';
+
 import {
   TYPOGRAPHY_COLORS,
   TYPOGRAPHY_COMPONENTS,
   TYPOGRAPHY_VARIANTS,
-} from "./Typography.constants";
-import { twMerge } from "tailwind-merge";
-import styles from "./Typography.module.scss";
+} from './Typography.constants';
+import styles from './Typography.module.scss';
 
 type TypographyProps = React.PropsWithChildren<{
   as?: ValueOf<typeof TYPOGRAPHY_COMPONENTS>;
@@ -28,7 +30,7 @@ export const Typography = ({
         styles.typography,
         styles[variant],
         styles[color],
-        uppercase && styles.typography__uppercase
+        uppercase && styles.typography__uppercase,
       )}
     >
       {children}

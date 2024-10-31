@@ -7,42 +7,41 @@
 @use '/src/styles/boxShadows';
 @use '/src/styles/textEllipsis';
 
-
 .layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  padding: 0 spacings.$medium;
+
+  @include screens.lg {
+    padding: 0 spacings.$xxLarge;
+  }
+
+  &_topBarSpace {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    align-self: center;
+    width: 100dvw;
+    max-height: helpers.pxToRem(140);
+    background: colors.$text;
+  }
+
+  &_content {
+    position: relative;
+    display: flex;
+    flex: 1 0;
+    flex-direction: column;
     align-items: center;
-    width: 100vw;
-    height: 100vh;
-    padding: 0 spacings.$medium;
+    gap: spacings.$large;
+    width: 100%;
+    max-width: helpers.pxToRem(1440);
+    min-height: 90vh;
 
     @include screens.lg {
-        padding: 0 spacings.$xxLarge;
+      gap: spacings.$xxLarge;
     }
-
-    &_topBarSpace {
-        display: flex;
-        flex-direction: column; 
-        align-self: center;
-        width: 100dvw;
-        max-height: helpers.pxToRem(140);
-        background: colors.$text;
-    }
-
-    &_content {
-        position: relative;
-        display: flex;
-        flex: 1 0;
-        flex-direction: column;
-        align-items: center;
-        gap: spacings.$large;
-        width: 100%;
-        max-width: helpers.pxToRem(1440);
-        min-height: 90vh;
-
-        @include screens.lg {
-            gap: spacings.$xxLarge;
-        }
-    }
+  }
 }

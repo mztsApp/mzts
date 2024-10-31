@@ -1,2 +1,2 @@
-export * from "./useMedia";
-export * from "./useMedia.constants";
+export * from './useMedia';
+export * from './useMedia.constants';

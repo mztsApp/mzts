@@ -1,7 +1,9 @@
-import { ValueOf } from "@/types";
-import React from "react";
-import { LAYOUT_COMPONENT } from "./Layout.constants";
-import styles from "./Layout.module.scss";
+import React from 'react';
+
+import { ValueOf } from '@/types';
+
+import { LAYOUT_COMPONENT } from './Layout.constants';
+import styles from './Layout.module.scss';
 
 interface LayoutRootProps extends React.PropsWithChildren {
   as: ValueOf<typeof LAYOUT_COMPONENT>;

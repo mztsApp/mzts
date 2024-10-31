@@ -1,58 +1,166 @@
 // text gradients: top | right | bottom | left
 
 @mixin textGradient($direction: right) {
-    @if $direction == left {
-        background-image: linear-gradient(270deg, #FBFBFB -1.96%, #D9D7DF 16.78%, #EDEDED 34.02%, #CBC6DC 50.23%, #AAA1CC 57.95%, #3A1F94 86.8%, #3609D2 96.81%);
-    } @else if $direction == bottom {
-        background-image: linear-gradient(180deg, #FBFBFB -1.96%, #D9D7DF 16.78%, #EDEDED 34.02%, #CBC6DC 50.23%, #AAA1CC 57.95%, #3A1F94 86.8%, #3609D2 96.81%);
-    } @else if $direction == top {
-        background-image: linear-gradient(0deg, #FBFBFB -1.96%, #D9D7DF 16.78%, #EDEDED 34.02%, #CBC6DC 50.23%, #AAA1CC 57.95%, #3A1F94 86.8%, #3609D2 96.81%);
-    } @else {
-        background-image: linear-gradient(90deg, #FBFBFB -1.96%, #D9D7DF 16.78%, #EDEDED 34.02%, #CBC6DC 50.23%, #AAA1CC 57.95%, #3A1F94 86.8%, #3609D2 96.81%);
-    }
+  @if $direction == left {
+    background-image: linear-gradient(
+      270deg,
+      #fbfbfb -1.96%,
+      #d9d7df 16.78%,
+      #ededed 34.02%,
+      #cbc6dc 50.23%,
+      #aaa1cc 57.95%,
+      #3a1f94 86.8%,
+      #3609d2 96.81%
+    );
+  } @else if $direction == bottom {
+    background-image: linear-gradient(
+      180deg,
+      #fbfbfb -1.96%,
+      #d9d7df 16.78%,
+      #ededed 34.02%,
+      #cbc6dc 50.23%,
+      #aaa1cc 57.95%,
+      #3a1f94 86.8%,
+      #3609d2 96.81%
+    );
+  } @else if $direction == top {
+    background-image: linear-gradient(
+      0deg,
+      #fbfbfb -1.96%,
+      #d9d7df 16.78%,
+      #ededed 34.02%,
+      #cbc6dc 50.23%,
+      #aaa1cc 57.95%,
+      #3a1f94 86.8%,
+      #3609d2 96.81%
+    );
+  } @else {
+    background-image: linear-gradient(
+      90deg,
+      #fbfbfb -1.96%,
+      #d9d7df 16.78%,
+      #ededed 34.02%,
+      #cbc6dc 50.23%,
+      #aaa1cc 57.95%,
+      #3a1f94 86.8%,
+      #3609d2 96.81%
+    );
+  }
 
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 // gradients backgrounds - (item variant)
-// $direction: top | right | bottom | left 
+// $direction: top | right | bottom | left
 
 @mixin gradientItemVariant($direction: top) {
-    @if $direction == right {
-        background: linear-gradient(91deg, rgba(94, 54, 235, 0.87) 0.87%, rgba(139, 114, 242, 0.68) 100.77%), linear-gradient(90deg, #7E5DF4 0%, #7E5DF4 100%), linear-gradient(270deg, rgba(255, 255, 255, 0.30) 7.29%, rgba(255, 255, 255, 0.00) 65.62%);
-    } @else if $direction == bottom {
-        background: linear-gradient(181deg, rgba(94, 54, 235, 0.87) 0.87%, rgba(139, 114, 242, 0.68) 100.77%), linear-gradient(180deg, #7E5DF4 0%, #7E5DF4 100%), linear-gradient(360deg, rgba(255, 255, 255, 0.30) 7.29%, rgba(255, 255, 255, 0.00) 65.62%);
-    } @else if $direction == left {
-        background: linear-gradient(271deg, rgba(94, 54, 235, 0.87) 0.87%, rgba(139, 114, 242, 0.68) 100.77%), linear-gradient(270deg, #7E5DF4 0%, #7E5DF4 100%), linear-gradient(90deg, rgba(255, 255, 255, 0.30) 7.29%, rgba(255, 255, 255, 0.00) 65.62%);
-    } @else {
-        background: linear-gradient(1deg, rgba(94, 54, 235, 0.87) 0.87%, rgba(139, 114, 242, 0.68) 100.77%), linear-gradient(0deg, #7E5DF4 0%, #7E5DF4 100%), linear-gradient(180deg, rgba(255, 255, 255, 0.30) 7.29%, rgba(255, 255, 255, 0.00) 65.62%);
-    }
+  @if $direction == right {
+    background: linear-gradient(
+        91deg,
+        rgba(94, 54, 235, 0.87) 0.87%,
+        rgba(139, 114, 242, 0.68) 100.77%
+      ),
+      linear-gradient(90deg, #7e5df4 0%, #7e5df4 100%),
+      linear-gradient(
+        270deg,
+        rgba(255, 255, 255, 0.3) 7.29%,
+        rgba(255, 255, 255, 0) 65.62%
+      );
+  } @else if $direction == bottom {
+    background: linear-gradient(
+        181deg,
+        rgba(94, 54, 235, 0.87) 0.87%,
+        rgba(139, 114, 242, 0.68) 100.77%
+      ),
+      linear-gradient(180deg, #7e5df4 0%, #7e5df4 100%),
+      linear-gradient(
+        360deg,
+        rgba(255, 255, 255, 0.3) 7.29%,
+        rgba(255, 255, 255, 0) 65.62%
+      );
+  } @else if $direction == left {
+    background: linear-gradient(
+        271deg,
+        rgba(94, 54, 235, 0.87) 0.87%,
+        rgba(139, 114, 242, 0.68) 100.77%
+      ),
+      linear-gradient(270deg, #7e5df4 0%, #7e5df4 100%),
+      linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.3) 7.29%,
+        rgba(255, 255, 255, 0) 65.62%
+      );
+  } @else {
+    background: linear-gradient(
+        1deg,
+        rgba(94, 54, 235, 0.87) 0.87%,
+        rgba(139, 114, 242, 0.68) 100.77%
+      ),
+      linear-gradient(0deg, #7e5df4 0%, #7e5df4 100%),
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.3) 7.29%,
+        rgba(255, 255, 255, 0) 65.62%
+      );
+  }
 }
 
 // gradients backgrounds - (look like text variant)
-// $direction: top | right | bottom | left 
+// $direction: top | right | bottom | left
 
 @mixin gradientSeparatorVariant($direction: top) {
-    @if $direction == right {
-        background: linear-gradient(175deg, #F4F4F4 42.66%, #F3F1F8 52.5%, rgba(144, 132, 185, 0.71) 60.13%, rgba(133, 118, 186, 0.85) 68.04%, rgba(117, 89, 212, 0.90) 68.38%, rgba(46, 16, 148, 0.94) 99.76%);
-    } @else if $direction == bottom {
-        background: linear-gradient(265deg, #F4F4F4 42.66%, #F3F1F8 52.5%, rgba(144, 132, 185, 0.71) 60.13%, rgba(133, 118, 186, 0.85) 68.04%, rgba(117, 89, 212, 0.90) 68.38%, rgba(46, 16, 148, 0.94) 99.76%);
-    } @else if $direction == left {
-        background: linear-gradient(355deg, #F4F4F4 42.66%, #F3F1F8 52.5%, rgba(144, 132, 185, 0.71) 60.13%, rgba(133, 118, 186, 0.85) 68.04%, rgba(117, 89, 212, 0.90) 68.38%, rgba(46, 16, 148, 0.94) 99.76%);
-    } @else {
-        background: linear-gradient(85deg, #F4F4F4 42.66%, #F3F1F8 52.5%, rgba(144, 132, 185, 0.71) 60.13%, rgba(133, 118, 186, 0.85) 68.04%, rgba(117, 89, 212, 0.90) 68.38%, rgba(46, 16, 148, 0.94) 99.76%);
-    }
+  @if $direction == right {
+    background: linear-gradient(
+      175deg,
+      #f4f4f4 42.66%,
+      #f3f1f8 52.5%,
+      rgba(144, 132, 185, 0.71) 60.13%,
+      rgba(133, 118, 186, 0.85) 68.04%,
+      rgba(117, 89, 212, 0.9) 68.38%,
+      rgba(46, 16, 148, 0.94) 99.76%
+    );
+  } @else if $direction == bottom {
+    background: linear-gradient(
+      265deg,
+      #f4f4f4 42.66%,
+      #f3f1f8 52.5%,
+      rgba(144, 132, 185, 0.71) 60.13%,
+      rgba(133, 118, 186, 0.85) 68.04%,
+      rgba(117, 89, 212, 0.9) 68.38%,
+      rgba(46, 16, 148, 0.94) 99.76%
+    );
+  } @else if $direction == left {
+    background: linear-gradient(
+      355deg,
+      #f4f4f4 42.66%,
+      #f3f1f8 52.5%,
+      rgba(144, 132, 185, 0.71) 60.13%,
+      rgba(133, 118, 186, 0.85) 68.04%,
+      rgba(117, 89, 212, 0.9) 68.38%,
+      rgba(46, 16, 148, 0.94) 99.76%
+    );
+  } @else {
+    background: linear-gradient(
+      85deg,
+      #f4f4f4 42.66%,
+      #f3f1f8 52.5%,
+      rgba(144, 132, 185, 0.71) 60.13%,
+      rgba(133, 118, 186, 0.85) 68.04%,
+      rgba(117, 89, 212, 0.9) 68.38%,
+      rgba(46, 16, 148, 0.94) 99.76%
+    );
+  }
 }
 
 // boxGradient
 // $direction: top | right | bottom | left
 // $variant: item | separator
 
-@mixin boxGradient ($direction: top, $variant: item) {
-    @if $variant == separator {
-        @include gradientSeparatorVariant($direction)
-    } @else {
-        @include gradientItemVariant($direction)
-    }
+@mixin boxGradient($direction: top, $variant: item) {
+  @if $variant == separator {
+    @include gradientSeparatorVariant($direction);
+  } @else {
+    @include gradientItemVariant($direction);
+  }
 }

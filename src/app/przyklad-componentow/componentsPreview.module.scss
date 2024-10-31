@@ -7,58 +7,57 @@
 @use '/src/styles/boxShadows';
 @use '/src/styles/textEllipsis';
 
-
 .componentPreview {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: spacings.$medium;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: spacings.$medium;
+  width: 100%;
+  max-width: helpers.pxToRem(500);
+  margin: auto;
+
+  &_test {
+    background: colors.$accent;
+  }
+
+  &_separator {
     width: 100%;
-    max-width: helpers.pxToRem(500);
-    margin: auto;
+    height: helpers.pxToRem(5);
 
-    &_test {
-        background: colors.$accent;
+    @include gradients.boxGradient(left, separator);
+  }
+
+  &_box {
+    width: 100%;
+    max-width: helpers.pxToRem(200);
+    height: helpers.pxToRem(200);
+    transition: width 400ms ease-in-out;
+    margin: helpers.pxToRem(10, auto);
+    background: colors.$accent;
+    box-shadow: boxShadows.$default-shadow;
+  }
+
+  &_iconContainer {
+    display: flex;
+    justify-content: center;
+    gap: spacings.$small;
+    width: helpers.pxToRem(200);
+  }
+
+  &_icon {
+    width: helpers.pxToRem(30);
+    height: helpers.pxToRem(30);
+    fill: colors.$accent;
+
+    &__default {
+      fill: colors.$sideText;
     }
+  }
 
-    &_separator {
-        width: 100%;
-        height: helpers.pxToRem(5);
+  &_textContainer {
+    max-width: helpers.pxToRem(400);
+    text-align: center;
 
-        @include gradients.boxGradient(left, separator);
-    }
-
-    &_box {
-        width: 100%;
-        max-width: helpers.pxToRem(200);
-        height: helpers.pxToRem(200);
-        transition: width 400ms ease-in-out;
-        margin: helpers.pxToRem(10, auto);
-        background: colors.$accent;
-        box-shadow: boxShadows.$default-shadow;
-    }
-
-    &_iconContainer {
-        display: flex;
-        justify-content: center;
-        gap: spacings.$small;
-        width: helpers.pxToRem(200);
-    }
-
-    &_icon {
-        width: helpers.pxToRem(30);
-        height: helpers.pxToRem(30);
-        fill: colors.$accent;
-
-        &__default {
-            fill: colors.$sideText;
-        }
-    }
-
-    &_textContainer {
-        max-width: helpers.pxToRem(400);
-        text-align: center;
-
-        @include textEllipsis.createTextEllipsis(3)
-    }
+    @include textEllipsis.createTextEllipsis(3);
+  }
 }

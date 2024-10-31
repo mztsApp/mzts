@@ -1,23 +1,24 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
-import "./globals.scss";
-import { Layout } from "@/components/Layout/Layout.server";
-import { LAYOUT_COMPONENT } from "@/components/Layout/Layout.constants";
+import type { Metadata } from 'next';
+import localFont from 'next/font/local';
+
+import './globals.scss';
+import { LAYOUT_COMPONENT } from '@/components/Layout/Layout.constants';
+import { Layout } from '@/components/Layout/Layout.server';
 
 const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+  src: './fonts/GeistVF.woff',
+  variable: '--font-geist-sans',
+  weight: '100 900',
 });
 const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+  src: './fonts/GeistMonoVF.woff',
+  variable: '--font-geist-mono',
+  weight: '100 900',
 });
 
 export const metadata: Metadata = {
-  title: "MZTS - Strona główna",
-  description: "Strona główna",
+  title: 'MZTS - Strona główna',
+  description: 'Strona główna',
 };
 
 export default function RootLayout({

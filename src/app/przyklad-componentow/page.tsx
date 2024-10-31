@@ -1,14 +1,17 @@
-import React from "react";
-import styles from "./componentsPreview.module.scss";
+import React from 'react';
+
+import styles from './componentsPreview.module.scss';
 
 import {
   TYPOGRAPHY_COLORS,
   TYPOGRAPHY_COMPONENTS,
   TYPOGRAPHY_VARIANTS,
-} from "@/components/Typography/Typography.constants";
-import { Typography } from "@/components/Typography/Typography.server";
-import { twMerge } from "tailwind-merge";
-import ChevronRight from "/src/assets/icons/chevronRight.svg";
+} from '@/components/Typography/Typography.constants';
+import { Typography } from '@/components/Typography/Typography.server';
+
+import { twMerge } from 'tailwind-merge';
+
+import ChevronRight from '/src/assets/icons/chevronRight.svg';
 
 export default function componentsPreview() {
   return (
@@ -53,14 +56,14 @@ export default function componentsPreview() {
         <ChevronRight
           className={twMerge(
             styles.componentPreview_icon__default,
-            styles.componentPreview_icon
+            styles.componentPreview_icon,
           )}
         />
         <ChevronRight className={styles.componentPreview_icon} />
         <ChevronRight
           className={twMerge(
             styles.componentPreview_icon,
-            styles.componentPreview_icon__default
+            styles.componentPreview_icon__default,
           )}
         />
       </div>

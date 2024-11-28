@@ -1,6 +1,6 @@
 {
   "allStyleImports": {
-    "prefix": "sia",
+    "prefix": ["style", "sia"],
     "body": [
       "@use '/src/styles/gradients';",
       "@use '/src/styles/typography';",

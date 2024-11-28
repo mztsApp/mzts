@@ -1,0 +1,22 @@
+@use '/src/styles/gradients';
+@use '/src/styles/typography';
+@use '/src/styles/helpers';
+@use '/src/styles/screens';
+@use '/src/styles/spacings';
+@use '/src/styles/colors';
+@use '/src/styles/boxShadows';
+@use '/src/styles/textEllipsis';
+
+.navBar {
+  display: flex;
+  flex-direction: column;
+
+  &_contentContainer {
+    display: flex;
+    flex-direction: column;
+    gap: spacings.$small;
+
+    @include screens.lg {
+    }
+  }
+}

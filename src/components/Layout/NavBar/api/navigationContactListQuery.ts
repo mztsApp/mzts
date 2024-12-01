@@ -23,7 +23,7 @@ type ContactReturnType = {
 type ContactElementType = Record<'id' | 'type' | 'linkType', string>;
 type RestItemsType = Record<string, Record<'sys', ContactElementType>>;
 
-type FieldType = Record<'text' | 'href' | 'wariant', string>;
+type FieldType = Record<'text' | 'href' | 'variant', string>;
 type FieldsContainerArrayType = {
   fields: FieldType;
   sys: {
@@ -43,9 +43,6 @@ export const navigationContactListQuery =
         generateEntryQuery('7pw8llgEy4f2lB5JZJInz4'),
         {
           cache: 'force-cache',
-          next: {
-            revalidate: Infinity,
-          },
         },
       );
 
@@ -65,9 +62,6 @@ export const navigationContactListQuery =
 
       const itemsFetch = await fetch(generateEntryQuery(itemsSysIds, 10), {
         cache: 'force-cache',
-        next: {
-          revalidate: Infinity,
-        },
       });
 
       if (itemsFetch.ok) {
@@ -94,8 +88,6 @@ export const navigationContactListQuery =
       );
 
       const finalResolvedData = Object.fromEntries(objectWithIds);
-
-      console.log('test', data);
 
       data = { ...finalResolvedData, address };
     } catch (error) {

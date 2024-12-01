@@ -4,9 +4,25 @@ import { NavContact } from './NavContact/NavContact';
 export const NavBar = () => {
   return (
     <div className={styles.navBar}>
-      <NavContact />
+      <div className={styles.navBar_contact}>
+        <NavContact />
+      </div>
 
-      <nav className={styles.navBar_contentContainer}></nav>
+      <div className={styles.navBar_navigationContainer}>
+        <nav className={styles.navigation}>
+          <a className={styles.navigation_logo} href="/">
+            logo
+          </a>
+
+          <button
+            type="button"
+            arial-label="otwórz/zamknij menu"
+            className={styles.navigation_toggleMenuButton}
+          >
+            menu
+          </button>
+        </nav>
+      </div>
     </div>
   );
 };

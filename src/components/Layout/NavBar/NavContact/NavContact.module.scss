@@ -34,12 +34,17 @@
       color: colors.$accent;
     }
 
-    &:last-of-type {
+    &:first-of-type {
       display: none;
-      margin-left: auto;
 
       @include screens.lg {
         display: flex;
+      }
+    }
+
+    &:last-of-type {
+      @include screens.lg {
+        margin-left: auto;
       }
     }
   }

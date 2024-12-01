@@ -11,18 +11,43 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 spacings.$medium;
 
-  &_contentContainer {
+  &_contact {
     display: flex;
-    flex-direction: column;
-    gap: spacings.$small;
+    justify-content: center;
+    width: 100%;
+    background: colors.$text;
+    padding: 0 spacings.$medium;
 
     @include screens.lg {
+      padding: 0 spacings.$xxLarge;
     }
   }
 
-  @include screens.lg {
-    padding: 0 spacings.$xxLarge;
+  &_navigationContainer {
+    width: 100%;
+    background: colors.$accent;
+    padding: 0 spacings.$medium;
+
+    @include gradients.boxGradient(top);
+
+    @include screens.lg {
+      padding: 0 spacings.$xxLarge;
+    }
+  }
+}
+
+.navigation {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: spacings.$small;
+  width: 100%;
+  min-height: 50px;
+
+  &_logo {
+  }
+
+  &_toggleMenuButton {
   }
 }

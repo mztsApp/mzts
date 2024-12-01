@@ -58,6 +58,6 @@
     max-width: helpers.pxToRem(400);
     text-align: center;
 
-    @include textEllipsis.createTextEllipsis(3);
+    @include textEllipsis.createTextEllipsis(1);
   }
 }

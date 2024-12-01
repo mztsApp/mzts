@@ -10,6 +10,8 @@
 .navBar {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  padding: 0 spacings.$medium;
 
   &_contentContainer {
     display: flex;
@@ -18,5 +20,9 @@
 
     @include screens.lg {
     }
+  }
+
+  @include screens.lg {
+    padding: 0 spacings.$xxLarge;
   }
 }

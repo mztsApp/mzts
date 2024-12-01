@@ -8,6 +8,49 @@
 @use '/src/styles/textEllipsis';
 
 .navContact {
-  display: flex;
-  flex-wrap: wrap;
+  width: 100%;
+  max-width: helpers.pxToRem(1440);
+  padding: spacings.$xSmall 0;
+
+  &_list {
+    display: flex;
+    justify-content: center;
+    gap: spacings.$small;
+    flex-wrap: wrap;
+    width: 100%;
+    list-style: none;
+
+    @include screens.lg {
+      flex-wrap: nowrap;
+    }
+  }
+
+  &_listItem {
+    display: inline-flex;
+    gap: spacings.$xxSmall;
+    & svg {
+      width: helpers.pxToRem(21);
+      height: helpers.pxToRem(21);
+      color: colors.$accent;
+    }
+
+    &:last-of-type {
+      display: none;
+      margin-left: auto;
+
+      @include screens.lg {
+        display: flex;
+      }
+    }
+  }
+
+  &_anchor {
+    display: flex;
+    gap: spacings.$xxSmall;
+    text-decoration: none;
+  }
+
+  &_textContainer {
+    @include textEllipsis.createTextEllipsis(1);
+  }
 }

@@ -5,6 +5,7 @@ export const NavBar = () => {
   return (
     <div className={styles.navBar}>
       <NavContact />
+
       <nav className={styles.navBar_contentContainer}></nav>
     </div>
   );

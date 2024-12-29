@@ -8,6 +8,7 @@
 @use '/src/styles/textEllipsis';
 
 .navBar {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,6 +26,7 @@
   }
 
   &_navigationContainer {
+    display: flex;
     width: 100%;
     background: colors.$accent;
     padding: 0 spacings.$medium;
@@ -38,9 +40,9 @@
 }
 
 .navigation {
-  position: relative;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   gap: spacings.$small;
   width: 100%;
   min-height: 50px;
@@ -49,5 +51,29 @@
   }
 
   &_toggleMenuButton {
+  }
+
+  &_list {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: colors.$accent;
+    width: 100%;
+    height: 0;
+    transform: translateY(100%);
+    z-index: 10;
+
+    &__desktop {
+      position: static;
+      flex: 1 0;
+      height: 100%;
+      background: transparent;
+      transform: none;
+    }
+
+    &__fullHeight {
+      height: calc(100dvh - 100%);
+      transition: height 200ms ease-in-out;
+    }
   }
 }

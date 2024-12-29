@@ -10,11 +10,6 @@ export const generateEntryQuery = (
   const entryIds =
     typeof entryId === 'string' ? '' : `&sys.id[in]=${entryId.join(',')}`;
 
-  console.log(
-    'urle: ',
-    `${apiDomain}/spaces/${spaceId}/environments/master/entries${resolvedEntryId}?access_token=${apiKey}&include=${includeLevel}&${entryIds}`,
-  );
-
   return `${apiDomain}/spaces/${spaceId}/environments/master/entries${resolvedEntryId}?access_token=${apiKey}&include=${includeLevel}${entryIds}`;
 };
 

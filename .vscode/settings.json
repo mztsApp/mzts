@@ -13,5 +13,12 @@
     ".vscode",
     ".vscode-insiders",
     ".next"
-  ]
+  ],
+  "workbench.colorCustomizations": {
+    "editorGroup.border": "#18c8ce",
+    "panel.border": "#18c8ce",
+    "sideBar.border": "#18c8ce",
+    "terminal.border": "#18c8ce",
+    "activityBar.border": "#18c8ce"
+  }
 }

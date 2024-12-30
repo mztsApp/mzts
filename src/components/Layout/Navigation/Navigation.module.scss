@@ -1,0 +1,132 @@
+@use '/src/styles/gradients';
+@use '/src/styles/typography';
+@use '/src/styles/helpers';
+@use '/src/styles/screens';
+@use '/src/styles/spacings';
+@use '/src/styles/colors';
+@use '/src/styles/boxShadows';
+@use '/src/styles/textEllipsis';
+
+.navBar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &_contact {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background: colors.$text;
+    padding: 0 spacings.$medium;
+
+    @include screens.lg {
+      padding: 0 spacings.$xxLarge;
+    }
+  }
+
+  &_navigationContainer {
+    display: flex;
+    width: 100%;
+    background: colors.$accent;
+    padding: 0 spacings.$medium;
+
+    @include screens.lg {
+      padding: 0 spacings.$xxLarge;
+    }
+  }
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: spacings.$small;
+  width: 100%;
+  min-height: 50px;
+  padding: helpers.pxToRem(12) 0;
+
+  &_logoLink {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &_logo {
+    width: helpers.pxToRem(69);
+    height: helpers.pxToRem(48);
+  }
+
+  &_desktopLogo {
+    width: helpers.pxToRem(87);
+    height: helpers.pxToRem(61);
+  }
+
+  &_logoTitle {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    overflow: hidden;
+  }
+
+  &_toggleMenuButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: helpers.pxToRem(48);
+    height: helpers.pxToRem(48);
+    border-radius: 50%;
+    background-color: transparent;
+    border: none;
+    transition:
+      transform 150ms ease-in-out,
+      background 150ms ease-in-out;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &:focus {
+      transform: scale(1.1);
+      background: rgba(colors.$background, 0.05);
+    }
+  }
+
+  &_toggleMenuIcon {
+    color: colors.$text;
+    width: helpers.pxToRem(32);
+    height: helpers.pxToRem(32);
+  }
+
+  &_list {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: colors.$accent;
+    width: 100%;
+    height: 0;
+    transform: translateY(100%);
+    z-index: 10;
+
+    &__desktop {
+      position: static;
+      flex: 1 0;
+      height: 100%;
+      background: transparent;
+      transform: none;
+    }
+
+    &__fullHeight {
+      height: calc(100dvh - 100%);
+      transition: height 200ms ease-in-out;
+    }
+  }
+
+  @include screens.lg {
+    padding: helpers.pxToRem(6) 0;
+  }
+}

@@ -1,0 +1,61 @@
+@use '/src/styles/gradients';
+@use '/src/styles/typography';
+@use '/src/styles/helpers';
+@use '/src/styles/screens';
+@use '/src/styles/spacings';
+@use '/src/styles/colors';
+@use '/src/styles/boxShadows';
+@use '/src/styles/textEllipsis';
+
+.navContact {
+  width: 100%;
+  max-width: helpers.pxToRem(1440);
+  padding: spacings.$xSmall 0;
+
+  &_list {
+    display: flex;
+    justify-content: center;
+    gap: spacings.$small;
+    flex-wrap: wrap;
+    width: 100%;
+    list-style: none;
+
+    @include screens.lg {
+      flex-wrap: nowrap;
+    }
+  }
+
+  &_listItem {
+    display: inline-flex;
+    gap: spacings.$xxSmall;
+    & svg {
+      width: helpers.pxToRem(21);
+      height: helpers.pxToRem(21);
+      color: colors.$accent;
+    }
+
+    &:first-of-type {
+      display: none;
+
+      @include screens.lg {
+        display: flex;
+      }
+    }
+
+    &:last-of-type {
+      @include screens.lg {
+        margin-left: auto;
+      }
+    }
+  }
+
+  &_anchor {
+    display: flex;
+    gap: spacings.$xxSmall;
+    text-decoration: none;
+  }
+
+  &_textContainer {
+    @include textEllipsis.createTextEllipsis(1);
+  }
+}

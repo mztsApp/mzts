@@ -2,6 +2,23 @@
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit"
+  },
+  "cSpell.ignorePaths": [
+    "package-lock.json",
+    "node_modules",
+    "vscode-extension",
+    ".git/{info,lfs,logs,refs,objects}/**",
+    ".git/{index,*refs,*HEAD}",
+    ".vscode",
+    ".vscode-insiders",
+    ".next"
+  ],
+  "workbench.colorCustomizations": {
+    "editorGroup.border": "#18c8ce",
+    "panel.border": "#18c8ce",
+    "sideBar.border": "#18c8ce",
+    "terminal.border": "#18c8ce",
+    "activityBar.border": "#18c8ce"
   }
 }

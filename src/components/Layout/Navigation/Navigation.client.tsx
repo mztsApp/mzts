@@ -3,7 +3,11 @@
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
 
-import { Typography } from '@/components/Typography/Typography.server';
+import MobileLogo from '/src/assets/icons/mztsMoblie.svg';
+import DesktopLogo from '/src/assets/icons/mztsDesktop.svg';
+import MenuIcon from '/src/assets/icons/menu.svg';
+import CloseIcon from '/src/assets/icons/close.svg';
+
 import { ALLOWED_BREAKPOINTS, useMedia } from '@/hooks/useMedia';
 import { useScrollPosition } from '@/hooks/useScrollPosition/useScrollPosition';
 
@@ -55,8 +59,15 @@ export const NavigationClient = ({ children }: React.PropsWithChildren) => {
 
       <div className={styles.navBar_navigationContainer}>
         <nav className={styles.navigation}>
-          <a className={styles.navigation_logo} href="/">
-            <Typography>MZTS</Typography>
+          <a className={styles.navigation_logoLink} href="/">
+            {isDesktop ? (
+              <DesktopLogo className={styles.navigation_desktopLogo} />
+            ) : (
+              <MobileLogo className={styles.navigation_logo} />
+            )}
+            <span className={styles.navigation_logoTitle}>
+              Mazowiecki związek tańca sportowego
+            </span>
           </a>
 
           {!isDesktop && (
@@ -71,7 +82,11 @@ export const NavigationClient = ({ children }: React.PropsWithChildren) => {
               className={styles.navigation_toggleMenuButton}
               onClick={() => handleMenuButtonClick()}
             >
-              menu
+              {menuState.isMenuOpen ? (
+                <CloseIcon className={styles.navigation_toggleMenuIcon} />
+              ) : (
+                <MenuIcon className={styles.navigation_toggleMenuIcon} />
+              )}
             </button>
           )}
 

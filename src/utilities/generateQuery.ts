@@ -13,6 +13,9 @@ export const generateEntryQuery = (
   return `${apiDomain}/spaces/${spaceId}/environments/master/entries${resolvedEntryId}?access_token=${apiKey}&include=${includeLevel}${entryIds}`;
 };
 
+export const generateEntryRelatedWithEntryIdQuery = (entryId: string) =>
+  `${apiDomain}/spaces/${spaceId}/environments/master/entries?access_token=${apiKey}&links_to_entry=${entryId}`;
+
 export const generateAssetsQuery = (assetIds: string[]): string =>
   `${apiDomain}/spaces/${spaceId}/environments/master/assets?access_token=${apiKey}&sys.id[all]=${assetIds.join(
     ',',

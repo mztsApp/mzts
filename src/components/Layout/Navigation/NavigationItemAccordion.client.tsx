@@ -16,11 +16,10 @@ import {
 } from '@/components/Typography/Typography.constants';
 import { Typography } from '@/components/Typography/Typography.server';
 import { getResolvedTextFromSlug } from '@/utilities/getResolvedTextFromSlug';
+import ChevronUpIcon from '@/assets/icons/chevronUp.svg';
 
 import styles from './Navigation.module.scss';
 import type { NestedPages } from './utilities/getGroupedNavigationLinksBySubPage';
-
-import ChevronUpIcon from '/src/assets/icons/ChevronUp.svg';
 
 type NavigationItemAccordionProps = {
   nestedPage: NestedPages;

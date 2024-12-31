@@ -1,12 +1,13 @@
-import { navigationLinksQuery } from './api/navigationLinksQuery';
+import { appNavigationQuery } from '@/api/appNavigationQuery';
+
 import { NavContact } from './NavContact/NavContact';
 import { NavigationClient } from './Navigation.client';
 
 export const Navigation = async () => {
-  const {} = await navigationLinksQuery();
+  const { data } = await appNavigationQuery();
 
   return (
-    <NavigationClient>
+    <NavigationClient links={data ?? []}>
       <NavContact />
     </NavigationClient>
   );

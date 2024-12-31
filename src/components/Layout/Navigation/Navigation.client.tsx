@@ -3,31 +3,54 @@
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
 
-import MobileLogo from '/src/assets/icons/mztsMoblie.svg';
-import DesktopLogo from '/src/assets/icons/mztsDesktop.svg';
-import MenuIcon from '/src/assets/icons/menu.svg';
 import CloseIcon from '/src/assets/icons/close.svg';
+import MenuIcon from '/src/assets/icons/menu.svg';
+import DesktopLogo from '/src/assets/icons/mztsDesktop.svg';
+import MobileLogo from '/src/assets/icons/mztsMoblie.svg';
 
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
+import type { SinglePageType } from '@/api/appNavigationQuery';
+import { Typography } from '@/components/Typography/Typography.server';
 import { ALLOWED_BREAKPOINTS, useMedia } from '@/hooks/useMedia';
 import { useScrollPosition } from '@/hooks/useScrollPosition/useScrollPosition';
+import { getResolvedTextFromSlug } from '@/utilities/getResolvedTextFromSlug';
+import {
+  TYPOGRAPHY_COMPONENTS,
+  TYPOGRAPHY_VARIANTS,
+} from '@/components/Typography/Typography.constants';
 
 import styles from './Navigation.module.scss';
+import { getGroupedNavigationLinksBySubPage } from './utilities/getGroupedNavigationLinksBySubPage';
+import NavigationItemAccordion from './NavigationItemAccordion.client';
+import { NavigationItemWithDropdown } from './NavigationItemWithDropdown';
 
 type MenuState = {
   isMenuOpen: boolean;
   isMobileMenuListAlreadyExist: boolean;
 };
 
+type NavigationClientProps = React.PropsWithChildren<{
+  links: SinglePageType[];
+}>;
+
 const defaultMenuState: MenuState = {
   isMenuOpen: false,
   isMobileMenuListAlreadyExist: false,
 };
 
-export const NavigationClient = ({ children }: React.PropsWithChildren) => {
+export const NavigationClient = ({
+  children,
+  links,
+}: NavigationClientProps) => {
   const [menuState, setMenuState] = React.useState<MenuState>(defaultMenuState);
 
   const isDesktop = useMedia(ALLOWED_BREAKPOINTS.MIN_LG);
   const { scrollTo, isTopPosition, toggleScrolling } = useScrollPosition();
+  const path = usePathname();
+
+  const params = path.split('/');
 
   const handleMenuButtonClick = () => {
     scrollTo('top');
@@ -52,6 +75,8 @@ export const NavigationClient = ({ children }: React.PropsWithChildren) => {
       toggleScrolling(false);
     }
   }, [menuState.isMenuOpen, isTopPosition, isDesktop]);
+
+  const groupedLinksBySubPages = getGroupedNavigationLinksBySubPage(links);
 
   return (
     <div className={styles.navBar}>
@@ -98,7 +123,59 @@ export const NavigationClient = ({ children }: React.PropsWithChildren) => {
                 menuState.isMobileMenuListAlreadyExist &&
                   styles.navigation_list__fullHeight,
               )}
-            ></ul>
+            >
+              {groupedLinksBySubPages.nestedPages.map((nestedPage) => (
+                <li key={nestedPage.subPage}>
+                  {isDesktop ? (
+                    <NavigationItemWithDropdown nestedPage={nestedPage} />
+                  ) : (
+                    <NavigationItemAccordion
+                      nestedPage={nestedPage}
+                      handleLinkClick={() => setMenuState(defaultMenuState)}
+                    />
+                  )}
+                </li>
+              ))}
+
+              {groupedLinksBySubPages.restPages.map((page) => (
+                <li key={page}>
+                  <Link
+                    href={`/${page}`}
+                    onClick={() => setMenuState(defaultMenuState)}
+                    className={twMerge(
+                      styles.navigation_link,
+                      params.includes(page) && styles.navigation_link__active,
+                    )}
+                  >
+                    <Typography
+                      as={TYPOGRAPHY_COMPONENTS.SPAN}
+                      variant={TYPOGRAPHY_VARIANTS.BUTTON_TEXT}
+                    >
+                      {getResolvedTextFromSlug(page)}
+                    </Typography>
+                  </Link>
+                </li>
+              ))}
+
+              <li className={styles.navigation_listItem}>
+                <Link
+                  href="/przyklad-komponentow"
+                  onClick={() => setMenuState(defaultMenuState)}
+                  className={twMerge(
+                    styles.navigation_link,
+                    params.includes('przyklad-komponentow') &&
+                      styles.navigation_link__active,
+                  )}
+                >
+                  <Typography
+                    as={TYPOGRAPHY_COMPONENTS.SPAN}
+                    variant={TYPOGRAPHY_VARIANTS.BUTTON_TEXT}
+                  >
+                    {getResolvedTextFromSlug('przyklad komponentów')}
+                  </Typography>
+                </Link>
+              </li>
+            </ul>
           )}
         </nav>
       </div>

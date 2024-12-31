@@ -1,9 +1,6 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-
-import ChevronUpIcon from '/src/assets/icons/ChevronUp.svg';
-
 import Link from 'next/link';
 import { twMerge } from 'tailwind-merge';
 import {
@@ -14,6 +11,7 @@ import {
 } from '@radix-ui/react-popover';
 import React from 'react';
 
+import ChevronUpIcon from '@/assets/icons/chevronUp.svg';
 import { Typography } from '@/components/Typography/Typography.server';
 import {
   TYPOGRAPHY_COMPONENTS,

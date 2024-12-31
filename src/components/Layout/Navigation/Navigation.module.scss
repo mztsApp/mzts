@@ -106,18 +106,46 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    background: colors.$accent;
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: 0;
+    background: colors.$accent;
     transform: translateY(100%);
     z-index: 10;
+    list-style: none;
 
     &__desktop {
-      position: static;
+      position: relative;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-items: center;
       flex: 1 0;
+      gap: spacings.$small;
       height: 100%;
       background: transparent;
       transform: none;
+      overflow-x: clip;
+
+      & .navigation_link {
+        &:hover {
+          background: transparent;
+
+          & > span {
+            transform: scale(1);
+          }
+        }
+
+        &__active {
+          background: transparent;
+
+          & > span {
+            transform: scale(1);
+            color: colors.$background;
+          }
+        }
+      }
     }
 
     &__fullHeight {
@@ -126,7 +154,224 @@
     }
   }
 
+  &_ListItem {
+    width: 100%;
+    height: fit-content;
+  }
+
+  &_link {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: helpers.pxToRem(48);
+    padding: 0 spacings.$small;
+    text-decoration: none;
+
+    & > span {
+      transition: transform 150ms ease-in-out;
+      word-break: break-all;
+
+      @include textEllipsis.createTextEllipsis(1);
+    }
+
+    &:hover {
+      background: rgba(colors.$background, 0.15);
+      color: colors.$background;
+
+      & > span {
+        color: colors.$background;
+        transform: scale(1.05);
+      }
+    }
+
+    &__active {
+      background: rgba(colors.$background, 0.15);
+
+      & > span {
+        color: colors.$background;
+      }
+    }
+  }
+
   @include screens.lg {
     padding: helpers.pxToRem(6) 0;
+  }
+}
+
+.navigationItemAccordion {
+  &_trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: spacings.$xxSmall;
+    width: 100%;
+    height: helpers.pxToRem(48);
+    padding: 0 spacings.$small;
+    background: transparent;
+    border: none;
+    transition: background 150ms ease-in-out;
+
+    & > span,
+    .navigationItemAccordion_chevronUp {
+      transition: transform 150ms ease-in-out;
+      color: colors.$text;
+      word-break: break-all;
+
+      @include textEllipsis.createTextEllipsis(1);
+    }
+
+    &:hover {
+      background: rgba(colors.$background, 0.15);
+
+      & > span,
+      .navigationItemAccordion_chevronUp {
+        color: colors.$background;
+        transform: scale(1.05);
+      }
+    }
+
+    &[data-state='open'] {
+      & > .navigationItemAccordion_chevronUp {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &_content {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+  }
+
+  &_list {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    list-style: none;
+  }
+
+  &_listItem {
+    display: flex;
+    align-items: center;
+    height: helpers.pxToRem(48);
+  }
+
+  &_link {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: helpers.pxToRem(48);
+    padding: 0 spacings.$small;
+    text-decoration: none;
+
+    & > span {
+      transition: transform 150ms ease-in-out;
+      word-break: break-all;
+
+      @include textEllipsis.createTextEllipsis(1);
+    }
+
+    &:hover {
+      background: rgba(colors.$background, 0.15);
+
+      & > span {
+        color: colors.$background;
+        transform: scale(1.05);
+      }
+    }
+
+    &__active {
+      background: rgba(colors.$background, 0.15);
+
+      & > span {
+        color: colors.$background;
+      }
+    }
+  }
+
+  &_chevronUp {
+    width: helpers.pxToRem(24);
+    height: helpers.pxToRem(24);
+  }
+}
+
+.navigationItemWithDropdown {
+  &_trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: spacings.$xxSmall;
+    width: 100%;
+    height: helpers.pxToRem(48);
+    background: transparent;
+    border: none;
+    transition: background 150ms ease-in-out;
+
+    & > span,
+    .navigationItemWithDropdown_chevronUp {
+      transition: transform 150ms ease-in-out;
+      color: colors.$text;
+      word-break: break-all;
+
+      @include textEllipsis.createTextEllipsis(1);
+    }
+
+    &:hover {
+      & > span,
+      .navigationItemWithDropdown_chevronUp {
+        color: colors.$background;
+      }
+    }
+
+    &[data-state='open'] {
+      & > .navigationItemWithDropdown_chevronUp {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &_link {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: helpers.pxToRem(48);
+    padding: 0 spacings.$small;
+    text-decoration: none;
+
+    & > span {
+      transition: transform 150ms ease-in-out;
+      word-break: break-all;
+
+      @include textEllipsis.createTextEllipsis(1);
+    }
+
+    &:hover {
+      background: rgba(colors.$background, 0.15);
+
+      & > span {
+        color: colors.$background;
+      }
+    }
+
+    &__active {
+      background: rgba(colors.$background, 0.15);
+
+      & > span {
+        color: colors.$background;
+      }
+    }
+  }
+
+  &_content {
+    background: colors.$accent;
+    border-radius: helpers.pxToRem(0, 0, 4, 4);
+    box-shadow: boxShadows.$primary-shadow;
+
+    @include gradients.boxGradient(top);
+  }
+
+  &_chevronUp {
+    width: helpers.pxToRem(24);
+    height: helpers.pxToRem(24);
   }
 }

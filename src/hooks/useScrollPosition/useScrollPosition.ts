@@ -4,9 +4,12 @@ export const useScrollPosition = () => {
   const [scrollY, setScrollY] = React.useState<number | undefined>();
 
   React.useEffect(() => {
+    if (!window) return;
+
     const updateScrollYPosition = () => setScrollY(window.scrollY);
 
     updateScrollYPosition();
+
     window.addEventListener('scroll', updateScrollYPosition);
 
     return window.removeEventListener('scroll', updateScrollYPosition);
@@ -16,6 +19,8 @@ export const useScrollPosition = () => {
     target: 'top' | 'bottom' | React.RefObject<HTMLElement>,
     offsetY: number = 0,
   ) => {
+    if (!window || !document) return;
+
     let scrollTarget: number;
 
     if (target === 'top') {
@@ -35,6 +40,8 @@ export const useScrollPosition = () => {
   };
 
   const toggleScrolling = (shouldTurnOnScrolling: boolean = false) => {
+    if (!document || !window) return;
+
     if (shouldTurnOnScrolling) {
       setTimeout(() => {
         document.body.classList.add('scroll-disabled');

@@ -1,6 +1,6 @@
 import React from 'react';
-
-import styles from './componentsPreview.module.scss';
+import { twMerge } from 'tailwind-merge';
+import { Metadata } from 'next';
 
 import {
   TYPOGRAPHY_COLORS,
@@ -8,10 +8,14 @@ import {
   TYPOGRAPHY_VARIANTS,
 } from '@/components/Typography/Typography.constants';
 import { Typography } from '@/components/Typography/Typography.server';
+import ChevronRight from '@/assets/icons/chevronRight.svg';
 
-import { twMerge } from 'tailwind-merge';
+import styles from './componentsPreview.module.scss';
 
-import ChevronRight from '/src/assets/icons/chevronRight.svg';
+export const metadata: Metadata = {
+  title: 'MZTS - Przykład komponentów',
+  description: 'Przykład komponentów',
+};
 
 export default function componentsPreview() {
   return (

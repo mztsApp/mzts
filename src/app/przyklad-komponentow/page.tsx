@@ -8,8 +8,7 @@ import {
   TYPOGRAPHY_VARIANTS,
 } from '@/components/Typography/Typography.constants';
 import { Typography } from '@/components/Typography/Typography.server';
-
-import ChevronRight from '/src/assets/icons/chevronRight.svg';
+import ChevronRight from '@/assets/icons/chevronRight.svg';
 
 import styles from './componentsPreview.module.scss';
 

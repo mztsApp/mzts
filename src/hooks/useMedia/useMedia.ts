@@ -4,19 +4,23 @@ import { ValueOf } from '@/types';
 
 import { ALLOWED_BREAKPOINTS } from './useMedia.constants';
 
-// use only in client component !
 const useMedia = (query: ValueOf<typeof ALLOWED_BREAKPOINTS>): boolean => {
-  const [isMatch, setIsMatch] = React.useState<boolean>(
-    window.matchMedia(query).matches,
-  );
+  const [isMatch, setIsMatch] = React.useState<boolean>(false);
 
   React.useEffect(() => {
-    const matchQuery = window.matchMedia(query);
+    if (typeof window === 'undefined' || !window.matchMedia) {
+      return;
+    }
 
-    return () =>
-      matchQuery.addEventListener('change', () =>
-        setIsMatch(matchQuery.matches),
-      );
+    const matchQuery = window.matchMedia(query);
+    const updateMatch = () => setIsMatch(matchQuery.matches);
+
+    updateMatch();
+    matchQuery.addEventListener('change', updateMatch);
+
+    return () => {
+      matchQuery.removeEventListener('change', updateMatch);
+    };
   }, [query]);
 
   return isMatch;

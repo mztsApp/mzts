@@ -26,10 +26,10 @@ type NavigationItemAccordionProps = {
   handleLinkClick: () => void;
 };
 
-export default function NavigationItemAccordion({
+export const NavigationItemAccordion = ({
   nestedPage,
   handleLinkClick,
-}: NavigationItemAccordionProps) {
+}: NavigationItemAccordionProps) => {
   const path = usePathname();
   const params = path.split('/');
 
@@ -83,4 +83,4 @@ export default function NavigationItemAccordion({
       </AccordionItem>
     </Accordion>
   );
-}
+};

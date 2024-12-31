@@ -23,8 +23,8 @@ import {
 
 import styles from './Navigation.module.scss';
 import { getGroupedNavigationLinksBySubPage } from './utilities/getGroupedNavigationLinksBySubPage';
-import NavigationItemAccordion from './NavigationItemAccordion.client';
 import { NavigationItemWithDropdown } from './NavigationItemWithDropdown';
+import { NavigationItemAccordion } from './NavigationItemAccordion.client';
 
 type MenuState = {
   isMenuOpen: boolean;
@@ -74,6 +74,7 @@ export const NavigationClient = ({
 
       toggleScrolling(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [menuState.isMenuOpen, isTopPosition, isDesktop]);
 
   const groupedLinksBySubPages = getGroupedNavigationLinksBySubPage(links);

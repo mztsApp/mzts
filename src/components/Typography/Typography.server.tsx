@@ -4,6 +4,7 @@ import { twMerge } from 'tailwind-merge';
 import { ValueOf } from '@/types';
 
 import {
+  TYPOGRAPHY_ALIGNMENT,
   TYPOGRAPHY_COLORS,
   TYPOGRAPHY_COMPONENTS,
   TYPOGRAPHY_VARIANTS,
@@ -14,7 +15,9 @@ type TypographyProps = React.PropsWithChildren<{
   as?: ValueOf<typeof TYPOGRAPHY_COMPONENTS>;
   variant?: ValueOf<typeof TYPOGRAPHY_VARIANTS>;
   color?: ValueOf<typeof TYPOGRAPHY_COLORS>;
+  align?: ValueOf<typeof TYPOGRAPHY_ALIGNMENT>;
   uppercase?: boolean;
+  noWrap?: boolean;
 }>;
 
 export const Typography = ({
@@ -22,6 +25,8 @@ export const Typography = ({
   variant = TYPOGRAPHY_VARIANTS.BODY,
   color = TYPOGRAPHY_COLORS.TEXT,
   uppercase = false,
+  noWrap = false,
+  align = TYPOGRAPHY_ALIGNMENT.INITIAL,
   children,
 }: TypographyProps) => {
   return (
@@ -30,7 +35,9 @@ export const Typography = ({
         styles.typography,
         styles[variant],
         styles[color],
+        styles[align],
         uppercase && styles.typography__uppercase,
+        noWrap && styles.typography__noWrap,
       )}
     >
       {children}

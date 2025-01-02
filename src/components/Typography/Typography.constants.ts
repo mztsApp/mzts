@@ -33,3 +33,11 @@ export const TYPOGRAPHY_COLORS = {
   GRADIENT_BOTTOM: 'typography__gradientBottom',
   GRADIENT_LEFT: 'typography__gradientLeft',
 } as const;
+
+export const TYPOGRAPHY_ALIGNMENT = {
+  START: 'typography__alignStart',
+  CENTER: 'typography__alignCenter',
+  END: 'typography__alignEnd',
+  INHERIT: 'typography__alignInherit',
+  INITIAL: '',
+} as const;

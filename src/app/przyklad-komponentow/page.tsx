@@ -1,14 +1,13 @@
-import React from 'react';
-import { twMerge } from 'tailwind-merge';
 import { Metadata } from 'next';
+import { twMerge } from 'tailwind-merge';
 
+import ChevronRight from '@/assets/icons/chevronRight.svg';
 import {
   TYPOGRAPHY_COLORS,
   TYPOGRAPHY_COMPONENTS,
   TYPOGRAPHY_VARIANTS,
 } from '@/components/Typography/Typography.constants';
 import { Typography } from '@/components/Typography/Typography.server';
-import ChevronRight from '@/assets/icons/chevronRight.svg';
 
 import styles from './componentsPreview.module.scss';
 
@@ -25,21 +24,17 @@ export default function componentsPreview() {
         variant={TYPOGRAPHY_VARIANTS.H1}
         color={TYPOGRAPHY_COLORS.GRADIENT_RIGHT}
       >
-        Dupa - test
+        Przykłąd kompoonentów text - test
       </Typography>
-
       <span className={styles.componentPreview_separator} />
-
       <Typography variant={TYPOGRAPHY_VARIANTS.H3}>
         test dupa test dupa text test dupa test dupa text test dupa test dupa
         text test dupa test dupa text
       </Typography>
-
       <Typography color={TYPOGRAPHY_COLORS.GRADIENT_LEFT}>
         test dupa test dupa text test dupa test dupa text test dupa test dupa
         text test dupa test dupa text
       </Typography>
-
       <Typography
         variant={TYPOGRAPHY_VARIANTS.HELPER_TEXT}
         color={TYPOGRAPHY_COLORS.ACCENT}
@@ -47,14 +42,11 @@ export default function componentsPreview() {
         test dupa test dupa text test dupa test dupa text test dupa test dupa
         text test dupa test dupa text
       </Typography>
-
       <Typography variant={TYPOGRAPHY_VARIANTS.HELPER_TEXT}>
         test dupa test dupa text test dupa test dupa text test dupa test dupa
         text test dupa test dupa text
       </Typography>
-
       <div className={styles.componentPreview_box} />
-
       <div className={styles.componentPreview_iconContainer}>
         <ChevronRight className={styles.componentPreview_icon} />
         <ChevronRight
@@ -71,7 +63,6 @@ export default function componentsPreview() {
           )}
         />
       </div>
-
       <div className={styles.componentPreview_textContainer}>
         <Typography uppercase variant="typography__buttonText">
           In addition to the main focus, its important to consider the subtle

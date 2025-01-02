@@ -1,0 +1,106 @@
+@use '/src/styles/gradients';
+@use '/src/styles/typography';
+@use '/src/styles/helpers';
+@use '/src/styles/screens';
+@use '/src/styles/spacings';
+@use '/src/styles/colors';
+@use '/src/styles/boxShadows';
+@use '/src/styles/textEllipsis';
+
+.section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  &_contentWithImage {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: fit-content;
+
+    &__withHeaderHTMLTag {
+      display: flex;
+    }
+
+    @include screens.lg {
+      display: flex;
+      justify-content: flex-end;
+
+      &__alignStart {
+        justify-content: flex-start;
+      }
+    }
+  }
+
+  &_bgImage {
+    align-self: center;
+    width: 100dvw;
+    height: 100%;
+    object-fit: contain;
+
+    @include screens.lg {
+      width: 100%;
+    }
+  }
+
+  &_content {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+
+    &__alignStart {
+      justify-content: flex-start;
+    }
+
+    @include screens.lg {
+      width: min-content;
+      min-width: 55%;
+    }
+  }
+
+  &_innerContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: spacings.$small;
+    min-width: 55%;
+  }
+
+  &_contentText {
+    display: none;
+    max-width: 100%;
+    padding: 0 spacings.$medium;
+
+    @include screens.lg {
+      display: flex;
+    }
+  }
+
+  &_contentOutsideImage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: spacings.$large;
+    width: 100%;
+    padding-top: spacings.$large;
+
+    &__withHeaderHTMLTag {
+      .section_outsideImageText {
+        display: none;
+      }
+    }
+
+    @include screens.lg {
+      display: none;
+    }
+  }
+
+  &_OutsideImageText {
+    display: flex;
+  }
+}

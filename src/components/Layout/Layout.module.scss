@@ -37,7 +37,6 @@
     gap: spacings.$large;
     width: 100%;
     max-width: helpers.pxToRem(1440);
-    min-height: 90vh;
 
     @include screens.lg {
       gap: spacings.$xxLarge;

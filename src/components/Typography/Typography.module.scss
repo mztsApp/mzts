@@ -80,4 +80,28 @@
   &__gradientLeft {
     @include gradients.textGradient(left);
   }
+
+  //alignment
+
+  &__alignStart {
+    text-align: start;
+  }
+
+  &__alignCenter {
+    text-align: center;
+  }
+
+  &__alignEnd {
+    text-align: end;
+  }
+
+  &__alignInherit {
+    text-align: inherit;
+  }
+
+  //whiteSpace
+
+  &__noWrap {
+    white-space: nowrap;
+  }
 }

@@ -23,7 +23,7 @@ export type SinglePageType = {
   id: string;
 } & NestedRelatedPageFields;
 
-const defaultError = 'Coś poszło nie tak, spróbuj przeładować stronę';
+export const defaultError = 'Coś poszło nie tak, spróbuj przeładować stronę';
 
 export async function appNavigationQuery() {
   let isPending: boolean = true;

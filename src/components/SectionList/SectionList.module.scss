@@ -1,0 +1,14 @@
+@use '/src/styles/spacings';
+
+.sectionList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: spacings.$large;
+  width: 100%;
+  list-style: none;
+
+  &_item {
+    width: 100%;
+  }
+}

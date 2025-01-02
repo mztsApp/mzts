@@ -38,7 +38,7 @@ type HeadingAndComponentConditionalProps =
 type ImageType = React.ComponentProps<typeof Image>;
 
 export type SectionProps = {
-  image: ImageType;
+  image?: ImageType;
   description?: string;
   sectionAlignment?: ValueOf<typeof SECTION_ALIGNMENT>;
   headingColor?: ValueOf<typeof SECTION_HEADING_COLOR>;

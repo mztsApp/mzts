@@ -10,6 +10,10 @@
   @include getTypographyValues(36, 700);
 
   @include screens.lg {
+    @include getTypographyValues(48, 700);
+  }
+
+  @include screens.xl {
     @include getTypographyValues(72, 700);
   }
 }

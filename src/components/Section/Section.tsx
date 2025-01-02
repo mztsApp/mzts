@@ -20,10 +20,10 @@ export const Section = ({
   as: SectionHTMLTag = SECTION_COMPONENT.SECTION,
   headingLevel = SECTION_HEADING_COMPONENT.H2,
   headingText,
+  headingColor,
   description,
   image: imageProps,
   sectionAlignment,
-  headingColor,
 }: SectionProps) => {
   const typographyVariant =
     SectionHTMLTag === SECTION_COMPONENT.HEADER
@@ -40,12 +40,16 @@ export const Section = ({
             styles.section_contentWithImage__withHeaderHTMLTag,
         )}
       >
-        <Image
-          {...imageProps}
-          className={styles.section_bgImage}
-          alt={imageProps.alt}
-          priority={SectionHTMLTag === SECTION_COMPONENT.HEADER}
-        />
+        {imageProps?.src && (
+          <Image
+            src={`https:${imageProps.src}`}
+            width={imageProps.width}
+            height={imageProps.height}
+            className={styles.section_bgImage}
+            alt={imageProps?.alt ?? ''}
+            priority={SectionHTMLTag === SECTION_COMPONENT.HEADER}
+          />
+        )}
 
         <div
           className={twMerge(
@@ -59,10 +63,10 @@ export const Section = ({
         >
           <div className={styles.section_innerContent}>
             <Typography
-              noWrap
               as={headingLevel}
               variant={typographyVariant}
               color={headingColor}
+              align={TYPOGRAPHY_ALIGNMENT.CENTER}
             >
               {headingText}
             </Typography>
@@ -88,7 +92,12 @@ export const Section = ({
         )}
       >
         <div className={styles.section_outsideImageText}>
-          <Typography noWrap as={headingLevel} variant={typographyVariant}>
+          <Typography
+            as={headingLevel}
+            variant={typographyVariant}
+            color={headingColor}
+            align={TYPOGRAPHY_ALIGNMENT.CENTER}
+          >
             {headingText}
           </Typography>
         </div>
@@ -97,16 +106,17 @@ export const Section = ({
           as={TYPOGRAPHY_COMPONENTS.PARAGRAPH}
           variant={TYPOGRAPHY_VARIANTS.BODY}
           align={TYPOGRAPHY_ALIGNMENT.CENTER}
-          color={headingColor}
         >
           {description}
         </Typography>
 
-        {SectionHTMLTag !== SECTION_COMPONENT.HEADER && (
+        {SectionHTMLTag !== SECTION_COMPONENT.HEADER && imageProps?.src && (
           <Image
-            {...imageProps}
+            src={`https:${imageProps.src}`}
+            width={imageProps.width}
+            height={imageProps.height}
             className={styles.section_bgImage}
-            alt={imageProps.alt}
+            alt={imageProps?.alt ?? ''}
           />
         )}
       </div>

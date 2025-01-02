@@ -21,7 +21,7 @@ type NestedRelatedPagesItem = {
 
 export type SinglePageType = {
   id: string;
-} & NestedRelatedPageFields;
+} & Omit<NestedRelatedPageFields, 'isHomePage'>;
 
 export const defaultError = 'Coś poszło nie tak, spróbuj przeładować stronę';
 
@@ -75,9 +75,13 @@ export async function appNavigationQuery() {
     const nestedRelatedPagesEntryItems: NestedRelatedPagesItem[] =
       nestedRelatedPagesEntryData.items;
 
-    const resolvedData: SinglePageType[] = nestedRelatedPagesEntryItems.map(
-      (singleLink) => ({ ...singleLink.fields, id: singleLink.sys.id }),
-    );
+    const resolvedData: SinglePageType[] = nestedRelatedPagesEntryItems
+      .filter((current) => !current.fields.isHomePage)
+      .map((singleLink) => ({
+        subpage: singleLink.fields.subpage,
+        slug: singleLink.fields.slug,
+        id: singleLink.sys.id,
+      }));
 
     data = resolvedData;
   } catch (error) {

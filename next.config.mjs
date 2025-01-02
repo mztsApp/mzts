@@ -29,6 +29,9 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(process.cwd(), 'styles')],
   },
+  images: {
+    domains: ['images.ctfassets.net'],
+  },
 };
 
 export default nextConfig;

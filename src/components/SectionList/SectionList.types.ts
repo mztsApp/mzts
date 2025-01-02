@@ -1,5 +1,4 @@
 import { BgImageType, EntrySysType } from '@/types/pageApiTypes';
-import { ResolvedSectionListDataFromApiType } from './SectionList.utilities';
 
 type SectionListFieldFromApiResponse = {
   fields: {

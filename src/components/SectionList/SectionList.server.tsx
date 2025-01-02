@@ -2,6 +2,7 @@ import {
   getSectionAlignmentFromApi,
   getTypographyColorFromApi,
 } from '@/utilities/utilitiesForApi';
+
 import { Section } from '../Section/Section';
 import {
   SECTION_COMPONENT,

@@ -4,6 +4,7 @@ import {
   generateEntryQuery,
 } from '@/utilities/generateQuery';
 import { getResolvePageBGImageFromApi } from '@/utilities/getResolvedPageDataFromApi';
+
 import {
   SectionBGImageSectionList,
   SectionListData,

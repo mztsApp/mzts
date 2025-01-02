@@ -2,15 +2,15 @@ import { Metadata } from 'next';
 
 import { Section } from '@/components/Section/Section';
 import {
-  SECTION_COMPONENT,
-  SECTION_HEADING_COMPONENT,
-} from '@/components/Section/Section.constants';
-
-import { SectionList } from '@/components/SectionList/SectionList.server';
-import {
   getSectionAlignmentFromApi,
   getTypographyColorFromApi,
 } from '@/utilities/utilitiesForApi';
+import {
+  SECTION_COMPONENT,
+  SECTION_HEADING_COMPONENT,
+} from '@/components/Section/Section.constants';
+import { SectionList } from '@/components/SectionList/SectionList.server';
+
 import { getPageDataQuery } from './api/getPageDataQuery';
 
 export async function generateMetadata(): Promise<Metadata> {

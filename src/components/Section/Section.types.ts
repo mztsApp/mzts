@@ -42,4 +42,5 @@ export type SectionProps = {
   description?: string;
   sectionAlignment?: ValueOf<typeof SECTION_ALIGNMENT>;
   headingColor?: ValueOf<typeof SECTION_HEADING_COLOR>;
+  isPriority?: boolean;
 } & HeadingAndComponentConditionalProps;

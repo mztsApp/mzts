@@ -11,10 +11,10 @@ import {
   getTypographyColorFromApi,
 } from '@/utilities/utilitiesForApi';
 
-import { getPageDataQuery } from './api/getPageDataQuery';
+import { getHomePageDataQuery } from './api/getHomePageDataQuery';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { data } = await getPageDataQuery();
+  const { data } = await getHomePageDataQuery();
 
   return {
     title: data?.metaTitle,
@@ -23,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home() {
-  const { data } = await getPageDataQuery();
+  const { data } = await getHomePageDataQuery();
 
   if (!data) return null;
 

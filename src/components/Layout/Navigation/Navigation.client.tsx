@@ -11,20 +11,20 @@ import MobileLogo from '/src/assets/icons/mztsMoblie.svg';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import type { SinglePageType } from '@/api/appNavigationQuery';
-import { Typography } from '@/components/Typography/Typography.server';
-import { ALLOWED_BREAKPOINTS, useMedia } from '@/hooks/useMedia';
-import { useScrollPosition } from '@/hooks/useScrollPosition/useScrollPosition';
-import { getResolvedTextFromSlug } from '@/utilities/getResolvedTextFromSlug';
+import type { SinglePageType } from '@/app/api/appNavigationQuery';
 import {
   TYPOGRAPHY_COMPONENTS,
   TYPOGRAPHY_VARIANTS,
 } from '@/components/Typography/Typography.constants';
+import { Typography } from '@/components/Typography/Typography.server';
+import { ALLOWED_BREAKPOINTS, useMedia } from '@/hooks/useMedia';
+import { useScrollPosition } from '@/hooks/useScrollPosition/useScrollPosition';
+import { getGroupedPagesBySubPage } from '@/utilities/getGroupedPagesBySubPage';
+import { getResolvedTextFromSlug } from '@/utilities/getResolvedTextFromSlug';
 
 import styles from './Navigation.module.scss';
-import { getGroupedNavigationLinksBySubPage } from './utilities/getGroupedNavigationLinksBySubPage';
-import { NavigationItemWithDropdown } from './NavigationItemWithDropdown';
 import { NavigationItemAccordion } from './NavigationItemAccordion.client';
+import { NavigationItemWithDropdown } from './NavigationItemWithDropdown';
 
 type MenuState = {
   isMenuOpen: boolean;
@@ -77,7 +77,7 @@ export const NavigationClient = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [menuState.isMenuOpen, isTopPosition, isDesktop]);
 
-  const groupedLinksBySubPages = getGroupedNavigationLinksBySubPage(links);
+  const groupedLinksBySubPages = getGroupedPagesBySubPage(links);
 
   return (
     <div className={styles.navBar}>

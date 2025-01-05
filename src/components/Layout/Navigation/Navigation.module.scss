@@ -191,6 +191,10 @@
         color: colors.$background;
       }
     }
+
+    @include screens.lg {
+      padding: 0;
+    }
   }
 
   @include screens.lg {
@@ -328,6 +332,10 @@
         transform: rotate(180deg);
       }
     }
+  }
+
+  &_list {
+    list-style: none;
   }
 
   &_link {

@@ -19,7 +19,7 @@ import {
 } from '@/components/Typography/Typography.constants';
 import { getResolvedTextFromSlug } from '@/utilities/getResolvedTextFromSlug';
 
-import { NestedPages } from './utilities/getGroupedNavigationLinksBySubPage';
+import { NestedPages } from '../../../utilities/getGroupedPagesBySubPage';
 import styles from './Navigation.module.scss';
 
 type NavigationItemWithDropdownProps = {

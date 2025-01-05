@@ -39,7 +39,8 @@
     align-self: center;
     width: 100dvw;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
+    aspect-ratio: 3/2;
 
     @include screens.lg {
       width: 100%;
@@ -101,7 +102,16 @@
     }
   }
 
-  &_OutsideImageText {
+  &_outsideImageText {
     display: flex;
+    padding: 0 spacings.$medium;
+  }
+
+  &_outsideImageDescription {
+    padding: 0 spacings.$medium;
+
+    &__hero {
+      padding: 0;
+    }
   }
 }

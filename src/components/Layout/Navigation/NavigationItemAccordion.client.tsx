@@ -19,7 +19,7 @@ import { getResolvedTextFromSlug } from '@/utilities/getResolvedTextFromSlug';
 import ChevronUpIcon from '@/assets/icons/chevronUp.svg';
 
 import styles from './Navigation.module.scss';
-import type { NestedPages } from './utilities/getGroupedNavigationLinksBySubPage';
+import type { NestedPages } from '../../../utilities/getGroupedPagesBySubPage';
 
 type NavigationItemAccordionProps = {
   nestedPage: NestedPages;

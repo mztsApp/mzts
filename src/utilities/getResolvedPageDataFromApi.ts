@@ -10,21 +10,21 @@ const getResolvedEntryObject = (
   sysEntryObject:
     | PageDataApiResponseFieldsType['slug']
     | PageDataApiResponseFieldsType['image'],
-) => sysEntryObject.sys.id;
+) => sysEntryObject.sys.id ?? null;
 
 export const getResolvedPageDataWithoutImageFromApi = (
   pageApiResponse: PageDataApiResponseFieldsType,
 ): PageDataWithoutBGImageType => {
   const { slug, image, section, ...rest } = pageApiResponse;
 
-  const resolvedSectionIds = section.map(
-    (singleSection) => singleSection.sys.id,
-  );
+  const resolvedSectionIds = Boolean(section)
+    ? section?.map((singleSection) => singleSection.sys.id)
+    : [];
 
   return {
     slugEntryId: getResolvedEntryObject(slug),
     bgImageAssetId: getResolvedEntryObject(image),
-    sectionEntriesIds: resolvedSectionIds ?? [],
+    sectionEntriesIds: resolvedSectionIds,
     ...rest,
   };
 };

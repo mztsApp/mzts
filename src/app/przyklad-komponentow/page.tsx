@@ -28,23 +28,23 @@ export default function componentsPreview() {
       </Typography>
       <span className={styles.componentPreview_separator} />
       <Typography variant={TYPOGRAPHY_VARIANTS.H3}>
-        test dupa test dupa text test dupa test dupa text test dupa test dupa
-        text test dupa test dupa text
+        test test test test text test test test test text test test test test
+        text test test test test text
       </Typography>
       <Typography color={TYPOGRAPHY_COLORS.GRADIENT_LEFT}>
-        test dupa test dupa text test dupa test dupa text test dupa test dupa
-        text test dupa test dupa text
+        test test test test text test test test test text test test test test
+        text test test test test text
       </Typography>
       <Typography
         variant={TYPOGRAPHY_VARIANTS.HELPER_TEXT}
         color={TYPOGRAPHY_COLORS.ACCENT}
       >
-        test dupa test dupa text test dupa test dupa text test dupa test dupa
-        text test dupa test dupa text
+        test test test test text test test test test text test test test test
+        text test test test test text
       </Typography>
       <Typography variant={TYPOGRAPHY_VARIANTS.HELPER_TEXT}>
-        test dupa test dupa text test dupa test dupa text test dupa test dupa
-        text test dupa test dupa text
+        test test test test text test test test test text test test test test
+        text test test test test text
       </Typography>
       <div className={styles.componentPreview_box} />
       <div className={styles.componentPreview_iconContainer}>

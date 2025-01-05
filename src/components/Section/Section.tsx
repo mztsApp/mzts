@@ -24,7 +24,9 @@ export const Section = ({
   description,
   image: imageProps,
   sectionAlignment,
+  isPriority = false,
 }: SectionProps) => {
+  const isHero = SectionHTMLTag === SECTION_COMPONENT.HEADER;
   const typographyVariant =
     SectionHTMLTag === SECTION_COMPONENT.HEADER
       ? TYPOGRAPHY_VARIANTS.H1
@@ -36,18 +38,17 @@ export const Section = ({
         className={twMerge(
           styles.section_contentWithImage,
           styles?.[sectionAlignment ?? SECTION_ALIGNMENT.RIGHT],
-          SectionHTMLTag === SECTION_COMPONENT.HEADER &&
-            styles.section_contentWithImage__withHeaderHTMLTag,
+          isHero && styles.section_contentWithImage__withHeaderHTMLTag,
         )}
       >
         {imageProps?.src && (
           <Image
             src={`https:${imageProps.src}`}
-            width={imageProps.width}
-            height={imageProps.height}
+            width={1440}
+            height={960}
             className={styles.section_bgImage}
             alt={imageProps?.alt ?? ''}
-            priority={SectionHTMLTag === SECTION_COMPONENT.HEADER}
+            priority={isHero || isPriority}
           />
         )}
 
@@ -87,8 +88,7 @@ export const Section = ({
       <div
         className={twMerge(
           styles.section_contentOutsideImage,
-          SectionHTMLTag === SECTION_COMPONENT.HEADER &&
-            styles.section_contentOutsideImage__withHeaderHTMLTag,
+          isHero && styles.section_contentOutsideImage__withHeaderHTMLTag,
         )}
       >
         <div className={styles.section_outsideImageText}>
@@ -102,19 +102,26 @@ export const Section = ({
           </Typography>
         </div>
 
-        <Typography
-          as={TYPOGRAPHY_COMPONENTS.PARAGRAPH}
-          variant={TYPOGRAPHY_VARIANTS.BODY}
-          align={TYPOGRAPHY_ALIGNMENT.CENTER}
+        <div
+          className={twMerge(
+            styles.section_outsideImageDescription,
+            isHero && styles.section_outsideImageDescription__hero,
+          )}
         >
-          {description}
-        </Typography>
+          <Typography
+            as={TYPOGRAPHY_COMPONENTS.PARAGRAPH}
+            variant={TYPOGRAPHY_VARIANTS.BODY}
+            align={TYPOGRAPHY_ALIGNMENT.CENTER}
+          >
+            {description}
+          </Typography>
+        </div>
 
-        {SectionHTMLTag !== SECTION_COMPONENT.HEADER && imageProps?.src && (
+        {!isHero && imageProps?.src && (
           <Image
             src={`https:${imageProps.src}`}
-            width={imageProps.width}
-            height={imageProps.height}
+            width={1440}
+            height={960}
             className={styles.section_bgImage}
             alt={imageProps?.alt ?? ''}
           />

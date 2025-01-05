@@ -13,9 +13,11 @@ export async function generateStaticParams() {
 
   const gropedPages = getGroupedPagesBySubPage(data);
 
-  return gropedPages.nestedPages
-    .find(({ subPage }) => subPage === 'wspolpraca')
-    ?.pages.map((slug) => ({ slug }));
+  return (
+    gropedPages.nestedPages
+      ?.find(({ subPage }) => subPage === 'wspolpraca')
+      ?.pages.map((slug) => ({ slug })) ?? []
+  );
 }
 
 export async function generateMetadata({

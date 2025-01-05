@@ -1,0 +1,50 @@
+@use '/src/styles/gradients';
+@use '/src/styles/typography';
+@use '/src/styles/helpers';
+@use '/src/styles/screens';
+@use '/src/styles/spacings';
+@use '/src/styles/colors';
+@use '/src/styles/boxShadows';
+@use '/src/styles/textEllipsis';
+
+.footer {
+  display: flex;
+  justify-content: center;
+  width: 100dvw;
+  background: colors.$accent;
+  padding: spacings.$medium;
+
+  &_content {
+    display: flex;
+    flex-direction: column;
+    gap: spacings.$medium;
+    width: 100%;
+    max-width: helpers.pxToRem(1440);
+
+    @include screens.lg {
+      gap: spacings.$large;
+    }
+  }
+
+  &_navigation {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+
+    @include screens.lg {
+      grid-template-columns: 2fr 3fr 2fr;
+    }
+  }
+
+  &_divider {
+    width: 100%;
+    height: helpers.pxToRem(1);
+    background: colors.$text;
+  }
+
+  @include gradients.boxGradient();
+
+  @include screens.lg {
+    padding: spacings.$xxLarge;
+  }
+}

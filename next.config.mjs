@@ -26,11 +26,19 @@ const nextConfig = {
 
     return config;
   },
+  output: 'standalone',
   sassOptions: {
     includePaths: [path.join(process.cwd(), 'styles')],
   },
   images: {
     domains: ['images.ctfassets.net'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.ctfassets.net',
+        pathname: '/**',
+      },
+    ],
   },
 };
 

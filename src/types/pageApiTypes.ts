@@ -58,3 +58,13 @@ export type PageDataApiResponseFieldsType = Omit<
   'slugEntryId' | 'bgImageAssetId' | 'sectionEntriesIds'
 > &
   PageEntryFields;
+
+export type PageTemplateProps = {
+  slug: string;
+};
+
+export type PageParams = {
+  params: {
+    slug: string;
+  };
+};

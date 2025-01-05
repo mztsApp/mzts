@@ -24,19 +24,24 @@ export const SectionList = async ({ entriesIds }: SectionApiWrapperProps) => {
 
   return (
     <ul className={styles.sectionList}>
-      {data.map((section) => (
-        <li key={section.sectionId}>
-          <Section
-            as={SECTION_COMPONENT.SECTION}
-            headingColor={getTypographyColorFromApi(section?.colorVariant)}
-            sectionAlignment={getSectionAlignmentFromApi(section?.alignment)}
-            headingLevel={SECTION_HEADING_COMPONENT.H2}
-            headingText={section.title}
-            description={section.description}
-            image={section.image}
-          />
-        </li>
-      ))}
+      {data.map((section, index) => {
+        const isFirstListElement = index === 0;
+
+        return (
+          <li key={section.sectionId}>
+            <Section
+              as={SECTION_COMPONENT.SECTION}
+              headingColor={getTypographyColorFromApi(section?.colorVariant)}
+              sectionAlignment={getSectionAlignmentFromApi(section?.alignment)}
+              headingLevel={SECTION_HEADING_COMPONENT.H2}
+              headingText={section.title}
+              description={section.description}
+              image={section.image}
+              isPriority={isFirstListElement}
+            />
+          </li>
+        );
+      })}
     </ul>
   );
 };

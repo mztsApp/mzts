@@ -1,4 +1,4 @@
-import { defaultError } from '@/api/appNavigationQuery';
+import { defaultError } from '@/app/api/appNavigationQuery';
 import {
   generateAssetsQuery,
   generateEntryQuery,

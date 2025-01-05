@@ -1,12 +1,12 @@
 import { defaultError } from '@/app/api/appNavigationQuery';
-import {
+import type {
   PageAssetFieldsApiResponse,
   PageDataApiResponseFieldsType,
   PageDataType,
 } from '@/types/pageApiTypes';
 import {
   generateAssetQuery,
-  generateEntryRelatedWithEntryIdQuery,
+  generateEntryQuery,
 } from '@/utilities/generateQuery';
 import {
   getResolvedPageData,
@@ -14,57 +14,28 @@ import {
   getResolvePageBGImageFromApi,
 } from '@/utilities/getResolvedPageDataFromApi';
 
-type PageDataQueryType = {
-  pageId: string;
-};
+const homePageId = '3t7Iub6Arm23Cn7wWkIJTd';
 
-type ItemsFromRelatedEntryType = {
-  sys: {
-    id: string;
-  };
-  fields: PageDataApiResponseFieldsType;
-};
-
-export const getPageDataQuery = async ({ pageId }: PageDataQueryType) => {
+export const getHomePageDataQuery = async () => {
   let isPending: boolean = true;
   let isError: boolean = false;
-  let returnedError: string | Error | null = null;
   let data: PageDataType | null = null;
+  let returnedError: string | Error | null = null;
 
   try {
-    const pageResponse = await fetch(
-      generateEntryRelatedWithEntryIdQuery(pageId),
-      {
-        cache: 'force-cache',
-      },
-    );
+    const pageResponse = await fetch(generateEntryQuery(homePageId, 10), {
+      cache: 'force-cache',
+    });
 
     if (!pageResponse.ok) {
       returnedError = defaultError;
       isError = true;
-      data = null;
+
+      throw new Error(defaultError);
     }
 
     const pageData = await pageResponse.json();
-    const pageItems: ItemsFromRelatedEntryType[] = pageData.items;
-    const resolvedPageItem = pageItems.find(
-      (item) => item.sys.id !== '2HBQWicP4SZowD62bNuYE',
-    );
-    const pageFields = resolvedPageItem?.fields;
-
-    if (!pageFields) {
-      returnedError = defaultError;
-      isError = true;
-      data = null;
-
-      return {
-        isPending,
-        isError,
-        data,
-        error: returnedError,
-      };
-    }
-
+    const pageFields: PageDataApiResponseFieldsType = pageData.fields;
     const dataWithoutImage = getResolvedPageDataWithoutImageFromApi(pageFields);
 
     const bgImageFetch = await fetch(
@@ -77,6 +48,8 @@ export const getPageDataQuery = async ({ pageId }: PageDataQueryType) => {
     if (!bgImageFetch.ok) {
       returnedError = defaultError;
       isError = true;
+
+      throw new Error(defaultError);
     }
 
     const bgImageData = await bgImageFetch.json();
@@ -90,7 +63,8 @@ export const getPageDataQuery = async ({ pageId }: PageDataQueryType) => {
     if (error instanceof Error) {
       isError = true;
       returnedError = error.message;
-      data = null;
+
+      throw new Error(error.name);
     }
   } finally {
     isPending = false;

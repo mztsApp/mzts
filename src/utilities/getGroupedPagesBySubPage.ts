@@ -1,17 +1,17 @@
-import { SinglePageType } from '@/api/appNavigationQuery';
+import { SinglePageType } from '@/app/api/appNavigationQuery';
 
 export type NestedPages = {
   subPage: string;
   pages: string[];
 };
 
-export type ResolvedLinksType = {
+export type ResolvedPagesType = {
   nestedPages: NestedPages[];
   restPages: string[];
 };
 
-export const getGroupedNavigationLinksBySubPage = (links: SinglePageType[]) => {
-  const groupedPagesBySubPage = links.reduce<ResolvedLinksType>(
+export const getGroupedPagesBySubPage = (links: SinglePageType[]) => {
+  const groupedPagesBySubPage = links.reduce<ResolvedPagesType>(
     (accumulator, singlePage) => {
       const currentSubPage = singlePage.subpage;
 

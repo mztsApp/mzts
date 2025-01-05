@@ -9,7 +9,7 @@ import { appNavigationQuery } from '@/app/api/appNavigationQuery';
 export async function generateStaticParams() {
   const { data } = await appNavigationQuery();
 
-  if (!data) return null;
+  if (!data) return [];
 
   const gropedPages = getGroupedPagesBySubPage(data);
 

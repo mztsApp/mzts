@@ -1,0 +1,162 @@
+@use '/src/styles/gradients';
+@use '/src/styles/typography';
+@use '/src/styles/helpers';
+@use '/src/styles/screens';
+@use '/src/styles/spacings';
+@use '/src/styles/colors';
+@use '/src/styles/boxShadows';
+@use '/src/styles/textEllipsis';
+
+.footer {
+  display: flex;
+  justify-content: center;
+  width: 100dvw;
+  background: colors.$accent;
+  padding: spacings.$medium;
+
+  &_logo {
+    width: helpers.pxToRem(153);
+    height: auto;
+    object-fit: fill;
+  }
+
+  &_content {
+    display: flex;
+    flex-direction: column;
+    gap: spacings.$medium;
+    width: 100%;
+    max-width: helpers.pxToRem(1440);
+
+    @include screens.lg {
+      gap: spacings.$large;
+    }
+  }
+
+  &_navigation {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+
+    @include screens.lg {
+      grid-template-columns: 2fr 3fr 2fr;
+    }
+
+    @include screens.xl {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &_navigationList {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: spacings.$medium;
+    width: fit-content;
+    list-style: none;
+
+    @include screens.md {
+      grid-template-columns: 1fr 1fr;
+      margin: right;
+    }
+
+    @include screens.lg {
+      grid-template-columns: 1fr 1fr;
+      margin: auto;
+    }
+
+    @include screens.xl {
+      grid-template-columns: 1fr 1fr;
+      gap: spacings.$medium spacings.$xxLarge;
+      margin: auto;
+    }
+  }
+
+  &_link {
+    text-decoration: none;
+
+    span {
+      transition: color 200ms ease-in-out;
+
+      &:hover,
+      &:focus {
+        color: colors.$background;
+      }
+    }
+  }
+
+  &_divider {
+    width: 100%;
+    height: helpers.pxToRem(1);
+    background: colors.$text;
+  }
+
+  &_contactList {
+    display: flex;
+    flex-direction: column;
+    gap: spacings.$xSmall;
+    list-style: none;
+  }
+
+  &_contactItem {
+    &:first-of-type {
+      margin-top: helpers.pxToRem(12);
+    }
+
+    &:last-of-type {
+      margin: spacings.$medium 0;
+    }
+  }
+
+  &_contactOnlyTextItem {
+    display: flex;
+    align-items: center;
+    gap: spacings.$xSmall;
+  }
+
+  &_contactLink {
+    display: flex;
+    align-items: center;
+    gap: spacings.$xSmall;
+    text-decoration: none;
+
+    & > p {
+      transition: color 200ms ease-in-out;
+
+      &:hover,
+      &:focus {
+        color: colors.$background;
+      }
+    }
+  }
+
+  &_contactIcon {
+    width: helpers.pxToRem(16);
+    height: helpers.pxToRem(16);
+    stroke: colors.$background;
+  }
+
+  &_contactFacebookIcon {
+    width: helpers.pxToRem(32);
+    height: helpers.pxToRem(32);
+    path {
+      transition: fill 200ms ease-in-out;
+      fill: colors.$text;
+    }
+  }
+
+  &_facebookLink {
+    &:hover,
+    &:focus {
+      .footer_contactFacebookIcon {
+        path {
+          fill: colors.$background;
+        }
+      }
+    }
+  }
+
+  @include gradients.boxGradient();
+
+  @include screens.lg {
+    padding: spacings.$xxLarge;
+  }
+}

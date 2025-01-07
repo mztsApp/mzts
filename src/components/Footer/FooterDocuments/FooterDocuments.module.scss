@@ -1,0 +1,39 @@
+@use '/src/styles/gradients';
+@use '/src/styles/typography';
+@use '/src/styles/helpers';
+@use '/src/styles/screens';
+@use '/src/styles/spacings';
+@use '/src/styles/colors';
+@use '/src/styles/boxShadows';
+@use '/src/styles/textEllipsis';
+
+.footerDocuments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: spacings.$small spacings.$medium;
+  list-style: none;
+
+  &_item {
+    &:first-of-type {
+      margin-right: auto;
+    }
+  }
+
+  &_link {
+    text-decoration-color: colors.$text;
+    transition: text-decoration-color 200ms ease-in-out;
+
+    span {
+      transition: color 200ms ease-in-out;
+    }
+
+    &:hover,
+    &:focus {
+      text-decoration-color: colors.$background;
+
+      span {
+        color: colors.$background;
+      }
+    }
+  }
+}

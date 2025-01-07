@@ -21,6 +21,7 @@
     list-style: none;
 
     @include screens.lg {
+      justify-content: space-between;
       flex-wrap: nowrap;
     }
   }

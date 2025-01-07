@@ -12,7 +12,9 @@ export const useScrollPosition = () => {
 
     window.addEventListener('scroll', updateScrollYPosition);
 
-    return window.removeEventListener('scroll', updateScrollYPosition);
+    return () => {
+      window.removeEventListener('scroll', updateScrollYPosition);
+    };
   }, []);
 
   const scrollTo = (

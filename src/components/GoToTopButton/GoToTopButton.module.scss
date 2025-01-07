@@ -1,0 +1,74 @@
+@use '/src/styles/gradients';
+@use '/src/styles/typography';
+@use '/src/styles/helpers';
+@use '/src/styles/screens';
+@use '/src/styles/spacings';
+@use '/src/styles/colors';
+@use '/src/styles/boxShadows';
+@use '/src/styles/textEllipsis';
+
+.goToTopButton {
+  position: sticky;
+  bottom: spacings.$medium;
+  right: spacings.$medium;
+  display: none;
+  justify-content: center;
+  width: 100%;
+  height: 0;
+  background-color: transparent;
+
+  &__displayed {
+    display: flex;
+  }
+
+  &_wrapperContainer {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    max-width: helpers.pxToRem(1440);
+  }
+
+  &_chevron {
+    width: helpers.pxToRem(20);
+    height: helpers.pxToRem(20);
+  }
+
+  &_srOnly {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  &_button {
+    position: sticky;
+    bottom: spacings.$medium;
+    right: spacings.$medium;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: helpers.pxToRem(40);
+    height: helpers.pxToRem(40);
+    background: colors.$accent;
+    color: colors.$text;
+    border: solid helpers.pxToRem(1) colors.$text;
+    border-radius: helpers.pxToRem(15);
+    transform: translateY(calc(-100% - 16px));
+    transition: transform 150ms ease-in-out;
+
+    &:hover {
+      transform: translateY(calc(-100% - 16px)) scale(1.1);
+    }
+
+    &:focus {
+      transform: translateY(calc(-100% - 16px)) scale(1.1);
+    }
+
+    @include gradients.boxGradient(top);
+  }
+}

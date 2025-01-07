@@ -5,6 +5,7 @@ import './globals.scss';
 import { LAYOUT_COMPONENT } from '@/components/Layout/Layout.constants';
 import { Layout } from '@/components/Layout/Layout.server';
 import { Footer } from '@/components/Footer/Footer.server';
+import { GoToTopButton } from '@/components/GoToTopButton/GoToTopButton.client';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -31,6 +32,8 @@ export default function RootLayout({
     <html lang="pl">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Layout as={LAYOUT_COMPONENT.MAIN}>{children}</Layout>
+
+        <GoToTopButton />
 
         <Footer />
       </body>

@@ -1,6 +1,6 @@
 import { generateEntryQuery } from '../../../../utilities/generateQuery';
 
-type LinkValueType = {
+export type LinkValueType = {
   text: string;
   href: string;
   shouldOpenInNewWindow: boolean;

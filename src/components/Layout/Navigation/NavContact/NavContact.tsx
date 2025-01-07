@@ -7,24 +7,21 @@ import { Typography } from '@/components/Typography/Typography.server';
 import { navigationContactListQuery } from '../api/navigationContactListQuery';
 import { START_CONTACT_ICONS } from './NavContact.constants';
 import styles from './NavContact.module.scss';
-import {
-  getIcons,
-  getListedData,
-  IconObjectType,
-} from './NavContact.utilities';
+import { getDataWithIcons } from './NavContact.utilities';
 
 export const NavContact = async () => {
   const { data } = await navigationContactListQuery();
 
-  const restData = getListedData(data);
-  const icons: IconObjectType[] = getIcons(data);
+  const dataRelatedWithIcon = getDataWithIcons(data);
+
+  if (!dataRelatedWithIcon) return null;
 
   return (
     <div className={styles.navContact}>
       <ul className={styles.navContact_list}>
         {data?.address && (
           <li className={styles.navContact_listItem}>
-            {START_CONTACT_ICONS.address}
+            {START_CONTACT_ICONS.address()}
 
             <span className={styles.navContact_textContainer}>
               <Typography
@@ -37,8 +34,8 @@ export const NavContact = async () => {
           </li>
         )}
 
-        {restData.map((contactItem, index) => {
-          const linkProps = contactItem.shouldOpenInNewWindow
+        {dataRelatedWithIcon.map((contactItem) => {
+          const linkProps = contactItem.value.shouldOpenInNewWindow
             ? {
                 target: '_blank',
                 rel: 'noreferrer noopener',
@@ -47,26 +44,26 @@ export const NavContact = async () => {
 
           return contactItem ? (
             <li
-              key={contactItem.text ?? ''}
+              key={contactItem.value.text ?? ''}
               className={styles.navContact_listItem}
             >
               <a
                 {...linkProps}
-                href={contactItem.href}
+                href={contactItem.value.href}
                 className={styles.navContact_anchor}
               >
-                {icons[index].startIcon}
+                {contactItem.startIcon}
 
                 <span className={styles.navContact_textContainer}>
                   <Typography
                     color={TYPOGRAPHY_COLORS.BACKGROUND}
                     variant={TYPOGRAPHY_VARIANTS.BODY2}
                   >
-                    {contactItem?.text}
+                    {contactItem?.value.text}
                   </Typography>
                 </span>
 
-                {icons[index].endIcon}
+                {contactItem.endIcon}
               </a>
             </li>
           ) : null;

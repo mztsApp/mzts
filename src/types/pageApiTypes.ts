@@ -9,7 +9,7 @@ export type PageDataWithoutBGImageType = {
   alignmentVariant: string;
   sectionEntriesIds: string[];
   showContactForm: boolean;
-  shoNewsletter: boolean;
+  showNewsletter: boolean;
   showFaq: boolean;
   isHeroHide: boolean;
 };

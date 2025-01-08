@@ -24,7 +24,9 @@ export const TYPOGRAPHY_VARIANTS = {
 } as const;
 
 export const TYPOGRAPHY_COLORS = {
-  TEXT: '',
+  DEFAULT: '',
+  ERROR: 'typography__errorColor',
+  TEXT: 'typography__textColor',
   SIDE_TEXT: 'typography__sideTextColor',
   BACKGROUND: 'typography__backgroundColor',
   ACCENT: 'typography__accentColor',

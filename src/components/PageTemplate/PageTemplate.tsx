@@ -12,6 +12,7 @@ import {
   SECTION_COMPONENT,
   SECTION_HEADING_COMPONENT,
 } from '../Section/Section.constants';
+import { Newsletter } from '../Newsletter/Newsletter';
 
 export const PageTemplate = async ({ slug }: PageTemplateProps) => {
   const { data: navigationData } = await appNavigationQuery();
@@ -30,6 +31,8 @@ export const PageTemplate = async ({ slug }: PageTemplateProps) => {
 
   if (!data) return null;
 
+  console.log('dupa', data);
+
   return (
     <>
       {!data.isHeroHide && (
@@ -46,6 +49,7 @@ export const PageTemplate = async ({ slug }: PageTemplateProps) => {
       {data.sectionEntriesIds.length > 0 && (
         <SectionList entriesIds={data.sectionEntriesIds} />
       )}
+      {data.showNewsletter && <Newsletter />}
     </>
   );
 };

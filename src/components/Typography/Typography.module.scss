@@ -41,6 +41,10 @@
     @include typography.body2;
   }
 
+  &__body3 {
+    @include typography.body3;
+  }
+
   &__buttonText {
     @include typography.buttonText;
   }
@@ -53,14 +57,42 @@
 
   &__backgroundColor {
     color: colors.$background;
+    -webkit-text-fill-color: currentColor;
+    -webkit-background-clip: initial;
+    background-clip: initial;
+    background-image: none;
   }
 
   &__sideTextColor {
     color: colors.$sideText;
+    -webkit-text-fill-color: currentColor;
+    -webkit-background-clip: initial;
+    background-clip: initial;
+    background-image: none;
   }
 
   &__accentColor {
     color: colors.$accent;
+    -webkit-text-fill-color: currentColor;
+    -webkit-background-clip: initial;
+    background-clip: initial;
+    background-image: none;
+  }
+
+  &__textColor {
+    color: colors.$text;
+    -webkit-text-fill-color: currentColor;
+    -webkit-background-clip: initial;
+    background-clip: initial;
+    background-image: none;
+  }
+
+  &__errorColor {
+    color: colors.$error;
+    -webkit-text-fill-color: currentColor;
+    -webkit-background-clip: initial;
+    background-clip: initial;
+    background-image: none;
   }
 
   //gradient colors

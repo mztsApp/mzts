@@ -17,14 +17,17 @@ export const TYPOGRAPHY_VARIANTS = {
   H3: 'typography__h3',
   H4: 'typography__h4',
   BODY: '',
-  SUBTITLE: 'typography__subtitle',
   BODY2: 'typography__body2',
+  BODY3: 'typography__body3',
+  SUBTITLE: 'typography__subtitle',
   BUTTON_TEXT: 'typography__buttonText',
   HELPER_TEXT: 'typography__helperText',
 } as const;
 
 export const TYPOGRAPHY_COLORS = {
-  TEXT: '',
+  DEFAULT: '',
+  ERROR: 'typography__errorColor',
+  TEXT: 'typography__textColor',
   SIDE_TEXT: 'typography__sideTextColor',
   BACKGROUND: 'typography__backgroundColor',
   ACCENT: 'typography__accentColor',

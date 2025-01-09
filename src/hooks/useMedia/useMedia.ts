@@ -4,8 +4,15 @@ import { ValueOf } from '@/types';
 
 import { ALLOWED_BREAKPOINTS } from './useMedia.constants';
 
-const useMedia = (query: ValueOf<typeof ALLOWED_BREAKPOINTS>): boolean => {
-  const [isMatch, setIsMatch] = React.useState<boolean>(false);
+const useMedia = (
+  query: ValueOf<typeof ALLOWED_BREAKPOINTS>,
+  initialLGMatchValue?: boolean,
+): boolean => {
+  const [isMatch, setIsMatch] = React.useState<boolean>(
+    query === ALLOWED_BREAKPOINTS.MIN_LG
+      ? !Boolean(initialLGMatchValue)
+      : false,
+  );
 
   React.useEffect(() => {
     if (typeof window === 'undefined' || !window.matchMedia) {

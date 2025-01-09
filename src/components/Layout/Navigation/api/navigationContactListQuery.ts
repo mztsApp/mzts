@@ -4,7 +4,6 @@ export type LinkValueType = {
   text: string;
   href: string;
   shouldOpenInNewWindow: boolean;
-  variant: string;
 };
 
 export type Data =

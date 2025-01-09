@@ -10,6 +10,7 @@ import {
   getSectionAlignmentFromApi,
   getTypographyColorFromApi,
 } from '@/utilities/utilitiesForApi';
+import { Newsletter } from '@/components/Newsletter/Newsletter';
 
 import { getHomePageDataQuery } from './api/getHomePageDataQuery';
 
@@ -44,6 +45,8 @@ export default async function Home() {
       {data.sectionEntriesIds.length > 0 && (
         <SectionList entriesIds={data.sectionEntriesIds} />
       )}
+
+      {data.showNewsletter && <Newsletter />}
     </>
   );
 }

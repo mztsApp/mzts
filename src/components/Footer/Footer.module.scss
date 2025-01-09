@@ -14,6 +14,12 @@
   background: colors.$accent;
   padding: spacings.$medium;
 
+  @include gradients.boxGradient();
+
+  @include screens.lg {
+    padding: spacings.$xxLarge;
+  }
+
   &_logo {
     width: helpers.pxToRem(153);
     height: auto;
@@ -152,11 +158,5 @@
         }
       }
     }
-  }
-
-  @include gradients.boxGradient();
-
-  @include screens.lg {
-    padding: spacings.$xxLarge;
   }
 }

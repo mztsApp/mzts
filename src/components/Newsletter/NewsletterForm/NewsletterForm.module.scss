@@ -1,0 +1,99 @@
+@use '/src/styles/gradients';
+@use '/src/styles/typography';
+@use '/src/styles/helpers';
+@use '/src/styles/screens';
+@use '/src/styles/spacings';
+@use '/src/styles/colors';
+@use '/src/styles/boxShadows';
+@use '/src/styles/textEllipsis';
+
+.newsletterForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &_fieldContainer {
+    display: flex;
+    flex-direction: column;
+    gap: spacings.$xSmall;
+    width: 100%;
+  }
+
+  &_innerFieldContainer {
+    display: flex;
+    gap: spacings.$xSmall;
+    width: 100%;
+  }
+
+  &_field {
+    width: 100%;
+    height: helpers.pxToRem(58);
+    border: none;
+    border-bottom: solid colors.$background helpers.pxToRem(1);
+    border-radius: helpers.pxToRem(4, 4, 0, 0);
+    outline: none;
+    color: colors.$accent;
+    padding: 0 spacings.$small;
+
+    @include typography.body;
+
+    &::placeholder {
+      color: colors.$accent;
+
+      @include typography.body;
+    }
+
+    &:hover {
+      opacity: 80%;
+    }
+
+    &:focus {
+      border-width: helpers.pxToRem(3);
+    }
+
+    &[data-invalid='true'] {
+      border-color: colors.$error;
+    }
+  }
+
+  &_errorContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: helpers.pxToRem(48);
+    border-radius: helpers.pxToRem(4);
+    background: colors.$text;
+    overflow: hidden;
+    transition: width 200ms ease-in-out;
+
+    &:empty {
+      transition: width 200ms ease-in-out;
+      width: 0;
+    }
+  }
+
+  &_error {
+    padding: 0 spacings.$xSmall;
+  }
+
+  &_cta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    height: helpers.pxToRem(58);
+    padding: 0 spacings.$large;
+    border: solid 1px colors.$text;
+    border-radius: helpers.pxToRem(4);
+    box-shadow: inset 0 0 0 helpers.pxToRem(1) colors.$accent;
+
+    &:hover {
+      opacity: 80%;
+    }
+
+    &:active {
+      opacity: 70%;
+    }
+  }
+}

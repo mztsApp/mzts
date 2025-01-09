@@ -12,7 +12,6 @@ export const getListedData = (
   text: string;
   href: string;
   shouldOpenInNewWindow: boolean;
-  variant: string;
 }[] => {
   if (!data) {
     return [];

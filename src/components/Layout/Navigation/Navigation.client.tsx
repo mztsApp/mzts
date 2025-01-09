@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useContext } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 import CloseIcon from '/src/assets/icons/close.svg';
@@ -21,6 +21,7 @@ import { ALLOWED_BREAKPOINTS, useMedia } from '@/hooks/useMedia';
 import { useScrollPosition } from '@/hooks/useScrollPosition/useScrollPosition';
 import { getGroupedPagesBySubPage } from '@/utilities/getGroupedPagesBySubPage';
 import { getResolvedTextFromSlug } from '@/utilities/getResolvedTextFromSlug';
+import { MobileDeviceContext } from '@/providers/MobileDeviceProvider/MobileDeviceProvider';
 
 import styles from './Navigation.module.scss';
 import { NavigationItemAccordion } from './NavigationItemAccordion.client';
@@ -45,8 +46,9 @@ export const NavigationClient = ({
   links,
 }: NavigationClientProps) => {
   const [menuState, setMenuState] = React.useState<MenuState>(defaultMenuState);
+  const { isMobileDevice } = useContext(MobileDeviceContext);
 
-  const isDesktop = useMedia(ALLOWED_BREAKPOINTS.MIN_LG);
+  const isDesktop = useMedia(ALLOWED_BREAKPOINTS.MIN_LG, isMobileDevice);
   const { scrollTo, isTopPosition, toggleScrolling } = useScrollPosition();
   const path = usePathname();
 

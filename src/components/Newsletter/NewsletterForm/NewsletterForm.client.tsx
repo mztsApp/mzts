@@ -9,7 +9,6 @@ import {
 } from '@radix-ui/react-form';
 
 import {
-  TYPOGRAPHY_ALIGNMENT,
   TYPOGRAPHY_COLORS,
   TYPOGRAPHY_COMPONENTS,
   TYPOGRAPHY_VARIANTS,

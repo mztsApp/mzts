@@ -43,24 +43,29 @@ export const NewsletterForm = () => {
             </button>
           </FormSubmit>
         </div>
-        <FormMessage match="valueMissing" asChild>
-          <Typography
-            color={TYPOGRAPHY_COLORS.ERROR}
-            as={TYPOGRAPHY_COMPONENTS.PARAGRAPH}
-            variant={TYPOGRAPHY_VARIANTS.BODY2}
-          >
-            Pole email jest wymagane
-          </Typography>
-        </FormMessage>
-        <FormMessage match="typeMismatch" asChild>
-          <Typography
-            color={TYPOGRAPHY_COLORS.ERROR}
-            as={TYPOGRAPHY_COMPONENTS.PARAGRAPH}
-            variant={TYPOGRAPHY_VARIANTS.BODY2}
-          >
-            Upewnij się, że e-mail zawiera znak @ oraz domenę (np. .pl, .com)
-          </Typography>
-        </FormMessage>
+        <div className={styles.newsletterForm_errorContainer}>
+          <FormMessage match="valueMissing" asChild>
+            <Typography
+              className={styles.newsletterForm_error}
+              color={TYPOGRAPHY_COLORS.ERROR}
+              as={TYPOGRAPHY_COMPONENTS.PARAGRAPH}
+              variant={TYPOGRAPHY_VARIANTS.BODY3}
+            >
+              Pole email jest wymagane
+            </Typography>
+          </FormMessage>
+
+          <FormMessage match="typeMismatch" asChild>
+            <Typography
+              className={styles.newsletterForm_error}
+              color={TYPOGRAPHY_COLORS.ERROR}
+              as={TYPOGRAPHY_COMPONENTS.PARAGRAPH}
+              variant={TYPOGRAPHY_VARIANTS.BODY3}
+            >
+              Upewnij się, że e-mail zawiera znak @ oraz domenę (np. .pl, .com)
+            </Typography>
+          </FormMessage>
+        </div>
       </FormField>
     </Form>
   );

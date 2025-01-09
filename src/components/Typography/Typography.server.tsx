@@ -18,6 +18,7 @@ type TypographyProps = React.PropsWithChildren<{
   align?: ValueOf<typeof TYPOGRAPHY_ALIGNMENT>;
   uppercase?: boolean;
   noWrap?: boolean;
+  className?: string;
 }>;
 
 export const Typography = ({
@@ -27,6 +28,7 @@ export const Typography = ({
   uppercase = false,
   noWrap = false,
   align = TYPOGRAPHY_ALIGNMENT.INITIAL,
+  className = '',
   children,
 }: TypographyProps) => {
   return (
@@ -38,6 +40,7 @@ export const Typography = ({
         styles[align],
         uppercase && styles.typography__uppercase,
         noWrap && styles.typography__noWrap,
+        className,
       )}
     >
       {children}

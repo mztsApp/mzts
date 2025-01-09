@@ -69,6 +69,11 @@
       transform: translateY(calc(-100% - 16px)) scale(1.1);
     }
 
+    &:active {
+      transform: translateY(calc(-100% - 16px)) scale(0.95);
+      opacity: 80%;
+    }
+
     @include gradients.boxGradient(top);
   }
 }

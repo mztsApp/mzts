@@ -41,6 +41,10 @@
     @include typography.body2;
   }
 
+  &__body3 {
+    @include typography.body3;
+  }
+
   &__buttonText {
     @include typography.buttonText;
   }

@@ -50,6 +50,10 @@
   @include getTypographyValues(16, 400);
 }
 
+@mixin body3 {
+  @include getTypographyValues(15, 400);
+}
+
 @mixin buttonText {
   @include getTypographyValues(14, 600);
 }

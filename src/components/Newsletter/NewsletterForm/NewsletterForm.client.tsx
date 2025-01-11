@@ -7,6 +7,7 @@ import {
   FormMessage,
   FormSubmit,
 } from '@radix-ui/react-form';
+import React from 'react';
 
 import {
   TYPOGRAPHY_COLORS,
@@ -16,10 +17,14 @@ import {
 import { Typography } from '@/components/Typography/Typography.server';
 
 import styles from './NewsletterForm.module.scss';
+import {
+  newsletterConsent,
+  postSubscribeNewsletter,
+} from './api/postSubscribeNewsletter';
 
 export const NewsletterForm = () => {
   return (
-    <Form className={styles.newsletterForm}>
+    <Form className={styles.newsletterForm} onSubmit={postSubscribeNewsletter}>
       <FormField name="email" className={styles.newsletterForm_fieldContainer}>
         <div className={styles.newsletterForm_innerFieldContainer}>
           <FormControl
@@ -65,6 +70,29 @@ export const NewsletterForm = () => {
               Upewnij się, że e-mail zawiera znak @ oraz domenę (np. .pl, .com)
             </Typography>
           </FormMessage>
+        </div>
+      </FormField>
+
+      <FormField
+        className={styles.newsletterForm_checkboxField}
+        name="consentNewsletter"
+      >
+        <div className={styles.newsletterForm_checkboxInputWrapper}>
+          <FormControl
+            className={styles.newsletterForm_checkboxInput}
+            type="checkbox"
+            id="consents-of-newsletter"
+            required
+          />
+
+          <Typography
+            as={TYPOGRAPHY_COMPONENTS.LABEL}
+            variant={TYPOGRAPHY_VARIANTS.HELPER_TEXT}
+            className={styles.newsletterForm_checkboxLabel}
+            htmlFor="consents-of-newsletter"
+          >
+            {newsletterConsent}
+          </Typography>
         </div>
       </FormField>
     </Form>

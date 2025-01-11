@@ -9,6 +9,7 @@ export const TYPOGRAPHY_COMPONENTS = {
   DIV: 'div',
   SPAN: 'span',
   LI: 'li',
+  LABEL: 'label',
 } as const;
 
 export const TYPOGRAPHY_VARIANTS = {

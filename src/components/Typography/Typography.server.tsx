@@ -1,7 +1,4 @@
-import React from 'react';
 import { twMerge } from 'tailwind-merge';
-
-import { ValueOf } from '@/types';
 
 import {
   TYPOGRAPHY_ALIGNMENT,
@@ -10,16 +7,7 @@ import {
   TYPOGRAPHY_VARIANTS,
 } from './Typography.constants';
 import styles from './Typography.module.scss';
-
-type TypographyProps = React.PropsWithChildren<{
-  as?: ValueOf<typeof TYPOGRAPHY_COMPONENTS>;
-  variant?: ValueOf<typeof TYPOGRAPHY_VARIANTS>;
-  color?: ValueOf<typeof TYPOGRAPHY_COLORS>;
-  align?: ValueOf<typeof TYPOGRAPHY_ALIGNMENT>;
-  uppercase?: boolean;
-  noWrap?: boolean;
-  className?: string;
-}>;
+import { LabelProps, TypographyProps } from './Typography.types';
 
 export const Typography = ({
   as: TypographyHTMLTag = TYPOGRAPHY_COMPONENTS.PARAGRAPH,
@@ -30,9 +18,16 @@ export const Typography = ({
   align = TYPOGRAPHY_ALIGNMENT.INITIAL,
   className = '',
   children,
+  ...restLabelProps
 }: TypographyProps) => {
+  const labelConditionalProps =
+    TypographyHTMLTag === TYPOGRAPHY_COMPONENTS.LABEL
+      ? (restLabelProps as LabelProps)
+      : ({} as object);
+
   return (
     <TypographyHTMLTag
+      {...labelConditionalProps}
       className={twMerge(
         styles.typography,
         styles[variant],

@@ -10,6 +10,7 @@
 .newsletterForm {
   display: flex;
   flex-direction: column;
+  gap: spacings.$small;
   width: 100%;
 
   &_fieldContainer {
@@ -65,11 +66,14 @@
     border-radius: helpers.pxToRem(4);
     background: colors.$text;
     overflow: hidden;
-    transition: width 200ms ease-in-out;
+    transition:
+      width 200ms ease-in-out,
+      height 200ms ease-in-out;
 
     &:empty {
       transition: width 200ms ease-in-out;
       width: 0;
+      height: 0;
     }
   }
 
@@ -94,6 +98,54 @@
 
     &:active {
       opacity: 70%;
+    }
+  }
+
+  &_checkboxField {
+    display: flex;
+    flex-direction: column;
+    gap: spacings.$xSmall;
+
+    &[data-invalid='true'] {
+      .newsletterForm {
+        &_checkboxInput {
+          box-shadow: none;
+          box-shadow: inset 0 0 0 helpers.pxToRem(2) colors.$error;
+        }
+      }
+    }
+  }
+
+  &_checkboxInputWrapper {
+    display: flex;
+    gap: spacings.$xSmall;
+  }
+
+  &_checkboxInput {
+    position: relative;
+    appearance: none;
+    display: block;
+    min-width: helpers.pxToRem(20);
+    height: helpers.pxToRem(20);
+    background: colors.$text;
+    border-radius: helpers.pxToRem(4);
+    border: solid helpers.pxToRem(1) colors.$text;
+    box-shadow: inset 0 0 0 helpers.pxToRem(2) colors.$accent;
+
+    &:checked {
+      @include gradients.boxGradient();
+
+      &::after {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        height: min-content;
+        content: '✓';
+        color: colors.$text;
+        transform: translate(-50%, -50%);
+        font-weight: 600;
+        line-height: helpers.pxToRem(10);
+      }
     }
   }
 }

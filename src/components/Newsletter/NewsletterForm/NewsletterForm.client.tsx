@@ -7,8 +7,12 @@ import {
   FormMessage,
   FormSubmit,
 } from '@radix-ui/react-form';
-import React from 'react';
 
+import { Button } from '@/components/Button/Button.client';
+import {
+  BUTTON_COLORS,
+  BUTTON_SIZES,
+} from '@/components/Button/Button.constants';
 import {
   TYPOGRAPHY_COLORS,
   TYPOGRAPHY_COMPONENTS,
@@ -21,12 +25,6 @@ import {
   newsletterConsent,
   postSubscribeNewsletter,
 } from './api/postSubscribeNewsletter';
-import { Button } from '@/components/Button/Button.client';
-import {
-  BUTTON_COLORS,
-  BUTTON_SIZES,
-  BUTTON_VARIANTS,
-} from '@/components/Button/Button.constants';
 
 export const NewsletterForm = () => {
   return (

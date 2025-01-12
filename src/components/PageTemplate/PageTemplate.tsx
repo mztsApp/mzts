@@ -13,6 +13,7 @@ import {
   SECTION_HEADING_COMPONENT,
 } from '../Section/Section.constants';
 import { Newsletter } from '../Newsletter/Newsletter';
+import { FAQ } from '../FAQ/FAQ.server';
 
 export const PageTemplate = async ({ slug }: PageTemplateProps) => {
   const { data: navigationData } = await appNavigationQuery();
@@ -47,6 +48,9 @@ export const PageTemplate = async ({ slug }: PageTemplateProps) => {
       {data.sectionEntriesIds.length > 0 && (
         <SectionList entriesIds={data.sectionEntriesIds} />
       )}
+
+      {data.showFAQ && <FAQ withLinkToContactForm={data.showContactForm} />}
+
       {data.showNewsletter && <Newsletter />}
     </>
   );

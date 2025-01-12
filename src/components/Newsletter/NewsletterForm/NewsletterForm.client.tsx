@@ -8,7 +8,7 @@ import {
   FormSubmit,
 } from '@radix-ui/react-form';
 
-import { Button } from '@/components/Button/Button.client';
+import { Button } from '@/components/Button/Button';
 import {
   BUTTON_COLORS,
   BUTTON_SIZES,

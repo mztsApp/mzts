@@ -4,7 +4,7 @@ const spaceId = process.env.CONTENTFUL_SPACE_ID;
 
 export const generateEntryQuery = (
   entryId: string[] | string,
-  includeLevel: number = 1,
+  includeLevel: number = 10,
 ): string => {
   const resolvedEntryId = typeof entryId === 'string' ? `/${entryId}` : '';
   const entryIds =

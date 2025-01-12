@@ -1,5 +1,3 @@
-'use client';
-
 import Link from 'next/link';
 import { twMerge } from 'tailwind-merge';
 
@@ -40,6 +38,7 @@ export const Button = ({
   loading = false,
   disabled = false,
   typographySize,
+  darkHover,
   underline,
   ...restPropsRelatedWithComponent
 }: ButtonProps) => {
@@ -57,6 +56,8 @@ export const Button = ({
         : TYPOGRAPHY_VARIANTS.BUTTON_TEXT
       : TYPOGRAPHY_VARIANTS.BUTTON_TEXT;
 
+  const withDarkHover = variant === BUTTON_VARIANTS.TEXT ? darkHover : false;
+
   const commonButtonClassName = twMerge(
     styles.button,
     styles[variant],
@@ -65,6 +66,7 @@ export const Button = ({
     (loading || disabled) && styles.button__disabled,
     mobileFullWidth && styles.button__mobileFullWidth,
     desktopFullWidth && styles.button__desktopFullWidth,
+    withDarkHover && styles.button__withDarkHover,
     externalClassName,
   );
 

@@ -11,6 +11,7 @@ import {
   getSectionAlignmentFromApi,
   getTypographyColorFromApi,
 } from '@/utilities/utilitiesForApi';
+import { FAQ } from '@/components/FAQ/FAQ.server';
 
 import { getHomePageDataQuery } from './api/getHomePageDataQuery';
 
@@ -45,6 +46,8 @@ export default async function Home() {
       {data.sectionEntriesIds.length > 0 && (
         <SectionList entriesIds={data.sectionEntriesIds} />
       )}
+
+      {data.showFAQ && <FAQ withLinkToContactForm={data.showContactForm} />}
 
       {data.showNewsletter && <Newsletter />}
     </>

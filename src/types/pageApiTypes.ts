@@ -10,7 +10,7 @@ export type PageDataWithoutBGImageType = {
   sectionEntriesIds: string[];
   showContactForm: boolean;
   showNewsletter: boolean;
-  showFaq: boolean;
+  showFAQ: boolean;
   isHeroHide: boolean;
 };
 

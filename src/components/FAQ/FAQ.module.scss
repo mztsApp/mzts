@@ -1,0 +1,24 @@
+@use '/src/styles/gradients';
+@use '/src/styles/typography';
+@use '/src/styles/helpers';
+@use '/src/styles/screens';
+@use '/src/styles/spacings';
+@use '/src/styles/colors';
+@use '/src/styles/boxShadows';
+@use '/src/styles/textEllipsis';
+
+.faq {
+  display: flex;
+  flex-direction: column;
+  gap: spacings.$xxLarge;
+  width: 100%;
+  height: fit-content;
+  padding: spacings.$xxLarge 0;
+
+  &_content {
+    display: flex;
+    flex-direction: column;
+    gap: spacings.$small;
+    width: fit-content;
+  }
+}

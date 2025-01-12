@@ -32,11 +32,13 @@ type VariantBaseProps =
       variant?: typeof BUTTON_VARIANTS.TEXT;
       typographySize?: ValueOf<typeof BUTTON_TEXT_VARIANT_TYPOGRAPHY_SIZES>;
       underline?: boolean;
+      darkHover?: boolean;
     }
   | {
       variant?: ValueOf<typeof BUTTON_VARIANTS>;
       typographySize: never;
       underline: never;
+      darkHover?: never;
     };
 
 type ButtonInternalProps = {

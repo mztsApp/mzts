@@ -189,6 +189,23 @@
       }
     }
 
+    // with flag darkHover
+
+    &.button__withDarkHover {
+      &:hover,
+      &:active {
+        & .button_typography {
+          color: colors.$background;
+        }
+
+        & .button_iconWrapper {
+          & > svg {
+            color: colors.$background;
+          }
+        }
+      }
+    }
+
     //secondary accent color
 
     &.button__secondaryAccentColor {

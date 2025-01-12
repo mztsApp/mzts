@@ -19,6 +19,7 @@ export const Typography = ({
   underline = false,
   className = '',
   children,
+  fitContent = true,
   ...restLabelProps
 }: TypographyProps) => {
   const labelConditionalProps =
@@ -37,6 +38,7 @@ export const Typography = ({
         uppercase && styles.typography__uppercase,
         noWrap && styles.typography__noWrap,
         underline && styles.typography__underline,
+        fitContent && styles.typography__fitContent,
         className,
       )}
     >

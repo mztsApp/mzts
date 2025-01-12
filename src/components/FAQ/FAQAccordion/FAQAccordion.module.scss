@@ -1,0 +1,110 @@
+@use '/src/styles/gradients';
+@use '/src/styles/typography';
+@use '/src/styles/helpers';
+@use '/src/styles/screens';
+@use '/src/styles/spacings';
+@use '/src/styles/colors';
+@use '/src/styles/boxShadows';
+@use '/src/styles/textEllipsis';
+
+@keyframes slideDown {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+.faqAccordion {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &_item {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  &_trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: spacings.$xSmall;
+    width: 100%;
+    max-width: 100%;
+    padding: helpers.pxToRem(16, 0);
+    border: none;
+    border-top: solid helpers.pxToRem(1) colors.$text;
+    background: transparent;
+
+    &:hover {
+      cursor: pointer;
+
+      & .faqAccordion_triggerText {
+        color: colors.$accent;
+      }
+
+      & .faqAccordion_triggerIcon {
+        color: colors.$accent;
+      }
+    }
+
+    &:active {
+      opacity: 80%;
+    }
+
+    &[data-state='open'] {
+      border: transparent;
+
+      & .faqAccordion_triggerIcon {
+        transform: rotate(180deg);
+      }
+    }
+
+    @include screens.lg {
+      padding: helpers.pxToRem(16, 24);
+    }
+  }
+
+  &_triggerIcon {
+    width: helpers.pxToRem(24);
+    height: helpers.pxToRem(24);
+    color: colors.$text;
+    transition: transform 200ms ease-in-out;
+  }
+
+  &_itemContent {
+    padding: helpers.pxToRem(12, 0);
+    overflow: hidden;
+
+    &[data-state='open'] {
+      animation: slideDown 300ms ease-out;
+    }
+
+    &[data-state='closed'] {
+      animation: slideUp 300ms ease-out;
+    }
+
+    @include screens.lg {
+      padding: helpers.pxToRem(0, 24, 24);
+    }
+  }
+
+  &_triggerText {
+    text-align: start;
+    font-family: var(--font-geist-mono);
+
+    @include textEllipsis.createTextEllipsis(2);
+  }
+}

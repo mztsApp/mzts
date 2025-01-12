@@ -1,0 +1,374 @@
+@use '/src/styles/gradients';
+@use '/src/styles/typography';
+@use '/src/styles/helpers';
+@use '/src/styles/screens';
+@use '/src/styles/spacings';
+@use '/src/styles/colors';
+@use '/src/styles/boxShadows';
+@use '/src/styles/textEllipsis';
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: spacings.$xSmall;
+  height: helpers.pxToRem(42);
+  padding: 0 spacings.$small;
+  border: solid helpers.pxToRem(1);
+  border-color: colors.$text;
+  border-radius: helpers.pxToRem(4);
+  text-decoration: none;
+  transition: width 200ms ease-in-out;
+
+  @include gradients.boxGradient();
+
+  @include screens.lg {
+    width: fit-content;
+  }
+
+  &:hover {
+    opacity: 80%;
+  }
+
+  &:active {
+    opacity: 70%;
+
+    & .button_typography {
+      transform: scale(1.05);
+    }
+  }
+
+  //sizes
+
+  &__large {
+    height: helpers.pxToRem(58);
+    padding: 0 spacings.$large;
+  }
+
+  // colors
+
+  &__secondaryAccentColor {
+    background: colors.$secondaryAccent;
+  }
+
+  &__textColor {
+    background: colors.$text;
+    color: colors.$accent;
+    box-shadow: inset 0 0 0 helpers.pxToRem(1) colors.$accent;
+    border-color: colors.$text;
+
+    & .button_iconWrapper {
+      & > svg {
+        color: colors.$accent;
+      }
+    }
+  }
+
+  //width
+
+  &__mobileFullWidth {
+    width: 100%;
+
+    @include screens.lg {
+      width: fit-content;
+    }
+  }
+
+  &__desktopFullWidth {
+    @include screens.lg {
+      width: 100%;
+    }
+  }
+
+  //iconsWrapper & loading icon
+
+  &_iconWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:empty {
+      display: none;
+    }
+
+    & > svg {
+      width: helpers.pxToRem(20);
+      height: helpers.pxToRem(20);
+      color: colors.$text;
+    }
+  }
+
+  &_loadingIcon {
+    color: colors.$text;
+    animation: rotate 1s infinite linear;
+  }
+
+  //text
+
+  &_typography {
+    transition: transform 200ms ease-in-out;
+  }
+
+  //variants
+
+  &__outlined {
+    // accent color | default
+
+    background: transparent;
+
+    & .button_typography {
+      color: colors.$accent;
+    }
+
+    & .button_iconWrapper {
+      & > svg {
+        color: colors.$accent;
+      }
+    }
+
+    // secondary accent color
+
+    &.button__secondaryAccentColor {
+      background: transparent;
+
+      & .button_typography {
+        color: colors.$secondaryAccent;
+      }
+
+      & .button_iconWrapper {
+        & > svg {
+          color: colors.$secondaryAccent;
+        }
+      }
+    }
+
+    // text color
+
+    &.button__textColor {
+      & .button_typography {
+        color: colors.$text;
+      }
+
+      & .button_iconWrapper {
+        & > svg {
+          color: colors.$text;
+        }
+      }
+    }
+  }
+
+  // TEXT shape variant
+
+  &__textVariant {
+    // accent color | default
+
+    display: inline-flex;
+    width: fit-content;
+    height: fit-content;
+    padding: 0;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+
+    & .button_typography {
+      color: colors.$accent;
+    }
+
+    & .button_iconWrapper {
+      & > svg {
+        color: colors.$accent;
+      }
+    }
+
+    //secondary accent color
+
+    &.button__secondaryAccentColor {
+      & .button_typography {
+        color: colors.$secondaryAccent;
+      }
+
+      & .button_iconWrapper {
+        & > svg {
+          color: colors.$secondaryAccent;
+        }
+      }
+    }
+
+    //text color
+
+    &.button__textColor {
+      & .button_typography {
+        color: colors.$text;
+      }
+
+      & .button_iconWrapper {
+        & > svg {
+          color: colors.$text;
+        }
+      }
+    }
+  }
+
+  //disabled | loading
+
+  &__disabled {
+    //accent color & filled variant | default
+
+    background: linear-gradient(
+        1deg,
+        rgba(94, 54, 235, 0.44) 0.87%,
+        rgba(139, 114, 242, 0.34) 100.77%
+      ),
+      linear-gradient(
+        0deg,
+        rgba(126, 93, 244, 0.5) 0%,
+        rgba(126, 93, 244, 0.5) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.15) 7.29%,
+        rgba(255, 255, 255, 0) 65.62%
+      );
+
+    & .button_typography {
+      color: rgba(colors.$text, 0.5);
+    }
+
+    &:hover,
+    &:active {
+      cursor: not-allowed;
+      opacity: 1;
+
+      & .button_typography {
+        transform: none;
+      }
+    }
+
+    //outlined variant
+
+    &.button__outlined {
+      //accent color | default
+
+      background: transparent;
+
+      & .button_typography {
+        color: rgba(colors.$accent, 0.6);
+      }
+
+      & .button_iconWrapper {
+        & > svg {
+          color: rgba(colors.$accent, 0.6);
+        }
+      }
+
+      //secondary accent color
+
+      &.button__secondaryAccentColor {
+        background: transparent;
+
+        & .button_typography {
+          color: rgba(colors.$secondaryAccent, 0.8);
+        }
+
+        & .button_iconWrapper {
+          & > svg {
+            color: rgba(colors.$secondaryAccent, 0.8);
+          }
+        }
+      }
+
+      //text color
+
+      &.button__textColor {
+        background: transparent;
+        box-shadow: none;
+
+        & .button_typography {
+          color: rgba(colors.$text, 0.8);
+        }
+
+        & .button_iconWrapper {
+          & > svg {
+            color: rgba(colors.$text, 0.8);
+          }
+        }
+      }
+    }
+
+    &.button__textVariant {
+      //accent color | default
+
+      background: transparent;
+
+      & .button_typography {
+        color: rgba(colors.$accent, 0.7);
+      }
+
+      & .button_iconWrapper {
+        & > svg {
+          color: rgba(colors.$accent, 0.7);
+        }
+      }
+
+      // secondary accent color
+
+      &.button__secondaryAccentColor {
+        background: transparent;
+
+        & .button_typography {
+          color: rgba(colors.$secondaryAccent, 0.7);
+        }
+
+        & .button_iconWrapper {
+          & > svg {
+            color: rgba(colors.$secondaryAccent, 0.7);
+          }
+        }
+      }
+
+      // text color
+
+      &.button__textColor {
+        background: transparent;
+
+        & .button_typography {
+          color: rgba(colors.$text, 0.7);
+        }
+
+        & .button_iconWrapper {
+          & > svg {
+            color: rgba(colors.$text, 0.7);
+          }
+        }
+      }
+    }
+
+    //secondary accent color & filled variant
+
+    &.button__secondaryAccentColor {
+      background: rgba(colors.$secondaryAccent, 0.5);
+    }
+
+    // disabled - default text and icons
+    &.button__textColor {
+      background: colors.$text;
+
+      & .button_typography {
+        color: rgba(colors.$accent, 0.5);
+      }
+    }
+
+    & .button_iconWrapper {
+      opacity: 50%;
+    }
+  }
+}

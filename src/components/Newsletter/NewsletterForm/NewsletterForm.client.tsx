@@ -7,8 +7,12 @@ import {
   FormMessage,
   FormSubmit,
 } from '@radix-ui/react-form';
-import React from 'react';
 
+import { Button } from '@/components/Button/Button.client';
+import {
+  BUTTON_COLORS,
+  BUTTON_SIZES,
+} from '@/components/Button/Button.constants';
 import {
   TYPOGRAPHY_COLORS,
   TYPOGRAPHY_COMPONENTS,
@@ -35,17 +39,9 @@ export const NewsletterForm = () => {
           />
 
           <FormSubmit asChild type="submit">
-            <button className={styles.newsletterForm_cta}>
-              <Typography
-                as={TYPOGRAPHY_COMPONENTS.SPAN}
-                variant={TYPOGRAPHY_VARIANTS.BUTTON_TEXT}
-                color={TYPOGRAPHY_COLORS.ACCENT}
-                noWrap
-                uppercase
-              >
-                Wyślij
-              </Typography>
-            </button>
+            <Button size={BUTTON_SIZES.LARGE} color={BUTTON_COLORS.TEXT_COLOR}>
+              Wyślij
+            </Button>
           </FormSubmit>
         </div>
         <div className={styles.newsletterForm_errorContainer}>

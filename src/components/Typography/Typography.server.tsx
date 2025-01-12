@@ -16,6 +16,7 @@ export const Typography = ({
   uppercase = false,
   noWrap = false,
   align = TYPOGRAPHY_ALIGNMENT.INITIAL,
+  underline = false,
   className = '',
   children,
   ...restLabelProps
@@ -35,6 +36,7 @@ export const Typography = ({
         styles[align],
         uppercase && styles.typography__uppercase,
         noWrap && styles.typography__noWrap,
+        underline && styles.typography__underline,
         className,
       )}
     >

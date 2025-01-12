@@ -27,6 +27,7 @@
 
   &_navigationContainer {
     display: flex;
+    justify-content: center;
     width: 100%;
     background: colors.$accent;
     padding: 0 spacings.$medium;
@@ -44,6 +45,7 @@
   gap: spacings.$small;
   width: 100%;
   min-height: 50px;
+  max-width: helpers.pxToRem(1440);
   padding: helpers.pxToRem(12) 0;
 
   &_logoLink {

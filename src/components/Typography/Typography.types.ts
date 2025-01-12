@@ -32,5 +32,6 @@ export type TypographyProps = React.PropsWithChildren<
     uppercase?: boolean;
     noWrap?: boolean;
     className?: string;
+    underline?: boolean;
   } & VariantBaseConditionalProps
 >;

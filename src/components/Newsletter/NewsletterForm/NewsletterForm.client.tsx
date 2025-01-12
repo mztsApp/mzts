@@ -21,6 +21,12 @@ import {
   newsletterConsent,
   postSubscribeNewsletter,
 } from './api/postSubscribeNewsletter';
+import { Button } from '@/components/Button/Button.client';
+import {
+  BUTTON_COLORS,
+  BUTTON_SIZES,
+  BUTTON_VARIANTS,
+} from '@/components/Button/Button.constants';
 
 export const NewsletterForm = () => {
   return (
@@ -35,17 +41,9 @@ export const NewsletterForm = () => {
           />
 
           <FormSubmit asChild type="submit">
-            <button className={styles.newsletterForm_cta}>
-              <Typography
-                as={TYPOGRAPHY_COMPONENTS.SPAN}
-                variant={TYPOGRAPHY_VARIANTS.BUTTON_TEXT}
-                color={TYPOGRAPHY_COLORS.ACCENT}
-                noWrap
-                uppercase
-              >
-                Wyślij
-              </Typography>
-            </button>
+            <Button size={BUTTON_SIZES.LARGE} color={BUTTON_COLORS.TEXT_COLOR}>
+              Wyślij
+            </Button>
           </FormSubmit>
         </div>
         <div className={styles.newsletterForm_errorContainer}>

@@ -81,26 +81,6 @@
     padding: 0 spacings.$xSmall;
   }
 
-  &_cta {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: fit-content;
-    height: helpers.pxToRem(58);
-    padding: 0 spacings.$large;
-    border: solid 1px colors.$text;
-    border-radius: helpers.pxToRem(4);
-    box-shadow: inset 0 0 0 helpers.pxToRem(1) colors.$accent;
-
-    &:hover {
-      opacity: 80%;
-    }
-
-    &:active {
-      opacity: 70%;
-    }
-  }
-
   &_checkboxField {
     display: flex;
     flex-direction: column;
@@ -132,6 +112,10 @@
     border: solid helpers.pxToRem(1) colors.$text;
     box-shadow: inset 0 0 0 helpers.pxToRem(2) colors.$accent;
 
+    &:hover {
+      cursor: pointer;
+    }
+
     &:checked {
       @include gradients.boxGradient();
 
@@ -146,6 +130,12 @@
         font-weight: 600;
         line-height: helpers.pxToRem(10);
       }
+    }
+  }
+
+  &_checkboxLabel {
+    &:hover {
+      cursor: pointer;
     }
   }
 }

@@ -31,8 +31,6 @@ export const PageTemplate = async ({ slug }: PageTemplateProps) => {
 
   if (!data) return null;
 
-  console.log('dupa', data);
-
   return (
     <>
       {!data.isHeroHide && (

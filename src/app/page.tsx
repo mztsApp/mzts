@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 
+import { Newsletter } from '@/components/Newsletter/Newsletter';
 import { Section } from '@/components/Section/Section';
 import {
   SECTION_COMPONENT,
@@ -10,7 +11,6 @@ import {
   getSectionAlignmentFromApi,
   getTypographyColorFromApi,
 } from '@/utilities/utilitiesForApi';
-import { Newsletter } from '@/components/Newsletter/Newsletter';
 
 import { getHomePageDataQuery } from './api/getHomePageDataQuery';
 

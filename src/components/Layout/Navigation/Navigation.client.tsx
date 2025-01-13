@@ -159,25 +159,6 @@ export const NavigationClient = ({
                   </Link>
                 </li>
               ))}
-
-              <li className={styles.navigation_listItem}>
-                <Link
-                  href="/przyklad-komponentow"
-                  onClick={() => setMenuState(defaultMenuState)}
-                  className={twMerge(
-                    styles.navigation_link,
-                    params.includes('przyklad-komponentow') &&
-                      styles.navigation_link__active,
-                  )}
-                >
-                  <Typography
-                    as={TYPOGRAPHY_COMPONENTS.SPAN}
-                    variant={TYPOGRAPHY_VARIANTS.BUTTON_TEXT}
-                  >
-                    {getResolvedTextFromSlug('przyklad komponentów')}
-                  </Typography>
-                </Link>
-              </li>
             </ul>
           )}
         </nav>

@@ -1,0 +1,65 @@
+@use '/src/styles/gradients';
+@use '/src/styles/typography';
+@use '/src/styles/helpers';
+@use '/src/styles/screens';
+@use '/src/styles/spacings';
+@use '/src/styles/colors';
+@use '/src/styles/boxShadows';
+@use '/src/styles/textEllipsis';
+
+.contactSection {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: spacings.$xxLarge;
+  padding: spacings.$xxLarge 0;
+
+  @include screens.lg {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  &_hero {
+    display: flex;
+    flex-direction: column;
+    gap: spacings.$small;
+  }
+
+  &_contactList {
+    display: flex;
+    flex-direction: column;
+    gap: spacings.$small;
+    margin-top: spacings.$small;
+  }
+
+  &_contactItem {
+    display: flex;
+
+    &__address {
+      display: flex;
+      align-items: center;
+      gap: spacings.$xxSmall;
+    }
+  }
+
+  &_contactLink {
+    display: flex;
+    align-items: center;
+    gap: spacings.$xxSmall;
+    text-decoration: none;
+
+    &:hover {
+      & .contactSection_linkText {
+        color: colors.$accent;
+      }
+    }
+
+    &:active {
+      opacity: 80%;
+    }
+  }
+
+  &_contactIcon {
+    width: helpers.pxToRem(24);
+    height: helpers.pxToRem(24);
+    color: colors.$accent;
+  }
+}

@@ -12,8 +12,9 @@ import {
   SECTION_COMPONENT,
   SECTION_HEADING_COMPONENT,
 } from '../Section/Section.constants';
-import { Newsletter } from '../Newsletter/Newsletter';
+import { Newsletter } from '../Newsletter/Newsletter.server';
 import { FAQ } from '../FAQ/FAQ.server';
+import { ContactSection } from '../ContactSection/ContactSection.server';
 
 export const PageTemplate = async ({ slug }: PageTemplateProps) => {
   const { data: navigationData } = await appNavigationQuery();
@@ -52,6 +53,8 @@ export const PageTemplate = async ({ slug }: PageTemplateProps) => {
       {data.showFAQ && <FAQ withLinkToContactForm={data.showContactForm} />}
 
       {data.showNewsletter && <Newsletter />}
+
+      {data.showContactForm && <ContactSection />}
     </>
   );
 };

@@ -11,7 +11,9 @@ import {
 import { Button } from '@/components/Button/Button';
 import {
   BUTTON_COLORS,
+  BUTTON_COMPONENTS,
   BUTTON_SIZES,
+  BUTTON_VARIANTS,
 } from '@/components/Button/Button.constants';
 import {
   TYPOGRAPHY_COLORS,
@@ -19,14 +21,20 @@ import {
   TYPOGRAPHY_VARIANTS,
 } from '@/components/Typography/Typography.constants';
 import { Typography } from '@/components/Typography/Typography.server';
+import { FileType } from '@/components/Footer/api/getDocumentsQuery';
 
 import styles from './NewsletterForm.module.scss';
-import {
-  newsletterConsent,
-  postSubscribeNewsletter,
-} from './api/postSubscribeNewsletter';
+import { postSubscribeNewsletter } from './api/postSubscribeNewsletter';
 
-export const NewsletterForm = () => {
+type NewsletterFormProps = Record<
+  'rules' | 'privacyPolicy',
+  FileType | undefined
+>;
+
+export const NewsletterForm = ({
+  rules,
+  privacyPolicy,
+}: NewsletterFormProps) => {
   return (
     <Form className={styles.newsletterForm} onSubmit={postSubscribeNewsletter}>
       <FormField name="email" className={styles.newsletterForm_fieldContainer}>
@@ -67,29 +75,38 @@ export const NewsletterForm = () => {
             </Typography>
           </FormMessage>
         </div>
-      </FormField>
 
-      <FormField
-        className={styles.newsletterForm_checkboxField}
-        name="consentNewsletter"
-      >
-        <div className={styles.newsletterForm_checkboxInputWrapper}>
-          <FormControl
-            className={styles.newsletterForm_checkboxInput}
-            type="checkbox"
-            id="consents-of-newsletter"
-            required
-          />
-
-          <Typography
-            as={TYPOGRAPHY_COMPONENTS.LABEL}
-            variant={TYPOGRAPHY_VARIANTS.HELPER_TEXT}
-            className={styles.newsletterForm_checkboxLabel}
-            htmlFor="consents-of-newsletter"
+        <Typography variant={TYPOGRAPHY_VARIANTS.HELPER_TEXT}>
+          Klikając Wyślij, potwierdzasz, że zgadzasz się z naszym{' '}
+          <Button
+            darkHover
+            disableUppercase
+            href={`https:${rules?.url}`}
+            as={BUTTON_COMPONENTS.ANCHOR}
+            color={BUTTON_COLORS.TEXT_COLOR}
+            variant={BUTTON_VARIANTS.TEXT}
+            typographySize={TYPOGRAPHY_VARIANTS.HELPER_TEXT}
+            target="_blank"
+            rel="noreferrer noopener"
           >
-            {newsletterConsent}
-          </Typography>
-        </div>
+            Regulaminem
+          </Button>{' '}
+          i{' '}
+          <Button
+            darkHover
+            disableUppercase
+            href={`https:${privacyPolicy?.url}`}
+            as={BUTTON_COMPONENTS.ANCHOR}
+            color={BUTTON_COLORS.TEXT_COLOR}
+            variant={BUTTON_VARIANTS.TEXT}
+            typographySize={TYPOGRAPHY_VARIANTS.HELPER_TEXT}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Polityką prywatności
+          </Button>
+          .
+        </Typography>
       </FormField>
     </Form>
   );

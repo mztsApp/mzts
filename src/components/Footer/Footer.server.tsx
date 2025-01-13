@@ -17,7 +17,7 @@ import {
   START_CONTACT_ICONS,
 } from '../Layout/Navigation/NavContact/NavContact.constants';
 
-const openInNewWindowLinkProps = (shouldOpenInNewWindow: boolean) =>
+export const openInNewWindowLinkProps = (shouldOpenInNewWindow: boolean) =>
   shouldOpenInNewWindow
     ? {
         target: '_blank',

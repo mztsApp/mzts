@@ -10,7 +10,15 @@ type DocumentsListItemType = {
   };
 };
 
-type FileType = {
+type DocumentFields = Record<
+  'privacyPolicy' | 'cookies' | 'rules',
+  DocumentsListItemType
+> & {
+  title: string;
+  docs: DocumentsListItemType[];
+};
+
+export type FileType = {
   url: string;
   fileName: string;
 };
@@ -18,20 +26,30 @@ type FileType = {
 type DocumentAssetsItemsType = {
   fields: {
     title: string;
-    description: string;
     file: FileType;
   };
 };
 
-type DocsDataType = {
+type DocsFilesType = {
   title: string;
   file: FileType;
 };
 
-export const getFooterDocumentsQuery = async () => {
+type DocumentDataType = Record<
+  'privacyPolicy' | 'cookies' | 'rules',
+  {
+    title: string;
+    description: string;
+    file: FileType;
+  } | null
+> & {
+  documents: DocsFilesType[];
+};
+
+export const getDocumentsQuery = async () => {
   let isPending: boolean = true;
   let isError: boolean = false;
-  let data: DocsDataType[] = [];
+  let data: DocumentDataType | null = null;
   let returnedError: string | Error | null = null;
 
   try {
@@ -44,12 +62,43 @@ export const getFooterDocumentsQuery = async () => {
 
     if (!documentResponse.ok) {
       isError = true;
-      data = [];
+      data = null;
       returnedError = defaultError;
     }
 
     const documentData = await documentResponse.json();
-    const documentsList: DocumentsListItemType[] = documentData.fields.docs;
+
+    const documentDataFields: DocumentFields = documentData.fields;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { docs, title, ...basicDocuments } = documentDataFields;
+
+    const basicDocumentsIds = Object.values(basicDocuments).map(
+      (documentItem) => documentItem.sys.id,
+    );
+
+    const basicDocumentsResponse = await fetch(
+      generateAssetsQuery(basicDocumentsIds),
+      { cache: 'force-cache' },
+    );
+
+    if (!basicDocumentsResponse.ok) {
+      isError = true;
+      data = null;
+      returnedError = defaultError;
+    }
+
+    const basicDocumentsData = await basicDocumentsResponse.json();
+
+    const basicDocumentsItems: DocumentAssetsItemsType[] =
+      basicDocumentsData.items;
+
+    const basicDocumentsKeys = ['privacyPolicy', 'cookies', 'rules'];
+    const basicDocumentsAssets = basicDocumentsItems.map((assetItem, index) => [
+      basicDocumentsKeys[index],
+      assetItem.fields,
+    ]);
+
+    const documentsList = docs;
     const documentsIds = documentsList.map(
       (documentItem) => documentItem.sys.id,
     );
@@ -63,7 +112,7 @@ export const getFooterDocumentsQuery = async () => {
 
     if (!documentAssetsResponse.ok) {
       isError = true;
-      data = [];
+      data = null;
       returnedError = defaultError;
     }
 
@@ -76,11 +125,14 @@ export const getFooterDocumentsQuery = async () => {
       file: item.fields.file,
     }));
 
-    data = documentAssets;
+    data = {
+      ...Object.fromEntries(basicDocumentsAssets),
+      documents: documentAssets,
+    };
   } catch (error) {
     if (error instanceof Error) {
       isError = true;
-      data = [];
+      data = null;
       returnedError = error;
     }
   } finally {

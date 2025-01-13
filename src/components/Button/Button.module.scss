@@ -21,6 +21,7 @@
   justify-content: center;
   align-items: center;
   gap: spacings.$xSmall;
+  width: fit-content;
   height: helpers.pxToRem(42);
   padding: 0 spacings.$small;
   border: solid helpers.pxToRem(1);
@@ -31,12 +32,9 @@
 
   @include gradients.boxGradient();
 
-  @include screens.lg {
-    width: fit-content;
-  }
-
   &:hover {
     opacity: 80%;
+    cursor: pointer;
   }
 
   &:active {
@@ -187,6 +185,10 @@
       & > svg {
         color: colors.$accent;
       }
+    }
+
+    &:hover {
+      cursor: pointer;
     }
 
     // with flag darkHover

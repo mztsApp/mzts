@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import { Newsletter } from '@/components/Newsletter/Newsletter';
+import { Newsletter } from '@/components/Newsletter/Newsletter.server';
 import { Section } from '@/components/Section/Section';
 import {
   SECTION_COMPONENT,
@@ -12,6 +12,7 @@ import {
   getTypographyColorFromApi,
 } from '@/utilities/utilitiesForApi';
 import { FAQ } from '@/components/FAQ/FAQ.server';
+import { ContactSection } from '@/components/ContactSection/ContactSection.server';
 
 import { getHomePageDataQuery } from './api/getHomePageDataQuery';
 
@@ -50,6 +51,8 @@ export default async function Home() {
       {data.showFAQ && <FAQ withLinkToContactForm={data.showContactForm} />}
 
       {data.showNewsletter && <Newsletter />}
+
+      {data.showContactForm && <ContactSection />}
     </>
   );
 }

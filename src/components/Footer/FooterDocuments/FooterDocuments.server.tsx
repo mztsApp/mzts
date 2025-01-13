@@ -4,11 +4,11 @@ import {
 } from '@/components/Typography/Typography.constants';
 import { Typography } from '@/components/Typography/Typography.server';
 
-import { getFooterDocumentsQuery } from '../api/getFooterDocumentsQuery';
+import { getDocumentsQuery } from '../api/getDocumentsQuery';
 import styles from './FooterDocuments.module.scss';
 
 export const FooterDocuments = async () => {
-  const { data } = await getFooterDocumentsQuery();
+  const { data } = await getDocumentsQuery();
 
   return (
     <ul className={styles.footerDocuments}>
@@ -21,7 +21,61 @@ export const FooterDocuments = async () => {
         </Typography>
       </li>
 
-      {data.map((document) => (
+      {data?.privacyPolicy && (
+        <li className={styles.footerDocuments_item}>
+          <a
+            href={`https:${data.privacyPolicy.file.url}`}
+            className={styles.footerDocuments_link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Typography
+              as={TYPOGRAPHY_COMPONENTS.SPAN}
+              variant={TYPOGRAPHY_VARIANTS.BODY2}
+            >
+              {data.privacyPolicy.title}
+            </Typography>
+          </a>
+        </li>
+      )}
+
+      {data?.cookies && (
+        <li className={styles.footerDocuments_item}>
+          <a
+            href={`https:${data.cookies.file.url}`}
+            className={styles.footerDocuments_link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Typography
+              as={TYPOGRAPHY_COMPONENTS.SPAN}
+              variant={TYPOGRAPHY_VARIANTS.BODY2}
+            >
+              {data.cookies.title}
+            </Typography>
+          </a>
+        </li>
+      )}
+
+      {data?.rules && (
+        <li className={styles.footerDocuments_item}>
+          <a
+            href={`https:${data.rules.file.url}`}
+            className={styles.footerDocuments_link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Typography
+              as={TYPOGRAPHY_COMPONENTS.SPAN}
+              variant={TYPOGRAPHY_VARIANTS.BODY2}
+            >
+              {data.rules.title}
+            </Typography>
+          </a>
+        </li>
+      )}
+
+      {data?.documents.map((document) => (
         <li key={document.title} className={styles.footerDocuments_item}>
           <a
             href={`https:${document.file.url}`}

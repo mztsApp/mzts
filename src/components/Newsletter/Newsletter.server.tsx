@@ -6,8 +6,13 @@ import {
 import { Typography } from '../Typography/Typography.server';
 import { NewsletterForm } from './NewsletterForm/NewsletterForm.client';
 import styles from './Newsletter.module.scss';
+import { getDocumentsQuery } from '../Footer/api/getDocumentsQuery';
 
-export const Newsletter = () => {
+export const Newsletter = async () => {
+  const { data } = await getDocumentsQuery();
+
+  if (!data) return null;
+
   return (
     <section className={styles.newsletter}>
       <div className={styles.newsletter_content}>
@@ -29,7 +34,10 @@ export const Newsletter = () => {
           </Typography>
         </div>
 
-        <NewsletterForm />
+        <NewsletterForm
+          privacyPolicy={data.privacyPolicy?.file}
+          rules={data.rules?.file}
+        />
       </div>
     </section>
   );

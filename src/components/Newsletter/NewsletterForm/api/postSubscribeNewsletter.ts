@@ -1,8 +1,5 @@
 import { FormEvent } from 'react';
 
-export const newsletterConsent =
-  'Wyrażam zgodę na przetwarzanie mojego adresu e-mail w celu otrzymywania newslettera zgodnie z polityką prywatności. Zgoda może być wycofana w każdej chwili.';
-
 export const postSubscribeNewsletter = async (
   event: FormEvent<HTMLFormElement>,
 ) => {
@@ -13,9 +10,8 @@ export const postSubscribeNewsletter = async (
   let messages: Error | null = null;
 
   const email = event.currentTarget.email.value;
-  const isConsented = event.currentTarget.consentNewsletter.value === 'on';
 
-  console.log({ email, isConsented, consent: newsletterConsent });
+  console.log({ email });
 
   try {
   } catch (error) {
@@ -23,7 +19,7 @@ export const postSubscribeNewsletter = async (
       messages = error;
       isSuccess = false;
 
-      console.error({ messages, isConsented, consent: newsletterConsent });
+      console.error({ messages });
     }
   } finally {
     isPending = false;

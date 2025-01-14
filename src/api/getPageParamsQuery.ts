@@ -1,6 +1,6 @@
 import { appNavigationQuery } from '@/api/appNavigationQuery';
 
-import { getPageDataQuery } from '../../api/getPageDataQuery';
+import { getPageDataQuery } from './getPageDataQuery';
 
 export const getPageParamsQuery = async (slug: string) => {
   let data: Record<'metaTitle' | 'metaDescription', string | null | undefined> =

@@ -43,7 +43,7 @@ export const Section = ({
       >
         {imageProps?.src && (
           <Image
-            src={`https:${imageProps.src}`}
+            src={`https:${imageProps.src}?fm=webp`}
             width={1440}
             height={960}
             className={styles.section_bgImage}
@@ -119,7 +119,7 @@ export const Section = ({
 
         {!isHero && imageProps?.src && (
           <Image
-            src={`https:${imageProps.src}`}
+            src={`https:${imageProps.src}?fm=webp`}
             width={1440}
             height={960}
             className={styles.section_bgImage}

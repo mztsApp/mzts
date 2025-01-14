@@ -14,7 +14,7 @@ import {
 import { FAQ } from '@/components/FAQ/FAQ.server';
 import { ContactSection } from '@/components/ContactSection/ContactSection.server';
 
-import { getHomePageDataQuery } from './api/getHomePageDataQuery';
+import { getHomePageDataQuery } from '../api/getHomePageDataQuery';
 
 export async function generateMetadata(): Promise<Metadata> {
   const { data } = await getHomePageDataQuery();

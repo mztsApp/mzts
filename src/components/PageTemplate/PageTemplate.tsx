@@ -1,5 +1,5 @@
-import { appNavigationQuery } from '@/app/api/appNavigationQuery';
-import { getPageDataQuery } from '@/app/api/getPageDataQuery';
+import { appNavigationQuery } from '@/api/appNavigationQuery';
+import { getPageDataQuery } from '@/api/getPageDataQuery';
 import {
   getSectionAlignmentFromApi,
   getTypographyColorFromApi,

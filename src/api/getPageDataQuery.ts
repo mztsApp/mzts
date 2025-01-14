@@ -1,4 +1,4 @@
-import { defaultError } from '@/app/api/appNavigationQuery';
+import { defaultError } from '@/api/appNavigationQuery';
 import {
   PageAssetFieldsApiResponse,
   PageDataApiResponseFieldsType,

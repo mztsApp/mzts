@@ -1,4 +1,4 @@
-import { appNavigationQuery } from '@/app/api/appNavigationQuery';
+import { appNavigationQuery } from '@/api/appNavigationQuery';
 
 import { getPageDataQuery } from './getPageDataQuery';
 

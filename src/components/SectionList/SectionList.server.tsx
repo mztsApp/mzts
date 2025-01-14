@@ -28,7 +28,7 @@ export const SectionList = async ({ entriesIds }: SectionApiWrapperProps) => {
         const isFirstListElement = index === 0;
 
         return (
-          <li key={section.sectionId}>
+          <li key={section.sectionId} className={styles.sectionList_item}>
             <Section
               as={SECTION_COMPONENT.SECTION}
               headingColor={getTypographyColorFromApi(section?.colorVariant)}

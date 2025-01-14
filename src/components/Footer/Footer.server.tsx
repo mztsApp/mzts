@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { appNavigationQuery } from '@/app/api/appNavigationQuery';
+import { appNavigationQuery } from '@/api/appNavigationQuery';
 import { getFlattenedLinks } from '@/utilities/getFlattenedLinks';
 import MZTSLogoIcon from '@/assets/icons/mztsDesktop.svg';
 

@@ -11,7 +11,7 @@ import MobileLogo from '/src/assets/icons/mztsMoblie.svg';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import type { SinglePageType } from '@/app/api/appNavigationQuery';
+import type { SinglePageType } from '@/api/appNavigationQuery';
 import {
   TYPOGRAPHY_COMPONENTS,
   TYPOGRAPHY_VARIANTS,

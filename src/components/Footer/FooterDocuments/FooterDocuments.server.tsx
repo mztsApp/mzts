@@ -3,6 +3,7 @@ import {
   TYPOGRAPHY_VARIANTS,
 } from '@/components/Typography/Typography.constants';
 import { Typography } from '@/components/Typography/Typography.server';
+import { generateProxyAssetLink } from '@/utilities/generateProxyAssetLink';
 
 import { getDocumentsQuery } from '../api/getDocumentsQuery';
 import styles from './FooterDocuments.module.scss';
@@ -24,7 +25,10 @@ export const FooterDocuments = async () => {
       {data?.privacyPolicy && (
         <li className={styles.footerDocuments_item}>
           <a
-            href={`https:${data.privacyPolicy.file.url}`}
+            href={generateProxyAssetLink({
+              fileName: 'polityka-prywatonsci',
+              assetUrl: data.privacyPolicy.file.url,
+            })}
             className={styles.footerDocuments_link}
             target="_blank"
             rel="noopener noreferrer"
@@ -42,7 +46,10 @@ export const FooterDocuments = async () => {
       {data?.cookies && (
         <li className={styles.footerDocuments_item}>
           <a
-            href={`https:${data.cookies.file.url}`}
+            href={generateProxyAssetLink({
+              fileName: 'Polityka-cookies',
+              assetUrl: data.cookies.file.url,
+            })}
             className={styles.footerDocuments_link}
             target="_blank"
             rel="noopener noreferrer"
@@ -60,7 +67,10 @@ export const FooterDocuments = async () => {
       {data?.rules && (
         <li className={styles.footerDocuments_item}>
           <a
-            href={`https:${data.rules.file.url}`}
+            href={generateProxyAssetLink({
+              fileName: 'Regulamin',
+              assetUrl: data.rules.file.url,
+            })}
             className={styles.footerDocuments_link}
             target="_blank"
             rel="noopener noreferrer"
@@ -78,7 +88,10 @@ export const FooterDocuments = async () => {
       {data?.documents.map((document) => (
         <li key={document.title} className={styles.footerDocuments_item}>
           <a
-            href={`https:${document.file.url}`}
+            href={generateProxyAssetLink({
+              fileName: document.file.fileName,
+              assetUrl: document.file.url,
+            })}
             className={styles.footerDocuments_link}
             target="_blank"
             rel="noopener noreferrer"

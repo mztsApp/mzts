@@ -4,7 +4,7 @@ import { PageParams } from '@/types/pageApiTypes';
 import { PageTemplate } from '@/components/PageTemplate/PageTemplate';
 import { getPageParamsQuery } from '@/app/api/getPageParamsQuery';
 import { getGroupedPagesBySubPage } from '@/utilities/getGroupedPagesBySubPage';
-import { appNavigationQuery } from '@/app/api/appNavigationQuery';
+import { appNavigationQuery } from '@/api/appNavigationQuery';
 
 export async function generateStaticParams() {
   const { data } = await appNavigationQuery();

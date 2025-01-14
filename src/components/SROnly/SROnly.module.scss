@@ -1,0 +1,20 @@
+@use '/src/styles/gradients';
+@use '/src/styles/typography';
+@use '/src/styles/helpers';
+@use '/src/styles/screens';
+@use '/src/styles/spacings';
+@use '/src/styles/colors';
+@use '/src/styles/boxShadows';
+@use '/src/styles/textEllipsis';
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  white-space: nowrap;
+}

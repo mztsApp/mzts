@@ -16,6 +16,7 @@ import {
   END_CONTACT_ICONS,
   START_CONTACT_ICONS,
 } from '../Layout/Navigation/NavContact/NavContact.constants';
+import { SROnly } from '../SROnly/SROnly';
 
 export const openInNewWindowLinkProps = (shouldOpenInNewWindow: boolean) =>
   shouldOpenInNewWindow
@@ -122,6 +123,7 @@ export const Footer = async () => {
                       contactData.facebook.shouldOpenInNewWindow,
                     )}
                   >
+                    <SROnly>Obserwuj nas na Facebooku</SROnly>
                     {END_CONTACT_ICONS.facebook(
                       styles.footer_contactFacebookIcon,
                     )}

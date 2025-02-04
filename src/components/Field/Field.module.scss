@@ -1,0 +1,69 @@
+@use '/src/styles/gradients';
+@use '/src/styles/typography';
+@use '/src/styles/helpers';
+@use '/src/styles/screens';
+@use '/src/styles/spacings';
+@use '/src/styles/colors';
+@use '/src/styles/boxShadows';
+@use '/src/styles/textEllipsis';
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: spacings.$xSmall;
+  width: 100%;
+  border: none;
+  margin-bottom: 3rem;
+
+  &:has(.field_input:focus) {
+    & .field_formControlWrapper::after {
+      width: 100%;
+    }
+  }
+
+  &_formControlWrapper {
+    position: relative;
+    width: 100%;
+    min-height: helpers.pxToRem(58);
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      display: block;
+      width: 0;
+      height: helpers.pxToRem(2);
+      background-color: colors.$accent;
+      transform: translateX(-50%);
+      transition: width 200ms ease-in-out;
+    }
+  }
+
+  &_input {
+    position: relative;
+    width: 100%;
+    min-height: helpers.pxToRem(58);
+    padding: spacings.$small;
+    background: colors.$text;
+    color: colors.$accent;
+    border: none;
+    border-bottom: solid colors.$accent helpers.pxToRem(1);
+    border-radius: helpers.pxToRem(4, 4, 0, 0);
+    outline: none;
+  }
+
+  &_label {
+    position: absolute;
+    inset: spacings.$xSmall;
+    color: colors.$accent;
+  }
+
+  &_error {
+    color: colors.$error;
+
+    &__darkBg {
+      color: colors.$text;
+    }
+  }
+}

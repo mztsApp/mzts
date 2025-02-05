@@ -18,15 +18,15 @@ import { FIELD_VARIANTS } from './Field.constants';
 
 const FieldMessage = ({
   className: ExternalClassName,
-  isDarkBackground = false,
+  withBackground = false,
   ...rest
 }: React.ComponentProps<typeof FormMessage> & {
-  isDarkBackground?: boolean;
+  withBackground?: boolean;
 }) => (
   <RadixFormMessage
     className={twMerge(
-      styles.field_error,
-      isDarkBackground && styles.field_error__darkBg,
+      styles.fieldError,
+      withBackground && styles.fieldError__darkBg,
       ExternalClassName,
     )}
     {...rest}
@@ -34,11 +34,13 @@ const FieldMessage = ({
 );
 
 type InputTagConditionalProps = {
-  inputProps?: Partial<React.ComponentProps<'input'>>;
+  inputProps?: Partial<Omit<React.ComponentProps<'input'>, 'placeholder'>>;
   variant: typeof FIELD_VARIANTS.INPUT;
 };
 type TextAreaTagConditionalProps = {
-  textAreaProps?: Partial<React.ComponentProps<typeof TextareaAutosize>>;
+  textAreaProps?: Partial<
+    Omit<React.ComponentProps<typeof TextareaAutosize>, 'placeholder'>
+  >;
   variant: typeof FIELD_VARIANTS.TEXT_AREA;
 };
 
@@ -51,6 +53,7 @@ type InputCustomProps = {
   required?: boolean;
   variant?: ValueOf<typeof FIELD_VARIANTS>;
   isDarkBackground?: boolean;
+  placeholder?: string;
 };
 
 type FieldProps = React.PropsWithChildren<
@@ -60,6 +63,8 @@ type FieldProps = React.PropsWithChildren<
     FieldConditionalProps
 >;
 
+const oneSpaceChart = ' ';
+
 const FieldRoot = ({
   className: ExternalClassName,
   id,
@@ -67,6 +72,7 @@ const FieldRoot = ({
   label,
   type,
   required,
+  placeholder = oneSpaceChart,
   children,
   ...restConditionalProps
 }: FieldProps) => {
@@ -92,9 +98,15 @@ const FieldRoot = ({
           asChild
         >
           {fieldConditionalProps.variant === FIELD_VARIANTS.INPUT ? (
-            <input {...fieldConditionalProps.inputProps} />
+            <input
+              placeholder={placeholder}
+              {...fieldConditionalProps.inputProps}
+            />
           ) : (
-            <TextareaAutosize {...fieldConditionalProps.textAreaProps} />
+            <TextareaAutosize
+              placeholder={placeholder}
+              {...fieldConditionalProps.textAreaProps}
+            />
           )}
         </RadixFormControl>
       </div>
@@ -111,13 +123,13 @@ const FieldRoot = ({
 };
 
 type FieldItems = {
-  message: typeof FieldMessage;
+  Message: typeof FieldMessage;
 };
 
 type FieldType = typeof FieldRoot & FieldItems;
 
 const Field = FieldRoot as FieldType;
 
-Field.message = FieldMessage;
+Field.Message = FieldMessage;
 
 export default Field;

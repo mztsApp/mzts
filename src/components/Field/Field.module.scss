@@ -10,10 +10,18 @@
 .field {
   display: flex;
   flex-direction: column;
-  gap: spacings.$xSmall;
+  gap: spacings.$xxSmall;
   width: 100%;
   border: none;
   margin-bottom: 3rem;
+
+  &:has(.field_input:focus),
+  &:has(.field_input:not(:placeholder-shown)) {
+    & .field_label {
+      top: spacings.$xSmall;
+      transform: translateY(0);
+    }
+  }
 
   &:has(.field_input:focus) {
     & .field_formControlWrapper::after {
@@ -45,25 +53,47 @@
     width: 100%;
     min-height: helpers.pxToRem(58);
     padding: spacings.$small;
+    padding-bottom: 0;
     background: colors.$text;
     color: colors.$accent;
     border: none;
     border-bottom: solid colors.$accent helpers.pxToRem(1);
     border-radius: helpers.pxToRem(4, 4, 0, 0);
     outline: none;
+    font-family: var(--font-geist-mono);
+
+    @include typography.body2;
   }
 
   &_label {
     position: absolute;
-    inset: spacings.$xSmall;
+    top: 50%;
+    left: spacings.$small;
     color: colors.$accent;
-  }
+    white-space: nowrap;
+    z-index: 1;
+    transform: translateY(-50%);
+    transition:
+      top 100ms ease-in-out,
+      transform 100ms ease-in-out;
 
-  &_error {
+    @include typography.body2;
+  }
+}
+
+.fieldError {
+  width: 100%;
+  padding: spacings.$xxSmall 0;
+  color: colors.$error;
+  border-radius: spacings.$xxSmall;
+
+  &__darkBg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: colors.$text;
     color: colors.$error;
-
-    &__darkBg {
-      color: colors.$text;
-    }
   }
+
+  @include typography.body3;
 }

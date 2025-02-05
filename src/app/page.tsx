@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
-import { Form } from '@radix-ui/react-form';
 
+import { ContactSection } from '@/components/ContactSection/ContactSection.server';
+import { FAQ } from '@/components/FAQ/FAQ.server';
 import { Newsletter } from '@/components/Newsletter/Newsletter.server';
 import { Section } from '@/components/Section/Section';
 import {
@@ -12,9 +13,6 @@ import {
   getSectionAlignmentFromApi,
   getTypographyColorFromApi,
 } from '@/utilities/utilitiesForApi';
-import { FAQ } from '@/components/FAQ/FAQ.server';
-import { ContactSection } from '@/components/ContactSection/ContactSection.server';
-import Field from '@/components/Field/Field';
 
 import { getHomePageDataQuery } from '../api/getHomePageDataQuery';
 
@@ -34,10 +32,6 @@ export default async function Home() {
 
   return (
     <>
-      <Form>
-        <Field variant="input" name="test" label="test" />
-      </Form>
-
       {!data.isHeroHide && (
         <Section
           as={SECTION_COMPONENT.HEADER}

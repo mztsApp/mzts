@@ -2,6 +2,12 @@ import Image from 'next/image';
 import { twMerge } from 'tailwind-merge';
 
 import {
+  TYPOGRAPHY_ALIGNMENT,
+  TYPOGRAPHY_COMPONENTS,
+  TYPOGRAPHY_VARIANTS,
+} from '../Typography/Typography.constants';
+import { Typography } from '../Typography/Typography.server';
+import {
   SECTION_ALIGNMENT,
   SECTION_COMPONENT,
   SECTION_CONTENT_ALIGNMENT,
@@ -9,12 +15,6 @@ import {
 } from './Section.constants';
 import styles from './Section.module.scss';
 import { SectionProps } from './Section.types';
-import { Typography } from '../Typography/Typography.server';
-import {
-  TYPOGRAPHY_ALIGNMENT,
-  TYPOGRAPHY_COMPONENTS,
-  TYPOGRAPHY_VARIANTS,
-} from '../Typography/Typography.constants';
 
 export const Section = ({
   as: SectionHTMLTag = SECTION_COMPONENT.SECTION,

@@ -15,13 +15,13 @@ import {
   BUTTON_SIZES,
   BUTTON_VARIANTS,
 } from '@/components/Button/Button.constants';
+import { FileType } from '@/components/Footer/api/getDocumentsQuery';
 import {
   TYPOGRAPHY_COLORS,
   TYPOGRAPHY_COMPONENTS,
   TYPOGRAPHY_VARIANTS,
 } from '@/components/Typography/Typography.constants';
 import { Typography } from '@/components/Typography/Typography.server';
-import { FileType } from '@/components/Footer/api/getDocumentsQuery';
 
 import styles from './NewsletterForm.module.scss';
 import { postSubscribeNewsletter } from './api/postSubscribeNewsletter';
@@ -77,7 +77,7 @@ export const NewsletterForm = ({
         </div>
 
         <Typography variant={TYPOGRAPHY_VARIANTS.HELPER_TEXT}>
-          Klikając Wyślij, potwierdzasz, że zgadzasz się z naszym{' '}
+          Klikając Wyślij, potwierdzasz, że zgadzasz się z naszym
           <Button
             darkHover
             disableUppercase
@@ -90,8 +90,7 @@ export const NewsletterForm = ({
             rel="noreferrer noopener"
           >
             Regulaminem
-          </Button>{' '}
-          i{' '}
+          </Button>
           <Button
             darkHover
             disableUppercase
@@ -105,7 +104,6 @@ export const NewsletterForm = ({
           >
             Polityką prywatności
           </Button>
-          .
         </Typography>
       </FormField>
     </Form>

@@ -7,15 +7,15 @@ import {
   FormMessage,
   FormSubmit,
 } from '@radix-ui/react-form';
-import TextareaAutosize from 'react-textarea-autosize';
 
 import { Button } from '@/components/Button/Button';
-import { Typography } from '@/components/Typography/Typography.server';
 import {
   TYPOGRAPHY_COLORS,
   TYPOGRAPHY_COMPONENTS,
   TYPOGRAPHY_VARIANTS,
 } from '@/components/Typography/Typography.constants';
+import { Typography } from '@/components/Typography/Typography.server';
+import Field from '@/components/Field/Field';
 
 import { postContactMessage } from '../api/postContactMessage';
 import styles from './ContactForm.module.scss';
@@ -23,35 +23,32 @@ import styles from './ContactForm.module.scss';
 export const ContactFrom = () => {
   return (
     <Form onSubmit={postContactMessage} className={styles.contactForm}>
-      <FormField name="firstName">
-        <FormControl type="text" required />
-        <FormMessage match="valueMissing">
-          <Typography color={TYPOGRAPHY_COLORS.ERROR}>
-            Pole Imię jest wymagane
-          </Typography>
-        </FormMessage>
-      </FormField>
-      <FormField name="email">
-        <FormControl type="email" required />
+      <Field variant="input" type="text" name="firstName" label="Imię" required>
+        <Field.Message match="valueMissing">
+          Pole Imię jest wymagana
+        </Field.Message>
+      </Field>
 
-        <FormMessage match="valueMissing">
-          <Typography color={TYPOGRAPHY_COLORS.ERROR}>
-            Pole Email jest wymagane
-          </Typography>
-        </FormMessage>
-      </FormField>
+      <Field variant="input" type="email" name="message" label="Email" required>
+        <Field.Message match="valueMissing">
+          Pole email musi być poprawne
+        </Field.Message>
+        <Field.Message match="typeMismatch">
+          Pole Email jest wymagane
+        </Field.Message>
+      </Field>
 
-      <FormField name="message">
-        <FormControl type="text" required asChild>
-          <TextareaAutosize minRows={4} maxLength={600} />
-        </FormControl>
-
-        <FormMessage match="valueMissing">
-          <Typography color={TYPOGRAPHY_COLORS.ERROR}>
-            Pole Wiadomość jest wymagane
-          </Typography>
-        </FormMessage>
-      </FormField>
+      <Field
+        variant="textArea"
+        type="text"
+        name="message"
+        label="Wiadomość"
+        required
+      >
+        <Field.Message match="valueMissing">
+          Pole Wiadomość jest wymagane
+        </Field.Message>
+      </Field>
 
       <FormField name="consent">
         <div>

@@ -12,8 +12,8 @@
   flex-direction: column;
   gap: spacings.$xxSmall;
   width: 100%;
+  min-height: helpers.pxToRem(86);
   border: none;
-  margin-bottom: 3rem;
 
   &:has(.field_input:focus),
   &:has(.field_input:not(:placeholder-shown)) {
@@ -29,16 +29,34 @@
     }
   }
 
+  &__textArea {
+    & .field_formControlWrapper {
+      &::after {
+        bottom: helpers.pxToRem(4);
+        height: helpers.pxToRem(3);
+      }
+    }
+
+    & .field_label {
+      top: helpers.pxToRem(28);
+    }
+
+    & .field_input {
+      padding-top: helpers.pxToRem(28);
+      padding-bottom: helpers.pxToRem(8);
+    }
+  }
+
   &_formControlWrapper {
     position: relative;
     width: 100%;
-    min-height: helpers.pxToRem(58);
+    min-height: helpers.pxToRem(52);
 
     &::after {
       content: '';
       position: absolute;
       left: 50%;
-      bottom: 0;
+      bottom: helpers.pxToRem(1);
       display: block;
       width: 0;
       height: helpers.pxToRem(2);
@@ -50,7 +68,7 @@
 
   &_input {
     position: relative;
-    width: 100%;
+    width: 100% !important;
     min-height: helpers.pxToRem(58);
     padding: spacings.$small;
     padding-bottom: 0;
@@ -83,17 +101,15 @@
 
 .fieldError {
   width: 100%;
-  padding: spacings.$xxSmall 0;
   color: colors.$error;
   border-radius: spacings.$xxSmall;
 
   &__darkBg {
     display: flex;
-    justify-content: center;
     align-items: center;
     background: colors.$text;
     color: colors.$error;
   }
 
-  @include typography.body3;
+  @include typography.helperText;
 }

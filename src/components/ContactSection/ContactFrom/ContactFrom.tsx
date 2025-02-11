@@ -30,10 +30,11 @@ export const ContactFrom = () => {
       </Field>
 
       <Field variant="input" type="email" name="message" label="Email" required>
-        <Field.Message match="valueMissing">
-          Pole email musi być poprawne
+        <Field.Message match="valueMissing" withBackground>
+          Pole powinno zawierać poprawny adres e-mail z &ldquo;@&ldquo; i
+          domeną.
         </Field.Message>
-        <Field.Message match="typeMismatch">
+        <Field.Message match="typeMismatch" withBackground>
           Pole Email jest wymagane
         </Field.Message>
       </Field>

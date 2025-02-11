@@ -1,28 +1,29 @@
 'use client';
 
+import React from 'react';
 import {
   FormControl as RadixFormControl,
   FormField as RadixFormField,
   FormLabel as RadixFromLabel,
   FormMessage as RadixFormMessage,
-  FormMessage,
 } from '@radix-ui/react-form';
 import { twMerge } from 'tailwind-merge';
-import React from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 
-import { ValueOf } from '@/types';
-
 import styles from './Field.module.scss';
+import type {
+  FieldMessageProps,
+  FieldProps,
+  InputTagConditionalProps,
+  TextAreaTagConditionalProps,
+} from './Field.types';
 import { FIELD_VARIANTS } from './Field.constants';
 
 const FieldMessage = ({
   className: ExternalClassName,
   withBackground = false,
   ...rest
-}: React.ComponentProps<typeof FormMessage> & {
-  withBackground?: boolean;
-}) => (
+}: FieldMessageProps) => (
   <RadixFormMessage
     className={twMerge(
       styles.fieldError,
@@ -32,36 +33,6 @@ const FieldMessage = ({
     {...rest}
   />
 );
-
-type InputTagConditionalProps = {
-  inputProps?: Partial<Omit<React.ComponentProps<'input'>, 'placeholder'>>;
-  variant: typeof FIELD_VARIANTS.INPUT;
-};
-type TextAreaTagConditionalProps = {
-  textAreaProps?: Partial<
-    Omit<React.ComponentProps<typeof TextareaAutosize>, 'placeholder'>
-  >;
-  variant: typeof FIELD_VARIANTS.TEXT_AREA;
-};
-
-type FieldConditionalProps =
-  | InputTagConditionalProps
-  | TextAreaTagConditionalProps;
-
-type InputCustomProps = {
-  label: string;
-  required?: boolean;
-  variant?: ValueOf<typeof FIELD_VARIANTS>;
-  isDarkBackground?: boolean;
-  placeholder?: string;
-};
-
-type FieldProps = React.PropsWithChildren<
-  React.ComponentProps<typeof RadixFormField> &
-    Pick<React.ComponentProps<typeof RadixFormControl>, 'type'> &
-    InputCustomProps &
-    FieldConditionalProps
->;
 
 const oneSpaceChart = ' ';
 
@@ -83,7 +54,12 @@ const FieldRoot = ({
   return (
     <RadixFormField
       id={id}
-      className={twMerge(styles.field, ExternalClassName)}
+      className={twMerge(
+        styles.field,
+        fieldConditionalProps.variant === FIELD_VARIANTS.TEXT_AREA &&
+          styles.field__textArea,
+        ExternalClassName,
+      )}
       name={name}
     >
       <div className={styles.field_formControlWrapper}>

@@ -109,10 +109,12 @@
   }
 
   &_outsideImageDescription {
-    padding: 0 spacings.$medium;
-
     &__hero {
       padding: 0;
+    }
+
+    @include screens.lg {
+      padding: 0 spacings.$medium;
     }
   }
 }

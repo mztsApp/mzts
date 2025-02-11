@@ -1,4 +1,4 @@
-import { SectionListItemFromApiResponse } from './SectionList.types';
+import type { SectionListItemFromApiResponse } from './SectionList.types';
 
 export const getResolvedSectionListItemsFromApi = (
   items: SectionListItemFromApiResponse,

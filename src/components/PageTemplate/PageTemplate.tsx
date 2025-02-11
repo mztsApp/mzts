@@ -4,7 +4,7 @@ import {
   getSectionAlignmentFromApi,
   getTypographyColorFromApi,
 } from '@/utilities/utilitiesForApi';
-import { PageTemplateProps } from '@/types/pageApiTypes';
+import type { PageTemplateProps } from '@/types/pageApiTypes';
 
 import { Section } from '../Section/Section';
 import { SectionList } from '../SectionList/SectionList.server';

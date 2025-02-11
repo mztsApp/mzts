@@ -1,5 +1,5 @@
 import { defaultError } from '@/api/appNavigationQuery';
-import {
+import type {
   PageAssetFieldsApiResponse,
   PageDataApiResponseFieldsType,
   PageDataType,

@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 
 import { ContactSection } from '@/components/ContactSection/ContactSection.server';
 import { FAQ } from '@/components/FAQ/FAQ.server';

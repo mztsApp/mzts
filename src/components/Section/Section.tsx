@@ -14,7 +14,7 @@ import {
   SECTION_HEADING_COMPONENT,
 } from './Section.constants';
 import styles from './Section.module.scss';
-import { SectionProps } from './Section.types';
+import type { SectionProps } from './Section.types';
 
 export const Section = ({
   as: SectionHTMLTag = SECTION_COMPONENT.SECTION,

@@ -1,4 +1,4 @@
-import { FormEvent } from 'react';
+import type { FormEvent } from 'react';
 
 export const postSubscribeNewsletter = async (
   event: FormEvent<HTMLFormElement>,

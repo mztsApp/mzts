@@ -28,7 +28,7 @@ export const NewsletterForm = ({
 }: NewsletterFormProps) => {
   return (
     <Form className={styles.newsletterForm} onSubmit={postSubscribeNewsletter}>
-      <div>
+      <div className={styles.newsletterForm_contentWrapper}>
         <Field
           variant="input"
           type="email"
@@ -51,6 +51,7 @@ export const NewsletterForm = ({
           </Button>
         </FormSubmit>
       </div>
+
       <Typography variant={TYPOGRAPHY_VARIANTS.HELPER_TEXT}>
         Klikając Wyślij, potwierdzasz, że zgadzasz się z naszym{' '}
         <Button

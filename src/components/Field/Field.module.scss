@@ -33,7 +33,6 @@
     & .field_formControlWrapper {
       &::after {
         bottom: helpers.pxToRem(4);
-        height: helpers.pxToRem(3);
       }
     }
 
@@ -56,7 +55,7 @@
       content: '';
       position: absolute;
       left: 50%;
-      bottom: helpers.pxToRem(1);
+      bottom: 0;
       display: block;
       width: 0;
       height: helpers.pxToRem(2);
@@ -103,12 +102,14 @@
   width: 100%;
   color: colors.$error;
   border-radius: spacings.$xxSmall;
+  overflow-x: auto;
 
   &__darkBg {
     display: flex;
     align-items: center;
     background: colors.$text;
     color: colors.$error;
+    margin-bottom: spacings.$xxSmall;
   }
 
   @include typography.helperText;

@@ -31,8 +31,7 @@ export const ContactFrom = () => {
 
       <Field variant="input" type="email" name="message" label="Email" required>
         <Field.Message match="valueMissing">
-          Pole powinno zawierać poprawny adres e-mail z &ldquo;@&ldquo; i
-          domeną.
+          Upewnij się, że e-mail zawiera znak @ oraz domenę (np. .pl, .com)
         </Field.Message>
         <Field.Message match="typeMismatch">
           Pole Email jest wymagane

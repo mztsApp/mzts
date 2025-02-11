@@ -9,7 +9,7 @@ import {
   BUTTON_SIZES,
   BUTTON_VARIANTS,
 } from './Button.constants';
-import {
+import type {
   AsAnchorProps,
   AsButtonProps,
   AsNextLinkProps,
@@ -72,14 +72,14 @@ export const Button = ({
 
   if (disabled || loading) {
     return (
-      <div className={commonButtonClassName}>
-        <div className={styles.button_iconWrapper}>
+      <span className={commonButtonClassName}>
+        <span className={styles.button_iconWrapper}>
           {loading ? (
             <CircleLoadingIcon className={styles.button_loadingIcon} />
           ) : (
             StartIcon
           )}
-        </div>
+        </span>
         <Typography
           noWrap
           as={TYPOGRAPHY_COMPONENTS.SPAN}
@@ -95,8 +95,8 @@ export const Button = ({
         >
           {children}
         </Typography>
-        <div className={styles.button_iconWrapper}>{EndIcon}</div>
-      </div>
+        <span className={styles.button_iconWrapper}>{EndIcon}</span>
+      </span>
     );
   }
 
@@ -107,13 +107,13 @@ export const Button = ({
           className={commonButtonClassName}
           {...(restPropsRelatedWithComponent as AsNextLinkProps)}
         >
-          <div className={styles.button_iconWrapper}>
+          <span className={styles.button_iconWrapper}>
             {loading ? (
               <CircleLoadingIcon className={styles.button_loadingIcon} />
             ) : (
               StartIcon
             )}
-          </div>
+          </span>
           <Typography
             noWrap
             as={TYPOGRAPHY_COMPONENTS.SPAN}
@@ -129,7 +129,7 @@ export const Button = ({
           >
             {children}
           </Typography>
-          <div className={styles.button_iconWrapper}>{EndIcon}</div>
+          <span className={styles.button_iconWrapper}>{EndIcon}</span>
         </Link>
       );
 
@@ -139,13 +139,13 @@ export const Button = ({
           className={commonButtonClassName}
           {...(restPropsRelatedWithComponent as AsAnchorProps)}
         >
-          <div className={styles.button_iconWrapper}>
+          <span className={styles.button_iconWrapper}>
             {loading ? (
               <CircleLoadingIcon className={styles.button_loadingIcon} />
             ) : (
               StartIcon
             )}
-          </div>
+          </span>
           <Typography
             noWrap
             as={TYPOGRAPHY_COMPONENTS.SPAN}
@@ -161,7 +161,7 @@ export const Button = ({
           >
             {children}
           </Typography>
-          <div className={styles.button_iconWrapper}>{EndIcon}</div>
+          <span className={styles.button_iconWrapper}>{EndIcon}</span>
         </HTMLButtonTag>
       );
 
@@ -171,13 +171,13 @@ export const Button = ({
           className={commonButtonClassName}
           {...(restPropsRelatedWithComponent as AsButtonProps)}
         >
-          <div className={styles.button_iconWrapper}>
+          <span className={styles.button_iconWrapper}>
             {loading ? (
               <CircleLoadingIcon className={styles.button_loadingIcon} />
             ) : (
               StartIcon
             )}
-          </div>
+          </span>
           <Typography
             noWrap
             as={TYPOGRAPHY_COMPONENTS.SPAN}
@@ -193,7 +193,7 @@ export const Button = ({
           >
             {children}
           </Typography>
-          <div className={styles.button_iconWrapper}>{EndIcon}</div>
+          <span className={styles.button_iconWrapper}>{EndIcon}</span>
         </HTMLButtonTag>
       );
 

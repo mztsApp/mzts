@@ -17,7 +17,7 @@ import {
 import { ALLOWED_BREAKPOINTS, useMedia } from '@/hooks/useMedia';
 import { MobileDeviceContext } from '@/providers/MobileDeviceProvider/MobileDeviceProvider';
 
-import { FAQItemType } from '../api/getFAQDataQuery';
+import type { FAQItemType } from '../api/getFAQDataQuery';
 import styles from './FAQAccordion.module.scss';
 
 type FAQAccordionProps = {

@@ -1,5 +1,7 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 
+import { ContactSection } from '@/components/ContactSection/ContactSection.server';
+import { FAQ } from '@/components/FAQ/FAQ.server';
 import { Newsletter } from '@/components/Newsletter/Newsletter.server';
 import { Section } from '@/components/Section/Section';
 import {
@@ -11,8 +13,6 @@ import {
   getSectionAlignmentFromApi,
   getTypographyColorFromApi,
 } from '@/utilities/utilitiesForApi';
-import { FAQ } from '@/components/FAQ/FAQ.server';
-import { ContactSection } from '@/components/ContactSection/ContactSection.server';
 
 import { getHomePageDataQuery } from '../api/getHomePageDataQuery';
 

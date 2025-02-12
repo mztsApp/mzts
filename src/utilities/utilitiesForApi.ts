@@ -1,6 +1,6 @@
 import { SECTION_ALIGNMENT } from '@/components/Section/Section.constants';
 import { TYPOGRAPHY_COLORS } from '@/components/Typography/Typography.constants';
-import { ValueOf } from '@/types';
+import type { ValueOf } from '@/types';
 
 export const getTypographyColorFromApi = (
   colorVariantFromApi?: string | null,

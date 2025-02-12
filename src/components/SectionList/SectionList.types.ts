@@ -1,4 +1,4 @@
-import { BgImageType, EntrySysType } from '@/types/pageApiTypes';
+import type { BgImageType, EntrySysType } from '@/types/pageApiTypes';
 
 type SectionListFieldFromApiResponse = {
   fields: {

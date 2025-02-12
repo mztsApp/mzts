@@ -1,9 +1,9 @@
-import React from 'react';
-import Link from 'next/link';
+import type React from 'react';
+import type Link from 'next/link';
 
-import { ValueOf } from '@/types';
+import type { ValueOf } from '@/types';
 
-import {
+import type {
   BUTTON_COMPONENTS,
   BUTTON_SIZES,
   BUTTON_TEXT_VARIANT_TYPOGRAPHY_SIZES,

@@ -1,7 +1,7 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 
 import { PageTemplate } from '@/components/PageTemplate/PageTemplate';
-import { PageParams } from '@/types/pageApiTypes';
+import type { PageParams } from '@/types/pageApiTypes';
 import { getGroupedPagesBySubPage } from '@/utilities/getGroupedPagesBySubPage';
 import { appNavigationQuery } from '@/api/appNavigationQuery';
 import { getPageParamsQuery } from '@/api/getPageParamsQuery';

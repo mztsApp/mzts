@@ -1,4 +1,4 @@
-import { Data, LinkValueType } from '../api/navigationContactListQuery';
+import type { Data, LinkValueType } from '../api/navigationContactListQuery';
 import { END_CONTACT_ICONS, START_CONTACT_ICONS } from './NavContact.constants';
 
 export type IconObjectType = Record<'startIcon' | 'endIcon', React.ReactNode>;

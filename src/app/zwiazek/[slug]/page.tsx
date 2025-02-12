@@ -1,10 +1,10 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 
 import { PageTemplate } from '@/components/PageTemplate/PageTemplate';
 import { appNavigationQuery } from '@/api/appNavigationQuery';
 import { getGroupedPagesBySubPage } from '@/utilities/getGroupedPagesBySubPage';
 import { getPageParamsQuery } from '@/api/getPageParamsQuery';
-import { PageParams } from '@/types/pageApiTypes';
+import type { PageParams } from '@/types/pageApiTypes';
 
 export async function generateStaticParams() {
   const { data } = await appNavigationQuery();

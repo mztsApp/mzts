@@ -1,4 +1,4 @@
-import NextLink from 'next/link';
+import type NextLink from 'next/link';
 
 export type LinkType = Partial<
   Pick<

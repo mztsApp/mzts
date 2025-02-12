@@ -1,0 +1,116 @@
+@use '/src/styles/gradients';
+@use '/src/styles/typography';
+@use '/src/styles/helpers';
+@use '/src/styles/screens';
+@use '/src/styles/spacings';
+@use '/src/styles/colors';
+@use '/src/styles/boxShadows';
+@use '/src/styles/textEllipsis';
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: spacings.$xxSmall;
+  width: 100%;
+  min-height: helpers.pxToRem(86);
+  border: none;
+
+  &:has(.field_input:focus),
+  &:has(.field_input:not(:placeholder-shown)) {
+    & .field_label {
+      top: spacings.$xSmall;
+      transform: translateY(0);
+    }
+  }
+
+  &:has(.field_input:focus) {
+    & .field_formControlWrapper::after {
+      width: 100%;
+    }
+  }
+
+  &__textArea {
+    & .field_formControlWrapper {
+      &::after {
+        bottom: helpers.pxToRem(4);
+      }
+    }
+
+    & .field_label {
+      top: helpers.pxToRem(28);
+    }
+
+    & .field_input {
+      padding-top: helpers.pxToRem(28);
+      padding-bottom: helpers.pxToRem(8);
+    }
+  }
+
+  &_formControlWrapper {
+    position: relative;
+    width: 100%;
+    min-height: helpers.pxToRem(52);
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      display: block;
+      width: 0;
+      height: helpers.pxToRem(2);
+      background-color: colors.$accent;
+      transform: translateX(-50%);
+      transition: width 200ms ease-in-out;
+    }
+  }
+
+  &_input {
+    position: relative;
+    width: 100% !important;
+    min-height: helpers.pxToRem(58);
+    padding: spacings.$small;
+    padding-bottom: 0;
+    background: colors.$text;
+    color: colors.$accent;
+    border: none;
+    border-bottom: solid colors.$accent helpers.pxToRem(1);
+    border-radius: helpers.pxToRem(4, 4, 0, 0);
+    outline: none;
+    font-family: var(--font-geist-mono);
+
+    @include typography.body2;
+  }
+
+  &_label {
+    position: absolute;
+    top: 50%;
+    left: spacings.$small;
+    color: colors.$accent;
+    white-space: nowrap;
+    z-index: 1;
+    transform: translateY(-50%);
+    transition:
+      top 100ms ease-in-out,
+      transform 100ms ease-in-out;
+
+    @include typography.body2;
+  }
+}
+
+.fieldError {
+  width: 100%;
+  color: colors.$error;
+  border-radius: spacings.$xxSmall;
+  overflow-x: auto;
+
+  &__darkBg {
+    display: flex;
+    align-items: center;
+    background: colors.$text;
+    color: colors.$error;
+    margin-bottom: spacings.$xxSmall;
+  }
+
+  @include typography.helperText;
+}

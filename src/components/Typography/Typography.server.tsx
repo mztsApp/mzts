@@ -7,7 +7,7 @@ import {
   TYPOGRAPHY_VARIANTS,
 } from './Typography.constants';
 import styles from './Typography.module.scss';
-import { LabelProps, TypographyProps } from './Typography.types';
+import type { LabelProps, TypographyProps } from './Typography.types';
 
 export const Typography = ({
   as: TypographyHTMLTag = TYPOGRAPHY_COMPONENTS.PARAGRAPH,

@@ -5,7 +5,7 @@ import {
 } from '@/utilities/generateQuery';
 import { getResolvePageBGImageFromApi } from '@/utilities/getResolvedPageDataFromApi';
 
-import {
+import type {
   SectionBGImageSectionList,
   SectionListData,
 } from '../SectionList.types';

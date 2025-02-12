@@ -1,10 +1,10 @@
 import React from 'react';
 import { headers } from 'next/headers';
 
-import { ValueOf } from '@/types';
+import type { ValueOf } from '@/types';
 import { MobileDeviceProvider } from '@/providers/MobileDeviceProvider/MobileDeviceProvider';
 
-import { LAYOUT_COMPONENT } from './Layout.constants';
+import type { LAYOUT_COMPONENT } from './Layout.constants';
 import styles from './Layout.module.scss';
 import { Navigation } from './Navigation/Navigation.server';
 

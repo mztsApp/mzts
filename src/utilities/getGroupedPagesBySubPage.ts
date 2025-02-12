@@ -1,4 +1,4 @@
-import { SinglePageType } from '@/api/appNavigationQuery';
+import type { SinglePageType } from '@/api/appNavigationQuery';
 
 export type NestedPages = {
   subPage: string;

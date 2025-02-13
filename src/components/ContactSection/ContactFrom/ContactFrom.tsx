@@ -1,20 +1,9 @@
 'use client';
 
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormMessage,
-  FormSubmit,
-} from '@radix-ui/react-form';
+import { Form, FormSubmit } from '@radix-ui/react-form';
 
 import { Button } from '@/components/Button/Button';
-import {
-  TYPOGRAPHY_COLORS,
-  TYPOGRAPHY_COMPONENTS,
-  TYPOGRAPHY_VARIANTS,
-} from '@/components/Typography/Typography.constants';
-import { Typography } from '@/components/Typography/Typography.server';
+import Checkbox from '@/components/Checkbox/Checkbox';
 import Field from '@/components/Field/Field';
 
 import { postContactMessage } from '../api/postContactMessage';
@@ -29,7 +18,7 @@ export const ContactFrom = () => {
         </Field.Message>
       </Field>
 
-      <Field variant="input" type="email" name="message" label="Email" required>
+      <Field variant="input" type="email" name="email" label="Email" required>
         <Field.Message match="valueMissing">
           Upewnij się, że e-mail zawiera znak @ oraz domenę (np. .pl, .com)
         </Field.Message>
@@ -50,21 +39,15 @@ export const ContactFrom = () => {
         </Field.Message>
       </Field>
 
-      <FormField name="consent">
-        <div>
-          <FormControl type="checkbox" required />
-          <Typography
-            as={TYPOGRAPHY_COMPONENTS.LABEL}
-            variant={TYPOGRAPHY_VARIANTS.HELPER_TEXT}
-          />
-        </div>
-
-        <FormMessage match="valueMissing">
-          <Typography color={TYPOGRAPHY_COLORS.ERROR}>
-            zgoda jest wymagana
-          </Typography>
-        </FormMessage>
-      </FormField>
+      <Checkbox
+        required
+        name="consent"
+        label="Wysyłając powyższy formularz wyrażasz zgodę na przetwarzanie Twoich danych osobowych w celu obsługi Twojego zapytania. Przeczytaj Politykę prywatności, aby poznać szczegóły."
+      >
+        <Checkbox.Message match="valueMissing">
+          Musisz wyrazić zgodę aby wysłać formularz
+        </Checkbox.Message>
+      </Checkbox>
 
       <FormSubmit asChild>
         <Button>Wyślij</Button>

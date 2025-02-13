@@ -52,7 +52,10 @@ export const NewsletterForm = ({
         </FormSubmit>
       </div>
 
-      <Typography variant={TYPOGRAPHY_VARIANTS.HELPER_TEXT}>
+      <Typography
+        variant={TYPOGRAPHY_VARIANTS.HELPER_TEXT}
+        className={styles.newsletterForm_helperMessage}
+      >
         Klikając Wyślij, potwierdzasz, że zgadzasz się z naszym{' '}
         <Button
           darkHover
@@ -66,7 +69,7 @@ export const NewsletterForm = ({
           rel="noreferrer noopener"
         >
           Regulaminem
-        </Button>
+        </Button>{' '}
         <Button
           darkHover
           disableUppercase

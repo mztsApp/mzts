@@ -1,0 +1,49 @@
+@use '/src/styles/gradients';
+@use '/src/styles/typography';
+@use '/src/styles/helpers';
+@use '/src/styles/screens';
+@use '/src/styles/spacings';
+@use '/src/styles/colors';
+@use '/src/styles/boxShadows';
+@use '/src/styles/textEllipsis';
+
+.checkbox {
+  display: flex;
+  flex-direction: column;
+
+  &_inputWrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: spacings.$xSmall;
+  }
+
+  &_input {
+    position: relative;
+    width: helpers.pxToRem(18);
+    height: helpers.pxToRem(18);
+    border: solid helpers.pxToRem(2) colors.$text;
+    border-radius: spacings.$xxSmall;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    &:checked {
+      @include gradients.boxGradient();
+
+      &::after {
+        content: '✔';
+        position: absolute;
+        top: calc(50% - 0.1rem);
+        left: 50%;
+        color: colors.$text;
+        font-weight: 500;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+
+  &_error {
+    min-height: helpers.pxToRem(24);
+    padding-bottom: helpers.pxToRem(4);
+  }
+}

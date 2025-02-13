@@ -30,6 +30,8 @@
   }
 
   &__textArea {
+    gap: 0;
+
     & .field_formControlWrapper {
       &::after {
         bottom: helpers.pxToRem(4);
@@ -44,6 +46,10 @@
       padding-top: helpers.pxToRem(28);
       padding-bottom: helpers.pxToRem(8);
     }
+  }
+
+  &_errorWrapper {
+    min-height: helpers.pxToRem(20);
   }
 
   &_formControlWrapper {
@@ -102,6 +108,7 @@
   width: 100%;
   color: colors.$error;
   border-radius: spacings.$xxSmall;
+  margin-bottom: helpers.pxToRem(4);
   overflow-x: auto;
 
   &__darkBg {

@@ -1,15 +1,17 @@
 'use client';
 
-import React from 'react';
 import {
   FormControl as RadixFormControl,
   FormField as RadixFormField,
-  FormLabel as RadixFromLabel,
   FormMessage as RadixFormMessage,
+  FormLabel as RadixFromLabel,
 } from '@radix-ui/react-form';
-import { twMerge } from 'tailwind-merge';
+import React from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
+import { twMerge } from 'tailwind-merge';
+import { v4 as uuid } from 'uuid';
 
+import { FIELD_VARIANTS } from './Field.constants';
 import styles from './Field.module.scss';
 import type {
   FieldMessageProps,
@@ -17,9 +19,8 @@ import type {
   InputTagConditionalProps,
   TextAreaTagConditionalProps,
 } from './Field.types';
-import { FIELD_VARIANTS } from './Field.constants';
 
-const FieldMessage = ({
+export const FieldMessage = ({
   className: ExternalClassName,
   withBackground = false,
   ...rest
@@ -38,7 +39,7 @@ const oneSpaceChart = ' ';
 
 const FieldRoot = ({
   className: ExternalClassName,
-  id,
+  id = `field-${uuid()}`,
   name,
   label,
   type,
@@ -87,13 +88,15 @@ const FieldRoot = ({
         </RadixFormControl>
       </div>
 
-      {React.Children.map(children, (child) => {
-        if (React.isValidElement(child) && child.type === FieldMessage) {
-          return React.cloneElement(child, child.props);
-        }
+      <div className={styles.field_errorWrapper}>
+        {React.Children.map(children, (child) => {
+          if (React.isValidElement(child) && child.type === FieldMessage) {
+            return React.cloneElement(child, child.props);
+          }
 
-        return null;
-      })}
+          return null;
+        })}
+      </div>
     </RadixFormField>
   );
 };

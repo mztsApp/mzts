@@ -27,4 +27,12 @@
       cursor: pointer;
     }
   }
+
+  &_helperMessage {
+    margin-top: spacings.$medium;
+
+    @include screens.md {
+      margin-top: 0;
+    }
+  }
 }

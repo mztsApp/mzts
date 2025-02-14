@@ -32,6 +32,9 @@ export const ContactFrom = () => {
         type="text"
         name="message"
         label="Wiadomość"
+        textAreaProps={{
+          maxLength: 400,
+        }}
         required
       >
         <Field.Message match="valueMissing">

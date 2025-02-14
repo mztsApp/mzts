@@ -7,6 +7,7 @@ type SectionListFieldFromApiResponse = {
     description: string;
     image: EntrySysType;
     alignment: string;
+    content?: EntrySysType;
   };
 } & EntrySysType;
 
@@ -40,4 +41,5 @@ export type SectionListData = {
   description: string;
   alignment: string;
   image: BgImageType;
+  additionalContentId?: string;
 }[];

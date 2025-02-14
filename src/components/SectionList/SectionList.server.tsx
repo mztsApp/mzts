@@ -10,6 +10,7 @@ import {
 } from '../Section/Section.constants';
 import { getSectionDataQuery } from './api/getSectionDataQuery';
 import styles from './SectionList.module.scss';
+import { AdditionalSectionContent } from '../AdditionalSectionContent/AdditionalContent.server';
 
 type SectionApiWrapperProps = {
   entriesIds: string[];
@@ -38,7 +39,13 @@ export const SectionList = async ({ entriesIds }: SectionApiWrapperProps) => {
               description={section.description}
               image={section.image}
               isPriority={isFirstListElement}
-            />
+            >
+              {Boolean(section?.additionalContentId) && (
+                <AdditionalSectionContent
+                  hash={section?.additionalContentId ?? ''}
+                />
+              )}
+            </Section>
           </li>
         );
       })}

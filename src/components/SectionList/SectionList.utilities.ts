@@ -5,12 +5,13 @@ export const getResolvedSectionListItemsFromApi = (
 ) =>
   items.map((item) => {
     const { sys, fields } = item;
-    const { image, ...rest } = fields;
+    const { image, content, ...rest } = fields;
 
     return {
       ...rest,
       sectionId: sys.id,
       bgImageId: image.sys.id,
+      additionalContentId: content?.sys?.id,
     };
   });
 

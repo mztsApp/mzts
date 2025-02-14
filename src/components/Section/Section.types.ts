@@ -37,10 +37,11 @@ type HeadingAndComponentConditionalProps =
 
 type ImageType = React.ComponentProps<typeof Image>;
 
-export type SectionProps = {
+export type SectionProps = React.PropsWithChildren<{
   image?: ImageType;
   description?: string;
   sectionAlignment?: ValueOf<typeof SECTION_ALIGNMENT>;
   headingColor?: ValueOf<typeof SECTION_HEADING_COLOR>;
   isPriority?: boolean;
-} & HeadingAndComponentConditionalProps;
+}> &
+  HeadingAndComponentConditionalProps;

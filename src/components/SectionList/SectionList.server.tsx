@@ -42,7 +42,7 @@ export const SectionList = async ({ entriesIds }: SectionApiWrapperProps) => {
             >
               {Boolean(section?.additionalContentId) && (
                 <AdditionalSectionContent
-                  hash={section?.additionalContentId ?? ''}
+                  hash={section.additionalContentId ?? ''}
                 />
               )}
             </Section>

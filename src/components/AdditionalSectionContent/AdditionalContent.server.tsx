@@ -1,3 +1,4 @@
+import { ADDITIONAL_CONTENT_VARIANT_BY_IDENTIFICATION } from './AdditionalContent.constants';
 import { getAdditionalContent } from './api/getAdditionalContent';
 
 type AdditionalSectionContentProps = {
@@ -7,7 +8,18 @@ type AdditionalSectionContentProps = {
 export const AdditionalSectionContent = async ({
   hash,
 }: AdditionalSectionContentProps) => {
-  const {} = await getAdditionalContent(hash);
+  const { data, isError, isPending } = await getAdditionalContent(hash);
 
-  return null;
+  console.log('finalData', { data });
+
+  if (isPending || isError) return null;
+
+  switch (data?.variant) {
+    case ADDITIONAL_CONTENT_VARIANT_BY_IDENTIFICATION.STYLED_LIST:
+      return null;
+    case ADDITIONAL_CONTENT_VARIANT_BY_IDENTIFICATION.LINKS:
+      return null;
+    default:
+      return null;
+  }
 };

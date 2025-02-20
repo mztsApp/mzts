@@ -1,31 +1,40 @@
 import { defaultError } from '@/api/appNavigationQuery';
+import type { ValueOf } from '@/types';
+import type { ContentIdentificationType } from '@/types/apiTypes';
 import type { EntrySysType } from '@/types/pageApiTypes';
 import { generateEntryQuery } from '@/utilities/generateQuery';
 
-import { ADDITIONAL_CONTENT_VARIANT_BY_API_TITLE } from '../AdditionalContent.constants';
+import { ADDITIONAL_CONTENT_VARIANT_BY_IDENTIFICATION } from '../AdditionalContent.constants';
+import type { LinkAdditionalContentData } from '../AdditionalContent.types';
 import { getLinksAdditionalContent } from './getLinksAdditionalContent';
 
 type StyledListConditionalFields = {
-  title: typeof ADDITIONAL_CONTENT_VARIANT_BY_API_TITLE.STYLED_LIST;
   items: EntrySysType[];
 };
 
 type LinksConditionalFields = {
-  title: typeof ADDITIONAL_CONTENT_VARIANT_BY_API_TITLE.LINKS;
   firstLink: EntrySysType;
   secondLink?: EntrySysType;
 };
 
-type ConditionalFields = StyledListConditionalFields | LinksConditionalFields;
+type ConditionalFields = StyledListConditionalFields & LinksConditionalFields;
 
 type AdditionalContentDataResponseType = {
-  fields: ConditionalFields;
+  fields: Partial<ConditionalFields>;
+  sys: ContentIdentificationType;
 };
+
+type LinkContentConditionalType = {
+  variant: ValueOf<typeof ADDITIONAL_CONTENT_VARIANT_BY_IDENTIFICATION>;
+  items: LinkAdditionalContentData['items'];
+};
+
+type AdditionalContentDataType = LinkContentConditionalType;
 
 export async function getAdditionalContent(hash: string) {
   let isPending: boolean = true;
   let isError: boolean = false;
-  let data: unknown | null = null;
+  let data: AdditionalContentDataType | null = null;
   let returnedError: string | Error | null = null;
 
   try {
@@ -43,23 +52,44 @@ export async function getAdditionalContent(hash: string) {
       await response.json();
 
     const fields = additionalContentData.fields;
+    const entryIdentification = additionalContentData.sys.contentType.sys.id;
 
-    if (fields.title === ADDITIONAL_CONTENT_VARIANT_BY_API_TITLE.LINKS) {
-      const firstLink: string = fields.firstLink.sys.id;
-      const linksHashes = [firstLink];
+    switch (entryIdentification) {
+      case ADDITIONAL_CONTENT_VARIANT_BY_IDENTIFICATION.LINKS:
+        const ids = [fields?.firstLink, fields?.secondLink]
+          .map((link) => link?.sys?.id)
+          .filter((id) => Boolean(id));
 
-      const secondLink: string | undefined = fields.secondLink?.sys?.id;
+        const { data: linksData } = await getLinksAdditionalContent(
+          ids as string[],
+        );
 
-      if (secondLink) {
-        linksHashes.push(secondLink);
-      }
+        data = {
+          variant: ADDITIONAL_CONTENT_VARIANT_BY_IDENTIFICATION.LINKS,
+          items: linksData?.items ?? [],
+        };
 
-      // const { data } = await getLinksAdditionalContent(linksHashes);
-    } else {
-      const styledLinksHashes = fields.items.map((item) => item.sys.id);
+        break;
+      case ADDITIONAL_CONTENT_VARIANT_BY_IDENTIFICATION.STYLED_LIST:
+        const styledLinksIds = fields.items
+          ?.map((item) => item.sys.id)
+          .filter((id) => Boolean(id));
 
-      const { data } = await getLinksAdditionalContent(styledLinksHashes);
-      console.log({ data: data?.items });
+        const { data: styledLinksData } = await getLinksAdditionalContent(
+          styledLinksIds as string[],
+        );
+
+        data = {
+          variant: ADDITIONAL_CONTENT_VARIANT_BY_IDENTIFICATION.STYLED_LIST,
+          items: styledLinksData?.items ?? [],
+        };
+
+        break;
+      default:
+        data = null;
+        returnedError = defaultError;
+
+        break;
     }
   } catch (error) {
     if (error instanceof Error) {

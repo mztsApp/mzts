@@ -1,4 +1,4 @@
-export const ADDITIONAL_CONTENT_VARIANT_BY_API_TITLE = {
-  STYLED_LIST: 'linki-lista',
-  LINKS: 'linki',
+export const ADDITIONAL_CONTENT_VARIANT_BY_IDENTIFICATION = {
+  STYLED_LIST: 'list',
+  LINKS: 'links',
 } as const;

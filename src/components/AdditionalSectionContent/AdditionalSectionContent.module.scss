@@ -1,0 +1,8 @@
+@use '/src/styles/spacings';
+
+.additionalContentLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: spacings.$medium;
+  list-style: none;
+}

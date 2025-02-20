@@ -25,6 +25,7 @@ export const Section = ({
   image: imageProps,
   sectionAlignment,
   isPriority = false,
+  children,
 }: SectionProps) => {
   const isHero = SectionHTMLTag === SECTION_COMPONENT.HEADER;
   const typographyVariant =
@@ -80,6 +81,8 @@ export const Section = ({
               >
                 {description}
               </Typography>
+
+              {children}
             </div>
           </div>
         </div>
@@ -115,6 +118,8 @@ export const Section = ({
           >
             {description}
           </Typography>
+
+          {children}
         </div>
 
         {!isHero && imageProps?.src && (

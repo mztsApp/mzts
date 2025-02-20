@@ -51,9 +51,16 @@ export const getSectionDataQuery = async (apiIds: string[]) => {
       getResolvePageBGImageFromApi(item.fields),
     );
 
-    const resolvedData: SectionListData = items.map((item, index) => {
-      return { ...item, image: resolvedBGImages[index] };
-    });
+    const resolvedData: SectionListData = items
+      .map((item, index) => {
+        return { ...item, image: resolvedBGImages[index] };
+      })
+      .sort((previous, next) => {
+        const previousIndex = apiIds.indexOf(previous.sectionId);
+        const nextIndex = apiIds.indexOf(next.sectionId);
+
+        return previousIndex - nextIndex;
+      });
 
     data = resolvedData;
   } catch (error) {

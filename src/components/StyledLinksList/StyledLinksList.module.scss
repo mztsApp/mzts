@@ -1,0 +1,61 @@
+@use '/src/styles/gradients';
+@use '/src/styles/typography';
+@use '/src/styles/helpers';
+@use '/src/styles/screens';
+@use '/src/styles/spacings';
+@use '/src/styles/colors';
+@use '/src/styles/boxShadows';
+@use '/src/styles/textEllipsis';
+
+.styledLinksList {
+  display: flex;
+  flex-direction: column;
+  gap: spacings.$medium;
+  width: 100%;
+
+  &_item {
+    display: flex;
+    gap: spacings.$large;
+
+    &::before {
+      content: '';
+      display: block;
+      width: helpers.pxToRem(2);
+      max-width: helpers.pxToRem(2);
+      flex: 1;
+    }
+
+    &:has(> .itemLink:hover, > .itemLink:focus) {
+      &::before {
+        @include gradients.boxGradient(top, separator);
+      }
+    }
+  }
+}
+
+.itemLink {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: spacings.$medium;
+  text-decoration: none;
+  width: fit-content;
+
+  &_title {
+    color: colors.$text;
+    -webkit-text-fill-color: colors.$text;
+  }
+
+  &:hover,
+  &:active {
+    cursor: pointer;
+
+    & .itemLink_title {
+      color: transparent !important;
+      -webkit-text-fill-color: transparent !important;
+    }
+  }
+
+  &_description {
+  }
+}

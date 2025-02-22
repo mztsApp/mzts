@@ -21,7 +21,7 @@
 @mixin h2 {
   @include getTypographyValues(34, 700);
 
-  @include screens.lg {
+  @include screens.xl {
     @include getTypographyValues(48, 700);
   }
 }
@@ -39,7 +39,11 @@
 }
 
 @mixin body {
-  @include getTypographyValues(18, 500);
+  @include getTypographyValues(16, 500);
+
+  @include screens.xl {
+    @include getTypographyValues(18, 500);
+  }
 }
 
 @mixin subtitle {

@@ -1,6 +1,6 @@
 type Item = {
   fields: {
-    text: string;
+    title: string;
     href: string;
     shouldOpenInNewWindow: boolean;
     description?: string;

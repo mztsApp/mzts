@@ -3,6 +3,7 @@ import { BUTTON_COMPONENTS } from '../Button/Button.constants';
 import { ADDITIONAL_CONTENT_VARIANT_BY_IDENTIFICATION } from './AdditionalContent.constants';
 import { getAdditionalContent } from './api/getAdditionalContent';
 import styles from './AdditionalSectionContent.module.scss';
+import StyledLinksList from '../StyledLinksList/StyledLinksList';
 
 type AdditionalSectionContentProps = {
   hash: string;
@@ -21,24 +22,30 @@ export const AdditionalSectionContent = async ({
 }: AdditionalSectionContentProps) => {
   const { data, isError, isPending } = await getAdditionalContent(hash);
 
-  console.log('finalData', { data });
-
   if (isPending || isError) return null;
 
   switch (data?.variant) {
     case ADDITIONAL_CONTENT_VARIANT_BY_IDENTIFICATION.STYLED_LIST:
-      return null;
+      return (
+        <StyledLinksList>
+          {data.items.map((itemProps) => {
+            return (
+              <StyledLinksList.Item {...itemProps} key={itemProps.title} />
+            );
+          })}
+        </StyledLinksList>
+      );
     case ADDITIONAL_CONTENT_VARIANT_BY_IDENTIFICATION.LINKS:
       return (
         <ul className={styles.additionalContentLinks}>
-          {data.items.map(({ text, href, shouldOpenInNewWindow }) => (
-            <li key={text}>
+          {data.items.map(({ title, href, shouldOpenInNewWindow }) => (
+            <li key={title}>
               <Button
                 {...getShouldOpenInNewWindowProps(shouldOpenInNewWindow)}
                 as={BUTTON_COMPONENTS.ANCHOR}
                 href={href}
               >
-                {text}
+                {title}
               </Button>
             </li>
           ))}

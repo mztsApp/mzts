@@ -68,7 +68,11 @@ export const Section = ({
               as={headingLevel}
               variant={typographyVariant}
               color={headingColor}
-              align={TYPOGRAPHY_ALIGNMENT.CENTER}
+              align={
+                isHero
+                  ? TYPOGRAPHY_ALIGNMENT.CENTER
+                  : TYPOGRAPHY_ALIGNMENT.START
+              }
             >
               {headingText}
             </Typography>
@@ -77,7 +81,11 @@ export const Section = ({
               <Typography
                 as={TYPOGRAPHY_COMPONENTS.PARAGRAPH}
                 variant={TYPOGRAPHY_VARIANTS.BODY}
-                align={TYPOGRAPHY_ALIGNMENT.CENTER}
+                align={
+                  isHero
+                    ? TYPOGRAPHY_ALIGNMENT.CENTER
+                    : TYPOGRAPHY_ALIGNMENT.START
+                }
               >
                 {description}
               </Typography>

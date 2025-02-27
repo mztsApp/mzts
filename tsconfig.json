@@ -27,7 +27,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/components/Newsletter/NewsletterForm/NewsletterForm.module"
+    "src/components/Newsletter/NewsletterForm/NewsletterForm.module",
+    "src/components/StyledLinksList/StyledLinksItem"
   ],
   "exclude": ["node_modules"]
 }

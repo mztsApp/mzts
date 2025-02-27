@@ -72,6 +72,10 @@
     gap: spacings.$small;
     min-width: 55%;
     max-width: 80%;
+
+    @include screens.lg {
+      padding: 0 spacings.$xSmall;
+    }
   }
 
   &_contentText {
@@ -125,6 +129,28 @@
 
     @include screens.lg {
       padding: 0 spacings.$medium;
+    }
+  }
+
+  &:has(li[data-is-active='false']) {
+    & .section_contentOutsideImage {
+      align-items: start;
+    }
+
+    & .section_outsideImageText {
+      padding-left: 0;
+
+      & * {
+        text-align: start;
+      }
+    }
+
+    & .section_outsideImageDescription {
+      align-items: start;
+
+      & * {
+        text-align: start;
+      }
     }
   }
 }

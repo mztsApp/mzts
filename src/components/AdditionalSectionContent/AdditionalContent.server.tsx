@@ -1,9 +1,9 @@
 import { Button } from '../Button/Button';
 import { BUTTON_COMPONENTS } from '../Button/Button.constants';
+import { StyledList } from '../StyledLinksList/StyledListContainer';
 import { ADDITIONAL_CONTENT_VARIANT_BY_IDENTIFICATION } from './AdditionalContent.constants';
-import { getAdditionalContent } from './api/getAdditionalContent';
 import styles from './AdditionalSectionContent.module.scss';
-import StyledLinksList from '../StyledLinksList/StyledLinksList';
+import { getAdditionalContent } from './api/getAdditionalContent';
 
 type AdditionalSectionContentProps = {
   hash: string;
@@ -26,15 +26,7 @@ export const AdditionalSectionContent = async ({
 
   switch (data?.variant) {
     case ADDITIONAL_CONTENT_VARIANT_BY_IDENTIFICATION.STYLED_LIST:
-      return (
-        <StyledLinksList>
-          {data.items.map((itemProps) => {
-            return (
-              <StyledLinksList.Item {...itemProps} key={itemProps.title} />
-            );
-          })}
-        </StyledLinksList>
-      );
+      return <StyledList items={data.items} />;
     case ADDITIONAL_CONTENT_VARIANT_BY_IDENTIFICATION.LINKS:
       return (
         <ul className={styles.additionalContentLinks}>

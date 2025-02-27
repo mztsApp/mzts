@@ -15,19 +15,31 @@
 
   &_item {
     display: flex;
+    align-items: stretch;
     gap: spacings.$large;
+    height: max-content;
 
     &::before {
       content: '';
       display: block;
+      flex: 1 0;
+      min-width: helpers.pxToRem(2);
       width: helpers.pxToRem(2);
       max-width: helpers.pxToRem(2);
-      flex: 1;
+      min-height: 2rem;
+      opacity: 0;
+
+      @include gradients.boxGradient(top, separator);
     }
 
-    &:has(> .itemLink:hover, > .itemLink:focus) {
+    &[data-is-active='true'] {
       &::before {
-        @include gradients.boxGradient(top, separator);
+        opacity: 100%;
+      }
+
+      & .itemLink_title {
+        color: transparent !important;
+        -webkit-text-fill-color: transparent !important;
       }
     }
   }
@@ -40,6 +52,7 @@
   gap: spacings.$medium;
   text-decoration: none;
   width: fit-content;
+  outline: none !important;
 
   &_title {
     color: colors.$text;

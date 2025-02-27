@@ -51,7 +51,7 @@ export const ContactSection = async () => {
                   variant={TYPOGRAPHY_VARIANTS.BODY2}
                   className={styles.contactSection_linkText}
                 >
-                  {data.email.text}
+                  {data.email.title}
                 </Typography>
               </a>
             </li>
@@ -75,7 +75,7 @@ export const ContactSection = async () => {
                   variant={TYPOGRAPHY_VARIANTS.BODY2}
                   className={styles.contactSection_linkText}
                 >
-                  {data.phoneNumber.text}
+                  {data.phoneNumber.title}
                 </Typography>
               </a>
             </li>

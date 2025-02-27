@@ -88,7 +88,7 @@ export const Footer = async () => {
                       variant={TYPOGRAPHY_VARIANTS.BUTTON_TEXT}
                       noWrap
                     >
-                      {contactData.email.text}
+                      {contactData.email.title}
                     </Typography>
                   </a>
                 </li>
@@ -109,7 +109,7 @@ export const Footer = async () => {
                       variant={TYPOGRAPHY_VARIANTS.BUTTON_TEXT}
                       noWrap
                     >
-                      {contactData.phoneNumber.text}
+                      {contactData.phoneNumber.title}
                     </Typography>
                   </a>
                 </li>

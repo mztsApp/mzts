@@ -44,7 +44,7 @@ export const NavContact = async () => {
 
           return contactItem ? (
             <li
-              key={contactItem.value.text ?? ''}
+              key={contactItem.value.title ?? ''}
               className={styles.navContact_listItem}
             >
               <a
@@ -59,7 +59,7 @@ export const NavContact = async () => {
                     color={TYPOGRAPHY_COLORS.BACKGROUND}
                     variant={TYPOGRAPHY_VARIANTS.BODY2}
                   >
-                    {contactItem?.value.text}
+                    {contactItem?.value.title}
                   </Typography>
                 </span>
 

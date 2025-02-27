@@ -9,7 +9,7 @@ export type DataWithIconType = IconObjectType & {
 export const getListedData = (
   data: Data,
 ): {
-  text: string;
+  title: string;
   href: string;
   shouldOpenInNewWindow: boolean;
 }[] => {

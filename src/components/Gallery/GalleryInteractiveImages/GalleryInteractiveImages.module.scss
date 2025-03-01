@@ -170,7 +170,7 @@ $color4: adjust-color(rgba(46, 16, 148, 0.94), $alpha: -0.4);
       width: auto;
       color: colors.$accent;
 
-      @include getTypographyValues(48, 700);
+      @include typography.getTypographyValues(48, 700);
     }
   }
 }

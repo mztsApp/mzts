@@ -164,12 +164,13 @@ $color4: adjust-color(rgba(46, 16, 148, 0.94), $alpha: -0.4);
     }
 
     @include screens.lg {
-      font-size: typography.$h2;
       white-space: normal;
       overflow: visible;
       text-overflow: clip;
       width: auto;
       color: colors.$accent;
+
+      @include getTypographyValues(48, 700);
     }
   }
 }

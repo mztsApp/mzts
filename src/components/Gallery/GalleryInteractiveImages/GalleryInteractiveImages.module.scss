@@ -155,6 +155,7 @@ $color4: adjust-color(rgba(46, 16, 148, 0.94), $alpha: -0.4);
 
   &_imageTitle {
     font-size: 1.3rem;
+    color: colors.$text;
 
     @include textEllipsis.createTextEllipsis(4);
 
@@ -168,6 +169,7 @@ $color4: adjust-color(rgba(46, 16, 148, 0.94), $alpha: -0.4);
       overflow: visible;
       text-overflow: clip;
       width: auto;
+      color: colors.$accent;
     }
   }
 }

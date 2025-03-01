@@ -91,7 +91,7 @@ $color4: adjust-color(rgba(46, 16, 148, 0.94), $alpha: -0.4);
     max-width: 100%;
 
     &Text {
-      max-height: helpers.pxToRem(170);
+      max-height: helpers.pxToRem(150);
       overflow-y: auto;
     }
 
@@ -150,6 +150,23 @@ $color4: adjust-color(rgba(46, 16, 148, 0.94), $alpha: -0.4);
       display: block;
       width: helpers.pxToRem(24);
       height: helpers.pxToRem(24);
+    }
+  }
+
+  &_imageTitle {
+    font-size: 1.3rem;
+
+    @include textEllipsis.createTextEllipsis(4);
+
+    @include screens.md {
+      @include textEllipsis.createTextEllipsis(6);
+    }
+
+    @include screens.lg {
+      white-space: normal;
+      overflow: visible;
+      text-overflow: clip;
+      width: auto;
     }
   }
 }

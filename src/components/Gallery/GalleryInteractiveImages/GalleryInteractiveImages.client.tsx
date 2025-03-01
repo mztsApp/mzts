@@ -147,6 +147,7 @@ export const GalleryInteractiveImages = ({
                         </div>
 
                         <Typography
+                          className={styles.galleryInteractiveImages_imageTitle}
                           as={TYPOGRAPHY_COMPONENTS.H3}
                           variant={TYPOGRAPHY_VARIANTS.H2}
                           color={TYPOGRAPHY_COLORS.ACCENT}

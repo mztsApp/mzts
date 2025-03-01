@@ -33,7 +33,7 @@ export const GalleryInteractiveImages = ({
   >(null);
 
   React.useEffect(() => {
-    if (Boolean(fullScreenImageIndex)) {
+    if (fullScreenImageIndex !== null) {
       document.documentElement.style.overflow = 'clip';
     } else {
       document.documentElement.style.overflow = '';
@@ -71,11 +71,7 @@ export const GalleryInteractiveImages = ({
             <li>
               <button
                 className={styles.galleryInteractiveImages_imageButton}
-                onClick={() =>
-                  setFullScreenImageIndex((previousColor) =>
-                    previousColor === index ? null : index,
-                  )
-                }
+                onClick={() => setFullScreenImageIndex(index)}
               >
                 <Image
                   className={styles.galleryInteractiveImages_image}

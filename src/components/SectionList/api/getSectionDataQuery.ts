@@ -10,6 +10,7 @@ import type {
   SectionListData,
 } from '../SectionList.types';
 import { getResolvedSectionListItemsFromApi } from '../SectionList.utilities';
+import { SECTION_COMPONENT_IDENTIFIER } from '../SectionList.constants';
 
 export const getSectionDataQuery = async (apiIds: string[]) => {
   let isPending: boolean = true;
@@ -32,12 +33,17 @@ export const getSectionDataQuery = async (apiIds: string[]) => {
     const sectionsData = await sectionsResponse.json();
     const items = getResolvedSectionListItemsFromApi(sectionsData.items);
 
-    const bgImagesFetch = await fetch(
-      generateAssetsQuery(items.map((item) => item.bgImageId)),
-      {
-        cache: 'force-cache',
-      },
-    );
+    const assetIds = items
+      .map((item) => {
+        const resolvedItem = item ?? {};
+
+        return 'bgImageId' in resolvedItem ? resolvedItem.bgImageId : undefined;
+      })
+      .filter(Boolean) as string[];
+
+    const bgImagesFetch = await fetch(generateAssetsQuery(assetIds), {
+      cache: 'force-cache',
+    });
 
     if (!bgImagesFetch.ok) {
       returnedError = defaultError;
@@ -51,9 +57,18 @@ export const getSectionDataQuery = async (apiIds: string[]) => {
       getResolvePageBGImageFromApi(item.fields),
     );
 
+    let filteredSectionIndex: number = 0;
+
     const resolvedData: SectionListData = items
-      .map((item, index) => {
-        return { ...item, image: resolvedBGImages[index] };
+      .map((item) => {
+        if (item.identifier !== SECTION_COMPONENT_IDENTIFIER.SECTION) {
+          return item;
+        }
+
+        const resolvedIndex = filteredSectionIndex;
+        filteredSectionIndex++;
+
+        return { ...item, image: resolvedBGImages[resolvedIndex] };
       })
       .sort((previous, next) => {
         const previousIndex = apiIds.indexOf(previous.sectionId);

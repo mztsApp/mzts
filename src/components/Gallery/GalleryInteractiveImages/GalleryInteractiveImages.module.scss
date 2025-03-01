@@ -90,8 +90,17 @@ $color4: adjust-color(rgba(46, 16, 148, 0.94), $alpha: -0.4);
     width: 100%;
     max-width: 100%;
 
+    &Text {
+      max-height: helpers.pxToRem(170);
+      overflow-y: auto;
+    }
+
     @include screens.lg {
       width: helpers.pxToRem(450);
+
+      &Text {
+        max-height: fit-content;
+      }
     }
   }
 

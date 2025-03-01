@@ -155,7 +155,13 @@ export const GalleryInteractiveImages = ({
                         </Typography>
 
                         {Boolean(image.description) && (
-                          <Typography>{image.description}</Typography>
+                          <Typography
+                            className={
+                              styles.galleryInteractiveImages_imageDescriptionText
+                            }
+                          >
+                            {image.description}
+                          </Typography>
                         )}
                       </div>
 

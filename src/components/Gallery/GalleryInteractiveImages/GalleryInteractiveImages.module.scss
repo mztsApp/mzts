@@ -1,0 +1,146 @@
+@use '/src/styles/gradients';
+@use '/src/styles/typography';
+@use '/src/styles/helpers';
+@use '/src/styles/screens';
+@use '/src/styles/spacings';
+@use '/src/styles/colors';
+@use '/src/styles/boxShadows';
+@use '/src/styles/textEllipsis';
+
+$color1: adjust-color(rgba(144, 132, 185, 0.71), $alpha: -0.4);
+$color2: adjust-color(rgba(133, 118, 186, 0.85), $alpha: -0.4);
+$color3: adjust-color(rgba(117, 89, 212, 0.9), $alpha: -0.4);
+$color4: adjust-color(rgba(46, 16, 148, 0.94), $alpha: -0.4);
+
+.galleryInteractiveImages {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: spacings.$xxSmall;
+  flex-wrap: wrap;
+  width: fit-content;
+  margin-top: spacings.$xxLarge;
+  margin-bottom: spacings.$xxLarge;
+  list-style: none;
+
+  @include screens.md {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include screens.lg {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &_imageContainer {
+    &__preview {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      z-index: 1000;
+    }
+  }
+
+  &_previewContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: spacings.$medium;
+    width: 100%;
+    height: 100%;
+    padding: spacings.$small;
+    background: linear-gradient(
+      135deg,
+      hsla(253, 87%, 66%, 0.9) 0%,
+      hsla(0, 0%, 0%, 0.9) 70%
+    );
+    transform: translate(-50%, -50%);
+
+    @include screens.lg {
+      flex-direction: row;
+    }
+  }
+
+  &_imageButton {
+    all: unset;
+    border: solid helpers.pxToRem(2) transparent;
+
+    &:hover,
+    &:focus {
+      cursor: pointer;
+      border: solid helpers.pxToRem(2) colors.$accent;
+      border-radius: helpers.pxToRem(8);
+      overflow: hidden;
+    }
+
+    &:focus {
+      & > .galleryInteractiveImages_image {
+        transform: scale(1.1);
+        transition: transform 200ms ease-in-out;
+      }
+    }
+  }
+
+  &_imageDescription {
+    display: flex;
+    flex-direction: column;
+    gap: spacings.$xSmall;
+    min-width: helpers.pxToRem(300);
+    width: 100%;
+    max-width: 100%;
+
+    @include screens.lg {
+      width: helpers.pxToRem(450);
+    }
+  }
+
+  &_image {
+    display: block;
+    width: helpers.pxToRem(300);
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+
+    &__preview {
+      width: 100%;
+
+      @include screens.lg {
+        flex: 1 0;
+        width: helpers.pxToRem(300);
+        max-width: helpers.pxToRem(900);
+      }
+    }
+  }
+
+  &_imageOptions {
+    display: flex;
+    gap: spacings.$small;
+  }
+
+  &_iconButton {
+    all: unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: helpers.pxToRem(32);
+    height: helpers.pxToRem(32);
+    border: solid helpers.pxToRem(1) colors.$text;
+    border-radius: helpers.pxToRem(8);
+    color: colors.$text;
+
+    &:hover,
+    &:focus {
+      cursor: pointer;
+      background-color: colors.$text;
+      color: colors.$accent;
+      box-shadow: inset 0 0 0 helpers.pxToRem(1) colors.$accent;
+    }
+
+    &SVG {
+      display: block;
+      width: helpers.pxToRem(24);
+      height: helpers.pxToRem(24);
+    }
+  }
+}

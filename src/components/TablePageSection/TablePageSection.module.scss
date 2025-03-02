@@ -9,6 +9,15 @@
 
 .tablePageSection {
   display: flex;
+  align-items: flex-start;
   flex-direction: column;
   gap: spacings.$medium;
+
+  &_centerAlignment {
+    align-items: center;
+  }
+
+  &_endAlignment {
+    align-items: flex-end;
+  }
 }

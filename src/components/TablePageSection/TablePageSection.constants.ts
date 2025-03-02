@@ -14,8 +14,14 @@ export const TYPOGRAPHY_ALIGNMENT_FROM_TABLE =
 
 export const TABLE_ALIGNMENT_FROM_API = {
   [TABLE_ALIGNMENT.START]: '',
-  [TABLE_ALIGNMENT.CENTER]: 'table_centerAlignment',
-  [TABLE_ALIGNMENT.END]: 'table_endAlignment',
+  [TABLE_ALIGNMENT.CENTER]: 'tablePageSection_centerAlignment',
+  [TABLE_ALIGNMENT.END]: 'tablePageSection_endAlignment',
+} as const;
+
+export const TABLE_Component_ALIGNMENT_FROM_API = {
+  [TABLE_ALIGNMENT.START]: '',
+  [TABLE_ALIGNMENT.CENTER]: 'scrollArea__centerAlignment',
+  [TABLE_ALIGNMENT.END]: 'scrollArea__endAlignment',
 } as const;
 
 export const TABLE_COLOR_FROM_API = GALLERY_TYPOGRAPHY_COLOR_FROM_API;

@@ -9,11 +9,7 @@
 
 .scrollArea {
   align-self: flex-start;
-  width: calc(100% + 3rem);
-
-  @include screens.lg {
-    width: 100%;
-  }
+  width: 100%;
 
   &_viewport {
     width: 100%;

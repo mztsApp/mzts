@@ -171,7 +171,7 @@ export const GalleryInteractiveImages = ({
                         width={imageSize.width}
                         height={imageSize.height}
                         alt={image.title}
-                        priority={isFirstRowOfImages}
+                        priority
                       />
                     </article>
                   </li>

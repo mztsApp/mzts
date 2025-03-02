@@ -6,6 +6,10 @@ import type {
   GALLERY_ALIGNMENT,
   GALLERY_COLOR_VARIANT,
 } from '../Gallery/Gallery.constants';
+import type {
+  TABLE_ALIGNMENT,
+  TABLE_COLOR_VARIANT,
+} from '../TablePageSection/TablePageSection.constants';
 
 export type SectionIdentificationType = {
   sys: {
@@ -40,9 +44,22 @@ type GalleryConditionalFieldsType = {
   images: { sys: { id: string } }[];
 };
 
+type TableConditionalFieldsType = {
+  title: string;
+  description?: string;
+  colorVariant: ValueOf<typeof TABLE_COLOR_VARIANT>;
+  alignmentVariant: ValueOf<typeof TABLE_ALIGNMENT>;
+  table: {
+    sys: {
+      id: string;
+    };
+  };
+};
+
 export type SectionListConditionalFields = {
   [SECTION_COMPONENT_IDENTIFIER.SECTION]: SectionConditionalFieldsType;
   [SECTION_COMPONENT_IDENTIFIER.GALLERY]: GalleryConditionalFieldsType;
+  [SECTION_COMPONENT_IDENTIFIER.TABLE]: TableConditionalFieldsType;
 };
 
 type SectionListFieldFromApiResponse =
@@ -67,6 +84,17 @@ type SectionListFieldFromApiResponse =
         };
       };
       fields: SectionListConditionalFields[typeof SECTION_COMPONENT_IDENTIFIER.GALLERY];
+    }
+  | {
+      sys: {
+        id: string;
+        contentType: {
+          sys: {
+            id: typeof SECTION_COMPONENT_IDENTIFIER.TABLE;
+          };
+        };
+      };
+      fields: SectionListConditionalFields[typeof SECTION_COMPONENT_IDENTIFIER.TABLE];
     };
 
 export type SectionListItemFromApiResponse = SectionListFieldFromApiResponse[];
@@ -108,6 +136,16 @@ export type FinalGalleryData = {
   sectionId: string;
 } & SectionListConditionalFields[typeof SECTION_COMPONENT_IDENTIFIER.GALLERY];
 
+export type FinalTableData = {
+  identifier: string;
+  sectionId: string;
+  title: string;
+  description?: string;
+  colorVariant: ValueOf<typeof TABLE_COLOR_VARIANT>;
+  alignmentVariant: ValueOf<typeof TABLE_ALIGNMENT>;
+  tableAssetId: string;
+};
+
 export type DefaultFallbackData = {
   identifier: string;
   sectionId: string;
@@ -116,6 +154,7 @@ export type DefaultFallbackData = {
 export type FinalSectionListData =
   | FinalSectionData
   | FinalGalleryData
+  | FinalTableData
   | DefaultFallbackData;
 
 export type SectionListData = FinalSectionListData[];

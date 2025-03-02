@@ -10,6 +10,7 @@ import { Typography } from '../Typography/Typography.server';
 import { getGalleryAssetsApi } from './api/getGalleryAssetsApi';
 import {
   GALLERY_ALIGNMENT_FROM_API,
+  GALLERY_TYPOGRAPHY_COLOR_FROM_API,
   TYPOGRAPHY_ALIGNMENT_FROM_GALLERY,
 } from './Gallery.constants';
 import styles from './Gallery.module.scss';
@@ -23,6 +24,7 @@ export const Gallery = async ({
   title,
   description,
   alignment,
+  color,
   additionalContent,
   images,
 }: FinalGalleryData) => {
@@ -44,6 +46,7 @@ export const Gallery = async ({
       <Typography
         as={TYPOGRAPHY_COMPONENTS.H2}
         variant={TYPOGRAPHY_VARIANTS.H2}
+        color={GALLERY_TYPOGRAPHY_COLOR_FROM_API[color]}
         align={TYPOGRAPHY_ALIGNMENT_FROM_GALLERY[alignment]}
       >
         {title}

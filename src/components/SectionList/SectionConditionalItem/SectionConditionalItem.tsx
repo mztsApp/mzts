@@ -1,20 +1,22 @@
 import { AdditionalSectionContent } from '@/components/AdditionalSectionContent/AdditionalContent.server';
+import { Gallery } from '@/components/Gallery/Gallery.server';
 import { Section } from '@/components/Section/Section';
 import {
   SECTION_COMPONENT,
   SECTION_HEADING_COMPONENT,
 } from '@/components/Section/Section.constants';
+import { TablePageSection } from '@/components/TablePageSection/TablePageSection';
 import {
   getSectionAlignmentFromApi,
   getTypographyColorFromApi,
 } from '@/utilities/utilitiesForApi';
-import { Gallery } from '@/components/Gallery/Gallery.server';
 
 import { SECTION_COMPONENT_IDENTIFIER } from '../SectionList.constants';
 import type {
   FinalGalleryData,
   FinalSectionData,
   FinalSectionListData,
+  FinalTableData,
 } from '../SectionList.types';
 
 export const SectionConditionalItem = (
@@ -48,6 +50,10 @@ export const SectionConditionalItem = (
       const galleryProps = rest as FinalGalleryData;
 
       return <Gallery {...galleryProps} />;
+    case SECTION_COMPONENT_IDENTIFIER.TABLE:
+      const tableProps = rest as FinalTableData;
+
+      return <TablePageSection {...tableProps} />;
     default:
       return null;
   }

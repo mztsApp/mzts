@@ -1,0 +1,27 @@
+import {
+  GALLERY_ALIGNMENT,
+  GALLERY_COLOR_VARIANT,
+  GALLERY_TYPOGRAPHY_COLOR_FROM_API,
+  TYPOGRAPHY_ALIGNMENT_FROM_GALLERY,
+} from '../Gallery/Gallery.constants';
+
+export const TABLE_COLOR_VARIANT = GALLERY_COLOR_VARIANT;
+
+export const TABLE_ALIGNMENT = GALLERY_ALIGNMENT;
+
+export const TYPOGRAPHY_ALIGNMENT_FROM_TABLE =
+  TYPOGRAPHY_ALIGNMENT_FROM_GALLERY;
+
+export const TABLE_ALIGNMENT_FROM_API = {
+  [TABLE_ALIGNMENT.START]: '',
+  [TABLE_ALIGNMENT.CENTER]: 'tablePageSection_centerAlignment',
+  [TABLE_ALIGNMENT.END]: 'tablePageSection_endAlignment',
+} as const;
+
+export const TABLE_Component_ALIGNMENT_FROM_API = {
+  [TABLE_ALIGNMENT.START]: '',
+  [TABLE_ALIGNMENT.CENTER]: 'scrollArea__centerAlignment',
+  [TABLE_ALIGNMENT.END]: 'scrollArea__endAlignment',
+} as const;
+
+export const TABLE_COLOR_FROM_API = GALLERY_TYPOGRAPHY_COLOR_FROM_API;

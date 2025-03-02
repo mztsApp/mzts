@@ -33,6 +33,17 @@ export const getResolvedSectionListItemsFromApi = (
           identifier: sys.contentType.sys.id,
           sectionId: sys.id,
         };
+
+      case SECTION_COMPONENT_IDENTIFIER.TABLE:
+        const { table, ...tableFields } =
+          fields as SectionListConditionalFields[typeof SECTION_COMPONENT_IDENTIFIER.TABLE];
+
+        return {
+          ...tableFields,
+          identifier: sys.contentType.sys.id,
+          sectionId: sys.id,
+          tableAssetId: table.sys.id,
+        };
       default:
         return {
           identifier: sys.contentType.sys.id,

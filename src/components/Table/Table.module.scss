@@ -1,0 +1,62 @@
+@use '/src/styles/gradients';
+@use '/src/styles/typography';
+@use '/src/styles/helpers';
+@use '/src/styles/screens';
+@use '/src/styles/spacings';
+@use '/src/styles/colors';
+@use '/src/styles/boxShadows';
+@use '/src/styles/textEllipsis';
+
+.scrollArea {
+  align-self: flex-start;
+  width: calc(100% + 3rem);
+
+  @include screens.lg {
+    width: 100%;
+  }
+
+  &_viewport {
+    width: 100%;
+
+    & > div {
+      display: flex !important;
+    }
+  }
+
+  @include screens.md {
+    &__centerAlignment {
+      & .scrollArea_viewport {
+        & > div {
+          justify-content: center !important;
+        }
+      }
+    }
+
+    &__endAlignment {
+      background: yellow;
+
+      & .scrollArea_viewport {
+        & > div {
+          justify-content: flex-end;
+        }
+      }
+    }
+  }
+}
+
+.table {
+  margin-top: spacings.$xxLarge;
+  border: solid helpers.pxToRem(2) colors.$text;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: helpers.pxToRem(4);
+
+  &_headRow {
+    @include gradients.boxGradient();
+  }
+
+  &_cell,
+  &_headCell {
+    padding: helpers.pxToRem(10, 16);
+  }
+}

@@ -18,8 +18,8 @@ import {
   TYPOGRAPHY_VARIANTS,
 } from '@/components/Typography/Typography.constants';
 import { getResolvedTextFromSlug } from '@/utilities/getResolvedTextFromSlug';
+import type { NestedPages } from '@/utilities/getGroupedPagesBySubPage';
 
-import type { NestedPages } from '../../../utilities/getGroupedPagesBySubPage';
 import styles from './Navigation.module.scss';
 import { NAVIGATION_ALL_EVENTS_PAGE } from './Navigation.constants';
 

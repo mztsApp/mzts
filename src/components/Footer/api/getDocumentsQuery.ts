@@ -20,7 +20,15 @@ type DocumentFields = Record<
 
 export type FileType = {
   url: string;
+  details: {
+    size: number;
+    image: {
+      width: number;
+      height: number;
+    };
+  };
   fileName: string;
+  contentType: string;
 };
 
 type DocumentAssetsItemsType = {

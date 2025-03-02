@@ -1,10 +1,12 @@
 import type { Metadata } from 'next';
 
-import { PageTemplate } from '@/components/PageTemplates/PageTemplate/PageTemplate';
 import type { PageParams } from '@/types/pageApiTypes';
 import { appNavigationQuery } from '@/api/appNavigationQuery';
 import { getGroupedPagesBySubPage } from '@/utilities/getGroupedPagesBySubPage';
 import { getPageParamsQuery } from '@/api/getPageParamsQuery';
+import { NAVIGATION_EVENTS_PAGE } from '@/components/Navigation/Navigation.constants';
+import { EventsLayout } from '@/components/Layouts/EventsLayout/EventsLayout';
+import { LAYOUT_COMPONENT } from '@/components/Layouts/Layout.constants';
 
 export async function generateStaticParams() {
   const { data } = await appNavigationQuery();
@@ -12,12 +14,11 @@ export async function generateStaticParams() {
   if (!data) return [];
 
   const gropedPages = getGroupedPagesBySubPage(data);
-
-  return (
-    gropedPages.nestedPages
-      ?.find(({ subPage }) => subPage === 'wydarzenia')
-      ?.pages.map((slug) => ({ slug })) ?? []
+  const eventPages = gropedPages.nestedPages.find(
+    (nestedPage) => nestedPage.subPage === NAVIGATION_EVENTS_PAGE,
   );
+
+  return eventPages?.pages.map((slug) => ({ slug })) ?? [];
 }
 
 export async function generateMetadata({
@@ -32,5 +33,5 @@ export async function generateMetadata({
 }
 
 export default function EventsPage({ params }: PageParams) {
-  return <PageTemplate slug={params.slug} />;
+  return <EventsLayout as={LAYOUT_COMPONENT.MAIN} slug={params.slug} />;
 }

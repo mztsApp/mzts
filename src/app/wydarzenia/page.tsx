@@ -2,6 +2,8 @@ import { notFound } from 'next/navigation';
 
 import { appNavigationQuery } from '@/api/appNavigationQuery';
 import { NAVIGATION_EVENTS_PAGE } from '@/components/Navigation/Navigation.constants';
+import { EventsLayout } from '@/components/Layouts/EventsLayout/EventsLayout';
+import { LAYOUT_COMPONENT } from '@/components/Layouts/Layout.constants';
 
 export async function generateMetadata() {
   return {
@@ -23,5 +25,5 @@ export default async function EventsPage() {
     notFound();
   }
 
-  return <></>;
+  return <EventsLayout as={LAYOUT_COMPONENT.MAIN}></EventsLayout>;
 }

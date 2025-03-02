@@ -13,20 +13,16 @@ import { Navigation } from '../../Navigation/Navigation.server';
 
 interface LayoutRootProps extends React.PropsWithChildren {
   as: ValueOf<typeof LAYOUT_COMPONENT>;
-  params: Promise<{
-    slug?: string;
-  }>;
+  slug?: string;
 }
 
 export const EventsLayout = async ({
   children,
+  slug,
   as: LayoutHTMLTag,
-  params,
 }: LayoutRootProps) => {
   const userAgent = headers().get('user-agent') || '';
   const isMobileDevice = /mobile|android|iphone|ipad|ipod/i.test(userAgent);
-
-  const slug = (await params).slug;
 
   return (
     <MobileDeviceProvider isMobileDevice={isMobileDevice}>

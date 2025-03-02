@@ -13,8 +13,16 @@ export const generateEntryQuery = (
   return `${apiDomain}/spaces/${spaceId}/environments/master/entries${resolvedEntryId}?access_token=${apiKey}&include=${includeLevel}${entryIds}`;
 };
 
-export const generateEntryRelatedWithEntryIdQuery = (entryId: string) =>
-  `${apiDomain}/spaces/${spaceId}/environments/master/entries?access_token=${apiKey}&links_to_entry=${entryId}`;
+export const generateEntryRelatedWithEntryIdQuery = (
+  entryIds: string[] | string,
+) => {
+  const resolvedEntryIds =
+    typeof entryIds === 'string'
+      ? entryIds
+      : `&sys.id[in]=${entryIds.join(',')}`;
+
+  return `${apiDomain}/spaces/${spaceId}/environments/master/entries?access_token=${apiKey}&links_to_entry=${resolvedEntryIds}`;
+};
 
 export const generateAssetsQuery = (assetIds: string[]): string =>
   `${apiDomain}/spaces/${spaceId}/environments/master/assets?access_token=${apiKey}&sys.id[in]=${assetIds.join(

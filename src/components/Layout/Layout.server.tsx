@@ -7,6 +7,8 @@ import { MobileDeviceProvider } from '@/providers/MobileDeviceProvider/MobileDev
 import type { LAYOUT_COMPONENT } from './Layout.constants';
 import styles from './Layout.module.scss';
 import { Navigation } from './Navigation/Navigation.server';
+import { GoToTopButton } from '../GoToTopButton/GoToTopButton.client';
+import { Footer } from '../Footer/Footer.server';
 
 interface LayoutRootProps extends React.PropsWithChildren {
   as: ValueOf<typeof LAYOUT_COMPONENT>;
@@ -24,6 +26,10 @@ export const Layout = ({ children, as: LayoutHTMLTag }: LayoutRootProps) => {
         </div>
 
         <div className={styles.layout_content}>{children}</div>
+
+        <GoToTopButton />
+
+        <Footer />
       </LayoutHTMLTag>
     </MobileDeviceProvider>
   );

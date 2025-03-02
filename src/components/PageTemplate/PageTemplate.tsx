@@ -1,20 +1,22 @@
+import { notFound } from 'next/navigation';
+
 import { appNavigationQuery } from '@/api/appNavigationQuery';
 import { getPageDataQuery } from '@/api/getPageDataQuery';
+import type { PageTemplateProps } from '@/types/pageApiTypes';
 import {
   getSectionAlignmentFromApi,
   getTypographyColorFromApi,
 } from '@/utilities/utilitiesForApi';
-import type { PageTemplateProps } from '@/types/pageApiTypes';
 
+import { ContactSection } from '../ContactSection/ContactSection.server';
+import { FAQ } from '../FAQ/FAQ.server';
+import { Newsletter } from '../Newsletter/Newsletter.server';
 import { Section } from '../Section/Section';
-import { SectionList } from '../SectionList/SectionList.server';
 import {
   SECTION_COMPONENT,
   SECTION_HEADING_COMPONENT,
 } from '../Section/Section.constants';
-import { Newsletter } from '../Newsletter/Newsletter.server';
-import { FAQ } from '../FAQ/FAQ.server';
-import { ContactSection } from '../ContactSection/ContactSection.server';
+import { SectionList } from '../SectionList/SectionList.server';
 
 export const PageTemplate = async ({ slug }: PageTemplateProps) => {
   const { data: navigationData } = await appNavigationQuery();
@@ -25,7 +27,9 @@ export const PageTemplate = async ({ slug }: PageTemplateProps) => {
     (page) => page.slug === slug,
   )?.id;
 
-  if (!resolvedEntryId) return null;
+  if (!resolvedEntryId) {
+    notFound();
+  }
 
   const { data } = await getPageDataQuery({
     pageId: resolvedEntryId,

@@ -1,0 +1,22 @@
+@use '/src/styles/gradients';
+@use '/src/styles/typography';
+@use '/src/styles/helpers';
+@use '/src/styles/screens';
+@use '/src/styles/spacings';
+@use '/src/styles/colors';
+@use '/src/styles/boxShadows';
+@use '/src/styles/textEllipsis';
+
+.notFound {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: spacings.$small;
+  margin: auto;
+
+  &_logo {
+    width: helpers.pxToRem(200);
+    height: helpers.pxToRem(200);
+  }
+}

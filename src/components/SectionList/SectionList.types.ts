@@ -10,6 +10,7 @@ import type {
   TABLE_ALIGNMENT,
   TABLE_COLOR_VARIANT,
 } from '../TablePageSection/TablePageSection.constants';
+import type { EVENTS_PREVIEW_COLOR_VARIANT } from '../EventsPreview/EventsPreview.constants';
 
 export type SectionIdentificationType = {
   sys: {
@@ -56,10 +57,18 @@ type TableConditionalFieldsType = {
   };
 };
 
+type eventPreviewConditionalFieldsType = {
+  title: string;
+  description?: string;
+  subTitle?: string;
+  colorVariant: ValueOf<typeof EVENTS_PREVIEW_COLOR_VARIANT>;
+};
+
 export type SectionListConditionalFields = {
   [SECTION_COMPONENT_IDENTIFIER.SECTION]: SectionConditionalFieldsType;
   [SECTION_COMPONENT_IDENTIFIER.GALLERY]: GalleryConditionalFieldsType;
   [SECTION_COMPONENT_IDENTIFIER.TABLE]: TableConditionalFieldsType;
+  [SECTION_COMPONENT_IDENTIFIER.EVENTS_PREVIEW]: eventPreviewConditionalFieldsType;
 };
 
 type SectionListFieldFromApiResponse =
@@ -95,6 +104,17 @@ type SectionListFieldFromApiResponse =
         };
       };
       fields: SectionListConditionalFields[typeof SECTION_COMPONENT_IDENTIFIER.TABLE];
+    }
+  | {
+      sys: {
+        id: string;
+        contentType: {
+          sys: {
+            id: typeof SECTION_COMPONENT_IDENTIFIER.EVENTS_PREVIEW;
+          };
+        };
+      };
+      fields: SectionListConditionalFields[typeof SECTION_COMPONENT_IDENTIFIER.EVENTS_PREVIEW];
     };
 
 export type SectionListItemFromApiResponse = SectionListFieldFromApiResponse[];
@@ -151,10 +171,14 @@ export type DefaultFallbackData = {
   sectionId: string;
 };
 
+export type FinalEventPreviewData = DefaultFallbackData &
+  SectionListConditionalFields[typeof SECTION_COMPONENT_IDENTIFIER.EVENTS_PREVIEW];
+
 export type FinalSectionListData =
   | FinalSectionData
   | FinalGalleryData
   | FinalTableData
+  | FinalEventPreviewData
   | DefaultFallbackData;
 
 export type SectionListData = FinalSectionListData[];

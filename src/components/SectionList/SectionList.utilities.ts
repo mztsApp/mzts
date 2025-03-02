@@ -44,6 +44,15 @@ export const getResolvedSectionListItemsFromApi = (
           sectionId: sys.id,
           tableAssetId: table.sys.id,
         };
+      case SECTION_COMPONENT_IDENTIFIER.EVENTS_PREVIEW:
+        const eventsPreviewFields =
+          fields as SectionListConditionalFields[typeof SECTION_COMPONENT_IDENTIFIER.EVENTS_PREVIEW];
+
+        return {
+          ...eventsPreviewFields,
+          identifier: sys.contentType.sys.id,
+          sectionId: sys.id,
+        };
       default:
         return {
           identifier: sys.contentType.sys.id,

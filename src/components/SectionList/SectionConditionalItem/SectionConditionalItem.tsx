@@ -10,9 +10,11 @@ import {
   getSectionAlignmentFromApi,
   getTypographyColorFromApi,
 } from '@/utilities/utilitiesForApi';
+import { EventsPreview } from '@/components/EventsPreview/EventsPreview';
 
 import { SECTION_COMPONENT_IDENTIFIER } from '../SectionList.constants';
 import type {
+  FinalEventPreviewData,
   FinalGalleryData,
   FinalSectionData,
   FinalSectionListData,
@@ -54,6 +56,10 @@ export const SectionConditionalItem = (
       const tableProps = rest as FinalTableData;
 
       return <TablePageSection {...tableProps} />;
+    case SECTION_COMPONENT_IDENTIFIER.EVENTS_PREVIEW:
+      const eventPreviewProps = rest as FinalEventPreviewData;
+
+      return <EventsPreview {...eventPreviewProps} />;
     default:
       return null;
   }

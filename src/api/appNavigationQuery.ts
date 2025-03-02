@@ -81,7 +81,13 @@ export async function appNavigationQuery() {
         subpage: singleLink.fields.subpage,
         slug: singleLink.fields.slug,
         id: singleLink.sys.id,
-      }));
+      }))
+      .sort((previous, next) => {
+        const previousIndex = resolvedPageItemIds.indexOf(previous.id);
+        const nextIndex = resolvedPageItemIds.indexOf(next.id);
+
+        return previousIndex - nextIndex;
+      });
 
     data = resolvedData;
   } catch (error) {

@@ -4,11 +4,11 @@ import { headers } from 'next/headers';
 import type { ValueOf } from '@/types';
 import { MobileDeviceProvider } from '@/providers/MobileDeviceProvider/MobileDeviceProvider';
 
-import type { LAYOUT_COMPONENT } from './Layout.constants';
+import type { LAYOUT_COMPONENT } from '../Layout.constants';
 import styles from './Layout.module.scss';
-import { Navigation } from './Navigation/Navigation.server';
-import { GoToTopButton } from '../GoToTopButton/GoToTopButton.client';
-import { Footer } from '../Footer/Footer.server';
+import { GoToTopButton } from '../../GoToTopButton/GoToTopButton.client';
+import { Footer } from '../../Footer/Footer.server';
+import { Navigation } from '../../Navigation/Navigation.server';
 
 interface LayoutRootProps extends React.PropsWithChildren {
   as: ValueOf<typeof LAYOUT_COMPONENT>;

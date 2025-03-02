@@ -1,0 +1,62 @@
+@use '/src/styles/gradients';
+@use '/src/styles/typography';
+@use '/src/styles/helpers';
+@use '/src/styles/screens';
+@use '/src/styles/spacings';
+@use '/src/styles/colors';
+@use '/src/styles/boxShadows';
+@use '/src/styles/textEllipsis';
+
+.eventsLayout {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100dvw;
+  min-height: 100vh;
+  padding: 0 spacings.$medium;
+
+  @include screens.lg {
+    padding: 0 spacings.$xxLarge;
+  }
+
+  &_topBarSpace {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 100dvw;
+    background: colors.$text;
+  }
+
+  &_contentContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: helpers.pxToRem(1920);
+    height: 100%;
+    flex: 1 0;
+
+    @include screens.lg {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+    }
+  }
+
+  &_sideNavigation {
+    grid-column: span 3;
+    width: 100%;
+    height: 100%;
+  }
+
+  &_content {
+    position: relative;
+    display: flex;
+    grid-column: span 9;
+    flex: 1 0;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: helpers.pxToRem(1440);
+    height: 100%;
+  }
+}

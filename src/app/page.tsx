@@ -13,6 +13,8 @@ import {
   getSectionAlignmentFromApi,
   getTypographyColorFromApi,
 } from '@/utilities/utilitiesForApi';
+import { Layout } from '@/components/Layouts/Layout/Layout.server';
+import { LAYOUT_COMPONENT } from '@/components/Layouts/Layout.constants';
 
 import { getHomePageDataQuery } from '../api/getHomePageDataQuery';
 
@@ -31,7 +33,7 @@ export default async function Home() {
   if (!data) return null;
 
   return (
-    <>
+    <Layout as={LAYOUT_COMPONENT.MAIN}>
       {!data.isHeroHide && (
         <Section
           as={SECTION_COMPONENT.HEADER}
@@ -53,6 +55,6 @@ export default async function Home() {
       {data.showNewsletter && <Newsletter />}
 
       {data.showContactForm && <ContactSection />}
-    </>
+    </Layout>
   );
 }

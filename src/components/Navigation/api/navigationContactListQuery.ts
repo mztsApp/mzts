@@ -1,4 +1,4 @@
-import { generateEntryQuery } from '../../../../utilities/generateQuery';
+import { generateEntryQuery } from '@/utilities/generateQuery';
 
 export type LinkValueType = {
   title: string;

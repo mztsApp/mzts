@@ -4,7 +4,6 @@ import { appNavigationQuery } from '@/api/appNavigationQuery';
 import { getFlattenedLinks } from '@/utilities/getFlattenedLinks';
 import MZTSLogoIcon from '@/assets/icons/mztsDesktop.svg';
 
-import { navigationContactListQuery } from '../Layout/Navigation/api/navigationContactListQuery';
 import {
   TYPOGRAPHY_COMPONENTS,
   TYPOGRAPHY_VARIANTS,
@@ -12,11 +11,13 @@ import {
 import { Typography } from '../Typography/Typography.server';
 import styles from './Footer.module.scss';
 import { FooterDocuments } from './FooterDocuments/FooterDocuments.server';
+import { SROnly } from '../SROnly/SROnly';
+import { NAVIGATION_EVENTS_PAGE } from '../Navigation/Navigation.constants';
+import { navigationContactListQuery } from '../Navigation/api/navigationContactListQuery';
 import {
   END_CONTACT_ICONS,
   START_CONTACT_ICONS,
-} from '../Layout/Navigation/NavContact/NavContact.constants';
-import { SROnly } from '../SROnly/SROnly';
+} from '../Navigation/NavContact/NavContact.constants';
 
 export const openInNewWindowLinkProps = (shouldOpenInNewWindow: boolean) =>
   shouldOpenInNewWindow
@@ -33,6 +34,20 @@ export const Footer = async () => {
   if (!data || !contactData) return null;
 
   const groupedFlattenedLinks = getFlattenedLinks(data);
+
+  const subPagesWithoutEvents = groupedFlattenedLinks.subPages.filter(
+    (subPage) => subPage.subPage !== NAVIGATION_EVENTS_PAGE,
+  );
+  const isSubPagesIncludeEvents = groupedFlattenedLinks.subPages.some(
+    (subpage) => subpage.subPage === NAVIGATION_EVENTS_PAGE,
+  );
+
+  const resolvedGroupedFlattenedLinks = {
+    pages: isSubPagesIncludeEvents
+      ? [NAVIGATION_EVENTS_PAGE, ...groupedFlattenedLinks.pages]
+      : groupedFlattenedLinks.pages,
+    subPages: subPagesWithoutEvents,
+  };
 
   return (
     <footer className={styles.footer}>
@@ -148,7 +163,7 @@ export const Footer = async () => {
                 }
               </Link>
             </li>
-            {groupedFlattenedLinks.subPages.map(({ subPage, page }) => (
+            {resolvedGroupedFlattenedLinks.subPages.map(({ subPage, page }) => (
               <li key={page}>
                 <Link
                   href={`/${subPage}/${page}`}
@@ -167,7 +182,7 @@ export const Footer = async () => {
                 </Link>
               </li>
             ))}
-            {groupedFlattenedLinks.pages.map((page) => (
+            {resolvedGroupedFlattenedLinks.pages.map((page) => (
               <li key={page}>
                 <Link href={`/${page}`} className={styles.footer_link}>
                   {

@@ -1,8 +1,6 @@
 import { twMerge } from 'tailwind-merge';
 
 import { openInNewWindowLinkProps } from '../Footer/Footer.server';
-import { navigationContactListQuery } from '../Layout/Navigation/api/navigationContactListQuery';
-import { START_CONTACT_ICONS } from '../Layout/Navigation/NavContact/NavContact.constants';
 import {
   TYPOGRAPHY_COMPONENTS,
   TYPOGRAPHY_VARIANTS,
@@ -10,6 +8,8 @@ import {
 import { Typography } from '../Typography/Typography.server';
 import { ContactFrom } from './ContactFrom/ContactFrom';
 import styles from './ContactSection.module.scss';
+import { navigationContactListQuery } from '../Navigation/api/navigationContactListQuery';
+import { START_CONTACT_ICONS } from '../Navigation/NavContact/NavContact.constants';
 
 export const ContactSection = async () => {
   const { data } = await navigationContactListQuery();

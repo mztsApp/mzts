@@ -1,3 +1,4 @@
+import type { ContentIdentificationType } from '@/types/apiTypes';
 import { generateEntryQuery } from '@/utilities/generateQuery';
 
 type PageItemType = {
@@ -16,7 +17,7 @@ type NestedRelatedPagesItem = {
   fields: NestedRelatedPageFields;
   sys: {
     id: string;
-  };
+  } & ContentIdentificationType;
 };
 
 export type SinglePageType = {
@@ -81,6 +82,7 @@ export async function appNavigationQuery() {
         subpage: singleLink.fields.subpage,
         slug: singleLink.fields.slug,
         id: singleLink.sys.id,
+        linkDestination: singleLink.sys.contentType.sys.id,
       }))
       .sort((previous, next) => {
         const previousIndex = resolvedPageItemIds.indexOf(previous.id);

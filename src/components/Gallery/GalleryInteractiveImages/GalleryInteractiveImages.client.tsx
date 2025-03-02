@@ -6,6 +6,8 @@ import React from 'react';
 
 import CloseIcon from '/src/assets/icons/close.svg';
 import DownloadIcon from '/src/assets/icons/download.svg';
+import LeftChevronIcon from '/src/assets/icons/chevronLeft.svg';
+import RightChevronIcon from '/src/assets/icons/chevronRight.svg';
 
 import { Dialog, DialogContent } from '@radix-ui/react-dialog';
 
@@ -49,6 +51,18 @@ export const GalleryInteractiveImages = ({
       if (event.key === 'Escape') {
         setFullScreenImageIndex(null);
       }
+
+      if (fullScreenImageIndex !== null && event.key === 'ArrowLeft') {
+        setFullScreenImageIndex((prev) =>
+          (prev ?? 1) - 1 === 0 ? images.length - 1 : (prev ?? 1) - 1,
+        );
+      }
+
+      if (fullScreenImageIndex !== null && event.key === 'ArrowRight') {
+        setFullScreenImageIndex((prev) =>
+          (prev ?? 0) + 1 <= images.length - 1 ? (prev ?? 0) + 1 : 0,
+        );
+      }
     };
 
     document.addEventListener('keydown', handleKeyDown);
@@ -56,11 +70,11 @@ export const GalleryInteractiveImages = ({
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [fullScreenImageIndex, images.length, setFullScreenImageIndex]);
 
   return (
     <ul className={styles.galleryInteractiveImages}>
-      {images.map((image, index) => {
+      {images.map((image, index, array) => {
         const isFirstRowOfImages = index < 3;
 
         const imageSize = image.file.details.image;
@@ -123,6 +137,7 @@ export const GalleryInteractiveImages = ({
                           </button>
 
                           <button
+                            title="Pobierz zdjęcie"
                             className={
                               styles.galleryInteractiveImages_iconButton
                             }
@@ -139,6 +154,42 @@ export const GalleryInteractiveImages = ({
                               }
                             />
                             <SROnly>Pobierz zdjęcie</SROnly>
+                          </button>
+
+                          <button
+                            className={
+                              styles.galleryInteractiveImages_iconButton
+                            }
+                            onClick={() =>
+                              setFullScreenImageIndex(
+                                index - 1 === 0 ? array.length - 1 : index - 1,
+                              )
+                            }
+                          >
+                            <LeftChevronIcon
+                              className={
+                                styles.galleryInteractiveImages_iconButtonSVG
+                              }
+                            />
+                            <SROnly>Przejdź do poprzednieg zdjęcia</SROnly>
+                          </button>
+
+                          <button
+                            className={
+                              styles.galleryInteractiveImages_iconButton
+                            }
+                            onClick={() =>
+                              setFullScreenImageIndex(
+                                index + 1 <= array.length - 1 ? index + 1 : 0,
+                              )
+                            }
+                          >
+                            <RightChevronIcon
+                              className={
+                                styles.galleryInteractiveImages_iconButtonSVG
+                              }
+                            />
+                            <SROnly>Przejdź do następnego zdjęcia</SROnly>
                           </button>
                         </div>
 

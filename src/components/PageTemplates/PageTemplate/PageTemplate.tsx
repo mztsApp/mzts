@@ -7,16 +7,18 @@ import {
   getSectionAlignmentFromApi,
   getTypographyColorFromApi,
 } from '@/utilities/utilitiesForApi';
+import { Layout } from '@/components/Layouts/Layout/Layout.server';
+import { LAYOUT_COMPONENT } from '@/components/Layouts/Layout.constants';
 
-import { ContactSection } from '../ContactSection/ContactSection.server';
-import { FAQ } from '../FAQ/FAQ.server';
-import { Newsletter } from '../Newsletter/Newsletter.server';
-import { Section } from '../Section/Section';
+import { ContactSection } from '../../ContactSection/ContactSection.server';
+import { FAQ } from '../../FAQ/FAQ.server';
+import { Newsletter } from '../../Newsletter/Newsletter.server';
+import { Section } from '../../Section/Section';
 import {
   SECTION_COMPONENT,
   SECTION_HEADING_COMPONENT,
-} from '../Section/Section.constants';
-import { SectionList } from '../SectionList/SectionList.server';
+} from '../../Section/Section.constants';
+import { SectionList } from '../../SectionList/SectionList.server';
 
 export const PageTemplate = async ({ slug }: PageTemplateProps) => {
   const { data: navigationData } = await appNavigationQuery();
@@ -38,7 +40,7 @@ export const PageTemplate = async ({ slug }: PageTemplateProps) => {
   if (!data) return null;
 
   return (
-    <>
+    <Layout as={LAYOUT_COMPONENT.MAIN}>
       {!data.isHeroHide && (
         <Section
           as={SECTION_COMPONENT.HEADER}
@@ -59,6 +61,6 @@ export const PageTemplate = async ({ slug }: PageTemplateProps) => {
       {data.showNewsletter && <Newsletter />}
 
       {data.showContactForm && <ContactSection />}
-    </>
+    </Layout>
   );
 };

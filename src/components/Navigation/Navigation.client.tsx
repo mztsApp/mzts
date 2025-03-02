@@ -26,6 +26,10 @@ import { MobileDeviceContext } from '@/providers/MobileDeviceProvider/MobileDevi
 import styles from './Navigation.module.scss';
 import { NavigationItemAccordion } from './NavigationItemAccordion.client';
 import { NavigationItemWithDropdown } from './NavigationItemWithDropdown';
+import {
+  NAVIGATION_ALL_EVENTS_PAGE,
+  NAVIGATION_EVENTS_PAGE,
+} from './Navigation.constants';
 
 type MenuState = {
   isMenuOpen: boolean;
@@ -127,18 +131,45 @@ export const NavigationClient = ({
                   styles.navigation_list__fullHeight,
               )}
             >
-              {groupedLinksBySubPages.nestedPages.map((nestedPage) => (
-                <li key={nestedPage.subPage}>
-                  {isDesktop ? (
-                    <NavigationItemWithDropdown nestedPage={nestedPage} />
-                  ) : (
-                    <NavigationItemAccordion
-                      nestedPage={nestedPage}
-                      handleLinkClick={() => setMenuState(defaultMenuState)}
-                    />
-                  )}
-                </li>
-              ))}
+              {groupedLinksBySubPages.nestedPages.map((nestedPage) => {
+                if (nestedPage.subPage === NAVIGATION_EVENTS_PAGE) {
+                  const nestedNavigationPayload = {
+                    subPage: nestedPage.subPage,
+                    pages: [
+                      ...nestedPage.pages.filter((_, index) => index < 5),
+                      NAVIGATION_ALL_EVENTS_PAGE,
+                    ],
+                  };
+
+                  return (
+                    <li key={nestedPage.subPage}>
+                      {isDesktop ? (
+                        <NavigationItemWithDropdown
+                          nestedPage={nestedNavigationPayload}
+                        />
+                      ) : (
+                        <NavigationItemAccordion
+                          nestedPage={nestedNavigationPayload}
+                          handleLinkClick={() => setMenuState(defaultMenuState)}
+                        />
+                      )}
+                    </li>
+                  );
+                }
+
+                return (
+                  <li key={nestedPage.subPage}>
+                    {isDesktop ? (
+                      <NavigationItemWithDropdown nestedPage={nestedPage} />
+                    ) : (
+                      <NavigationItemAccordion
+                        nestedPage={nestedPage}
+                        handleLinkClick={() => setMenuState(defaultMenuState)}
+                      />
+                    )}
+                  </li>
+                );
+              })}
 
               {groupedLinksBySubPages.restPages.map((page) => (
                 <li key={page}>

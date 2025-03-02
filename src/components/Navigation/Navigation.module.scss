@@ -254,6 +254,10 @@
     flex-direction: column;
     height: fit-content;
     list-style: none;
+
+    &Separator {
+      padding: spacings.$small;
+    }
   }
 
   &_listItem {
@@ -338,6 +342,10 @@
 
   &_list {
     list-style: none;
+
+    &Separator {
+      padding: spacings.$small;
+    }
   }
 
   &_link {

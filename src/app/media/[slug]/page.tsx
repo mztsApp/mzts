@@ -3,8 +3,8 @@ import type { Metadata } from 'next';
 import type { PageParams } from '@/types/pageApiTypes';
 import { getGroupedPagesBySubPage } from '@/utilities/getGroupedPagesBySubPage';
 import { appNavigationQuery } from '@/api/appNavigationQuery';
+import { PageTemplate } from '@/components/PageTemplates/PageTemplate/PageTemplate';
 import { getPageParamsQuery } from '@/api/getPageParamsQuery';
-import { PageTemplate } from '@/components/PageTemplate/PageTemplate';
 
 export async function generateStaticParams() {
   const { data } = await appNavigationQuery();

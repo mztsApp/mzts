@@ -83,7 +83,7 @@ export const getSectionDataQuery = async (apiIds: string[]) => {
       isError = true;
       returnedError = error.message;
 
-      throw new Error(error.name);
+      // throw new Error(error.name);
     }
   } finally {
     isPending = false;

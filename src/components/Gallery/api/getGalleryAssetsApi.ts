@@ -14,7 +14,9 @@ export const getGalleryAssetsApi = async ({
   let returnedError: string | Error | null = null;
 
   try {
-    const assetsResponse = await fetch(generateAssetsQuery(assetIds));
+    const assetsResponse = await fetch(generateAssetsQuery(assetIds), {
+      cache: 'force-cache',
+    });
 
     if (!assetsResponse.ok) {
       isError = true;

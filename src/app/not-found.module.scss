@@ -10,11 +10,18 @@
 .notFound {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: spacings.$small;
-  padding: spacings.$xxLarge;
-  margin: auto;
+  min-height: 100dvh;
+  width: 100vw;
+
+  &_section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: spacings.$small;
+    padding: spacings.$xxLarge;
+    margin: auto;
+  }
 
   &_logo {
     width: helpers.pxToRem(200);

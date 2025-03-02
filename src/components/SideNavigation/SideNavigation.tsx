@@ -15,7 +15,11 @@ export const SideNavigation = async ({ slug }: SideNavigationProps) => {
     (subpage) => subpage.subpage === NAVIGATION_EVENTS_PAGE,
   );
 
-  if (!eventsPages || !eventsPages.length) {
+  if (
+    !eventsPages ||
+    !eventsPages.length ||
+    !data?.some((link) => link.slug === slug || !slug)
+  ) {
     return notFound();
   }
 

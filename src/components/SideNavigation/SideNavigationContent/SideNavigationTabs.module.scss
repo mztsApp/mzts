@@ -1,0 +1,87 @@
+@use '/src/styles/gradients';
+@use '/src/styles/typography';
+@use '/src/styles/helpers';
+@use '/src/styles/screens';
+@use '/src/styles/spacings';
+@use '/src/styles/colors';
+@use '/src/styles/boxShadows';
+@use '/src/styles/textEllipsis';
+
+.sideNavigation {
+  display: flex;
+  justify-content: stretch;
+  align-items: stretch;
+  width: 100%;
+  height: 100%;
+
+  &_scrollArea {
+    display: flex;
+    max-height: 100%;
+    width: 100%;
+
+    &Viewport {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      padding: spacings.$small;
+    }
+
+    &List {
+      display: flex;
+      flex-direction: column;
+      gap: spacings.$small;
+    }
+  }
+
+  &_link {
+    text-decoration: none;
+  }
+
+  &_card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: spacings.$small;
+    padding: spacings.$small;
+    border-radius: helpers.pxToRem(20);
+    border: solid helpers.pxToRem(2) colors.$accent;
+
+    &Badge {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-self: flex-end;
+      padding: helpers.pxToRem(4, 16);
+      color: colors.$text;
+      border-radius: helpers.pxToRem(24);
+
+      @include typography.helperText;
+
+      @include gradients.boxGradient();
+    }
+
+    &Description {
+      opacity: 90%;
+
+      @include textEllipsis.createTextEllipsis(3);
+    }
+
+    &AdditionalInfo {
+      display: flex;
+      align-items: center;
+      gap: spacings.$xxSmall;
+    }
+
+    &IconsWrapper {
+      display: flex;
+      justify-content: center;
+      gap: spacings.$small;
+    }
+
+    &Icon {
+      width: helpers.pxToRem(16);
+      height: helpers.pxToRem(16);
+      color: colors.$accent;
+    }
+  }
+}

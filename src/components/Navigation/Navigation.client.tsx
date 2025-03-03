@@ -90,7 +90,7 @@ export const NavigationClient = ({
       <div className={styles.navBar_contact}>{children}</div>
 
       <div className={styles.navBar_navigationContainer}>
-        <nav className={styles.navigation}>
+        <nav className={styles.navigation} aria-label="Główna nawigacja">
           <a className={styles.navigation_logoLink} href="/">
             {isDesktop ? (
               <DesktopLogo className={styles.navigation_desktopLogo} />

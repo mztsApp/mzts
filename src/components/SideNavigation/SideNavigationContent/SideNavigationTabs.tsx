@@ -85,7 +85,7 @@ export const SideNavigationTabs = ({ pages }: SideNavigationTabsProps) => {
                         <AddressIcon
                           className={styles.sideNavigation_cardIcon}
                         />{' '}
-                        {page.location.lat}
+                        {page.location}
                       </Typography>
                     </div>
                   </div>
@@ -138,7 +138,7 @@ export const SideNavigationTabs = ({ pages }: SideNavigationTabsProps) => {
                         <AddressIcon
                           className={styles.sideNavigation_cardIcon}
                         />{' '}
-                        {page.location.lat}
+                        {page.location}
                       </Typography>
                     </div>
                   </div>

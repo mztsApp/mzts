@@ -9,8 +9,6 @@ export const SideNavigation = async ({ slug }: SideNavigationProps) => {
   const { combinedEventPagesData } =
     await getCombinedFullEventsPagesOrGoNotFound(slug);
 
-  console.log({ combinedEventPagesData });
-
   return (
     <SideNavigationTabs pages={combinedEventPagesData} currentSlug={slug} />
   );

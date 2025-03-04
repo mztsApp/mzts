@@ -3,8 +3,8 @@ import { notFound } from 'next/navigation';
 import { appNavigationQuery } from '@/api/appNavigationQuery';
 import { NAVIGATION_EVENTS_PAGE } from '@/components/Navigation/Navigation.constants';
 
-import { getEventsPageData } from './getEventsPageData';
 import type { SideNavigationTabsProps } from '../SideNavigationContent/SideNavigationTabs';
+import { getEventsPageData } from './getEventsPageData';
 
 export const getCombinedFullEventsPagesOrGoNotFound = async (slug?: string) => {
   const { data } = await appNavigationQuery();
@@ -31,9 +31,11 @@ export const getCombinedFullEventsPagesOrGoNotFound = async (slug?: string) => {
   const joinedPageDataWithRelatedSlug = pagesData.map((page) => {
     const { slug, ...restPageProps } = page;
 
-    const replacedSlug = eventsPages.find(
-      (slugItem) => (slugItem.id = slug.sys.id),
-    );
+    const replacedSlug = data.find((slugItem) => {
+      return slugItem.id === slug.sys.id;
+    });
+
+    console.log({ replacedSlug });
 
     return { slug: replacedSlug, ...restPageProps };
   }) as SideNavigationTabsProps['pages'];

@@ -42,10 +42,7 @@ type EventsPageFieldsTypeFromApi = {
     };
     alignment: ValueOf<typeof EVENTS_PAGE_ALIGNMENT>;
     date: string;
-    location: {
-      lon: number;
-      lat: number;
-    };
+    location: string;
     eventType: string;
     shouldDisplayNewsletter: boolean;
     shouldDisplayContactForm: boolean;
@@ -65,10 +62,7 @@ export type EventsPageData = {
   bgImage: FileType;
   alignment: ValueOf<typeof EVENTS_PAGE_ALIGNMENT>;
   date: string;
-  location: {
-    lon: number;
-    lat: number;
-  };
+  location: string;
   eventType: string;
   shouldDisplayNewsletter: boolean;
   shouldDisplayContactForm: boolean;

@@ -14,6 +14,11 @@
   align-items: center;
   width: 100dvw;
   min-height: 100vh;
+  padding: 0 helpers.pxToRem(24);
+
+  @include screens.lg {
+    padding: 0 helpers.pxToRem(32);
+  }
 
   &_topBarSpace {
     display: flex;

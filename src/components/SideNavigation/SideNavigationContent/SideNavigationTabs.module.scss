@@ -19,11 +19,15 @@
     max-height: 100%;
     width: 100%;
 
+    @include screens.lg {
+      max-width: helpers.pxToRem(360);
+    }
+
     &Viewport {
       display: flex;
       height: 100%;
       width: 100%;
-      padding: spacings.$small;
+      padding: spacings.$small 0;
     }
 
     &List {
@@ -35,6 +39,36 @@
 
   &_link {
     text-decoration: none;
+    outline: none !important;
+
+    &:hover,
+    &:focus {
+      & .sideNavigation_card {
+        transform: scale(0.99);
+        box-shadow: inset helpers.pxToRem(0, 0, 0, 2) colors.$accent;
+
+        &Title {
+          font-weight: 900;
+        }
+
+        &Badge {
+          box-shadow: inset helpers.pxToRem(0, 0, 0, 1) colors.$accent;
+        }
+      }
+    }
+
+    &[data-is-active='true'] {
+      & .sideNavigation_card {
+        &Title {
+          @include gradients.textGradient(left);
+        }
+
+        &Badge {
+          background: colors.$text;
+          color: colors.$accent;
+        }
+      }
+    }
   }
 
   &_card {
@@ -45,6 +79,15 @@
     padding: spacings.$small;
     border-radius: helpers.pxToRem(20);
     border: solid helpers.pxToRem(2) colors.$accent;
+    transition: all 200ms ease-in-out;
+
+    &BadgeContainer {
+      display: flex;
+      justify-content: flex-end;
+      gap: spacings.$xSmall;
+      flex-wrap: wrap;
+      width: 100%;
+    }
 
     &Badge {
       display: flex;
@@ -54,6 +97,8 @@
       padding: helpers.pxToRem(4, 16);
       color: colors.$text;
       border-radius: helpers.pxToRem(24);
+      border: solid helpers.pxToRem(1) colors.$accent;
+      overflow: clip;
 
       @include typography.helperText;
 
@@ -75,7 +120,10 @@
     &IconsWrapper {
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
       gap: spacings.$small;
+      max-width: 100%;
+      overflow-x: clip;
     }
 
     &Icon {

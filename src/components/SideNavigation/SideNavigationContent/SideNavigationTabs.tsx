@@ -28,10 +28,11 @@ export type SideNavigationTabsProps = {
   currentSlug?: string;
 };
 
-export const SideNavigationTabs = ({ pages }: SideNavigationTabsProps) => {
+export const SideNavigationTabs = ({
+  pages,
+  currentSlug,
+}: SideNavigationTabsProps) => {
   const { past, upcoming } = getPagesByDate(pages);
-
-  console.log({ past, upcoming });
 
   return (
     <nav className={styles.sideNavigation} aria-label="wydarzenia - navigacja">
@@ -41,17 +42,29 @@ export const SideNavigationTabs = ({ pages }: SideNavigationTabsProps) => {
         >
           <ul className={styles.sideNavigation_scrollAreaList}>
             {upcoming.map((page) => (
-              <li key={page.metaTitle}>
+              <li
+                key={page.metaTitle}
+                data-isActive={currentSlug === page.slug.slug}
+              >
                 <Link
                   href={`/${page.slug.subpage}/${page.slug.slug}`}
                   className={styles.sideNavigation_link}
+                  data-is-active={currentSlug === page.slug.slug}
                 >
                   <div className={styles.sideNavigation_card}>
-                    <span className={styles.sideNavigation_cardBadge}>
-                      {page.eventType}
-                    </span>
+                    <div className={styles.sideNavigation_cardBadgeContainer}>
+                      {currentSlug === page.slug.slug && (
+                        <span className={styles.sideNavigation_cardBadge}>
+                          Podgląd
+                        </span>
+                      )}
+                      <span className={styles.sideNavigation_cardBadge}>
+                        {page.eventType}
+                      </span>
+                    </div>
 
                     <Typography
+                      className={styles.sideNavigation_cardTitle}
                       variant={TYPOGRAPHY_VARIANTS.BUTTON_TEXT}
                       align={TYPOGRAPHY_ALIGNMENT.CENTER}
                     >
@@ -71,6 +84,7 @@ export const SideNavigationTabs = ({ pages }: SideNavigationTabsProps) => {
                         className={styles.sideNavigation_cardAdditionalInfo}
                         variant={TYPOGRAPHY_VARIANTS.HELPER_TEXT}
                         align={TYPOGRAPHY_ALIGNMENT.CENTER}
+                        noWrap
                       >
                         <CalendarIcon
                           className={styles.sideNavigation_cardIcon}
@@ -81,6 +95,7 @@ export const SideNavigationTabs = ({ pages }: SideNavigationTabsProps) => {
                         className={styles.sideNavigation_cardAdditionalInfo}
                         variant={TYPOGRAPHY_VARIANTS.HELPER_TEXT}
                         align={TYPOGRAPHY_ALIGNMENT.CENTER}
+                        noWrap
                       >
                         <AddressIcon
                           className={styles.sideNavigation_cardIcon}
@@ -98,13 +113,23 @@ export const SideNavigationTabs = ({ pages }: SideNavigationTabsProps) => {
                 <Link
                   href={`/${page.slug.subpage}/${page.slug.slug}`}
                   className={styles.sideNavigation_link}
+                  data-is-active={currentSlug === page.slug.slug}
                 >
                   <div className={styles.sideNavigation_card}>
-                    <span className={styles.sideNavigation_cardBadge}>
-                      {page.eventType}
-                    </span>
+                    <div className={styles.sideNavigation_cardBadgeContainer}>
+                      {currentSlug === page.slug.slug && (
+                        <span className={styles.sideNavigation_cardBadge}>
+                          Podgląd
+                        </span>
+                      )}
+
+                      <span className={styles.sideNavigation_cardBadge}>
+                        {page.eventType}
+                      </span>
+                    </div>
 
                     <Typography
+                      className={styles.sideNavigation_cardTitle}
                       variant={TYPOGRAPHY_VARIANTS.BUTTON_TEXT}
                       align={TYPOGRAPHY_ALIGNMENT.CENTER}
                     >
@@ -124,6 +149,7 @@ export const SideNavigationTabs = ({ pages }: SideNavigationTabsProps) => {
                         className={styles.sideNavigation_cardAdditionalInfo}
                         variant={TYPOGRAPHY_VARIANTS.HELPER_TEXT}
                         align={TYPOGRAPHY_ALIGNMENT.CENTER}
+                        noWrap
                       >
                         <CalendarIcon
                           className={styles.sideNavigation_cardIcon}
@@ -134,6 +160,7 @@ export const SideNavigationTabs = ({ pages }: SideNavigationTabsProps) => {
                         className={styles.sideNavigation_cardAdditionalInfo}
                         variant={TYPOGRAPHY_VARIANTS.HELPER_TEXT}
                         align={TYPOGRAPHY_ALIGNMENT.CENTER}
+                        noWrap
                       >
                         <AddressIcon
                           className={styles.sideNavigation_cardIcon}

@@ -21,6 +21,8 @@
 
     @include screens.lg {
       max-width: helpers.pxToRem(360);
+
+      max-height: calc(100dvh - 126px);
     }
 
     &Viewport {
@@ -130,6 +132,27 @@
       width: helpers.pxToRem(16);
       height: helpers.pxToRem(16);
       color: colors.$accent;
+    }
+  }
+
+  &_scrollBar {
+    width: helpers.pxToRem(6);
+    background-color: #7e5df45d;
+    transform: translateX(helpers.pxToRem(16));
+
+    &Thumb {
+      width: 100%;
+      background-color: colors.$accent;
+      border-radius: helpers.pxToRem(4);
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: lighten(colors.$accent, 10%);
+      }
+
+      &:active {
+        background-color: lighten(colors.$accent, 20%);
+      }
     }
   }
 }

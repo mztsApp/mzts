@@ -175,8 +175,11 @@ export const SideNavigationTabs = ({
           </ul>
         </ScrollAreaViewport>
 
-        <ScrollAreaScrollbar orientation="vertical">
-          <ScrollAreaThumb />
+        <ScrollAreaScrollbar
+          orientation="vertical"
+          className={styles.sideNavigation_scrollBar}
+        >
+          <ScrollAreaThumb className={styles.sideNavigation_scrollBarThumb} />
         </ScrollAreaScrollbar>
       </ScrollArea>
     </nav>

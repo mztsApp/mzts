@@ -1,37 +1,41 @@
 import type { Metadata } from 'next';
 
-import type { PageParams } from '@/types/pageApiTypes';
-import { appNavigationQuery } from '@/api/appNavigationQuery';
-import { getGroupedPagesBySubPage } from '@/utilities/getGroupedPagesBySubPage';
-import { getPageParamsQuery } from '@/api/getPageParamsQuery';
-import { NAVIGATION_EVENTS_PAGE } from '@/components/Navigation/Navigation.constants';
 import { EventsLayout } from '@/components/Layouts/EventsLayout/EventsLayout';
 import { LAYOUT_COMPONENT } from '@/components/Layouts/Layout.constants';
+import { getCombinedFullEventsPagesOrGoNotFound } from '@/components/SideNavigation/api/getCombinedFullEventsPagesOrGoNotFound';
+import type { PageParams } from '@/types/pageApiTypes';
+import { EventPageTemplate } from '@/components/PageTemplates/EventPageTemplate/EventPageTemplate';
 
 export async function generateStaticParams() {
-  const { data } = await appNavigationQuery();
+  const { combinedEventPagesData } =
+    await getCombinedFullEventsPagesOrGoNotFound();
 
-  if (!data) return [];
+  if (!combinedEventPagesData) return [];
 
-  const gropedPages = getGroupedPagesBySubPage(data);
-  const eventPages = gropedPages.nestedPages.find(
-    (nestedPage) => nestedPage.subPage === NAVIGATION_EVENTS_PAGE,
-  );
+  const eventPages = combinedEventPagesData.map((page) => ({
+    slug: page.slug.slug,
+  }));
 
-  return eventPages?.pages.map((slug) => ({ slug })) ?? [];
+  return eventPages ?? [];
 }
 
 export async function generateMetadata({
   params,
 }: PageParams): Promise<Metadata> {
-  const pageParams = await getPageParamsQuery(params.slug);
+  const { currentPage } = await getCombinedFullEventsPagesOrGoNotFound(
+    params.slug,
+  );
 
   return {
-    title: pageParams?.data?.metaTitle ?? '',
-    description: pageParams?.data?.metaDescription ?? '',
+    title: currentPage?.metaTitle ?? '',
+    description: currentPage?.metaDescription ?? '',
   };
 }
 
 export default function EventsPage({ params }: PageParams) {
-  return <EventsLayout as={LAYOUT_COMPONENT.MAIN} slug={params.slug} />;
+  return (
+    <EventsLayout as={LAYOUT_COMPONENT.MAIN} slug={params.slug}>
+      <EventPageTemplate slug={params.slug} />
+    </EventsLayout>
+  );
 }

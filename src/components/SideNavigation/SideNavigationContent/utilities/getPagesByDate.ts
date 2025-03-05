@@ -1,6 +1,6 @@
-import type { SideNavigationTabsProps } from '../SideNavigationTabs';
+import type { SideNavigationDialogProps } from '../SideNavigationDialog';
 
-type Pages = SideNavigationTabsProps['pages'];
+type Pages = SideNavigationDialogProps['pages'];
 
 export type PagesByDateType = Record<'past' | 'upcoming', Pages>;
 
@@ -11,25 +11,28 @@ export const getPagesByDate = (pages: Pages) => {
     const previousPageTime = new Date(previous.date).getTime();
     const nextPageTime = new Date(next.date).getTime();
 
-    return previousPageTime - nextPageTime;
+    return nextPageTime - previousPageTime;
   });
 
-  return sortedPagesByDate.reduce<PagesByDateType>(
-    (accumulator, page) => {
-      const eventDate = new Date(page.date);
+  return {
+    ...sortedPagesByDate.reduce<PagesByDateType>(
+      (accumulator, page) => {
+        const eventDate = new Date(page.date);
 
-      if (eventDate.getTime() >= today.getTime()) {
+        if (eventDate.getTime() >= today.getTime()) {
+          return {
+            past: accumulator.past,
+            upcoming: [...accumulator.upcoming, page],
+          };
+        }
+
         return {
-          past: accumulator.past,
-          upcoming: [...accumulator.upcoming, page],
+          past: [...accumulator.past, page],
+          upcoming: accumulator.upcoming,
         };
-      }
-
-      return {
-        past: [...accumulator.past, page],
-        upcoming: accumulator.upcoming,
-      };
-    },
-    { past: [], upcoming: [] },
-  );
+      },
+      { past: [], upcoming: [] },
+    ),
+    sortedPagesByDate,
+  };
 };

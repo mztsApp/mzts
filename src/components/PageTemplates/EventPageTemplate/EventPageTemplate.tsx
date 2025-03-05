@@ -1,20 +1,40 @@
-import { notFound } from 'next/navigation';
-
-import { appNavigationQuery } from '@/api/appNavigationQuery';
+import { getCombinedFullEventsPagesOrGoNotFound } from '@/components/SideNavigation/api/getCombinedFullEventsPagesOrGoNotFound';
 import type { PageTemplateProps } from '@/types/pageApiTypes';
+import { SectionList } from '@/components/SectionList/SectionList.server';
+
+import { EventPageTemplateHero } from './EventPageTemplateHero/EventPageTemplateHero';
 
 export const EventPageTemplate = async ({ slug }: PageTemplateProps) => {
-  const { data: navigationData } = await appNavigationQuery();
+  const { currentPage } = await getCombinedFullEventsPagesOrGoNotFound(slug);
 
-  if (!navigationData) return null;
-
-  const resolvedEntryId = await navigationData.find(
-    (page) => page.slug === slug,
-  )?.id;
-
-  if (!resolvedEntryId) {
-    notFound();
+  if (!currentPage) {
+    return;
   }
 
-  return <></>;
+  const additionalContent = currentPage?.sections?.map(
+    (section) => section.sys.id,
+  );
+
+  const image = currentPage.bgImage;
+  const imageProps = {
+    src: image.url,
+    width: image.details.image.width,
+    height: image.details.image.height,
+    alt: image.fileName,
+  };
+
+  return (
+    <>
+      <EventPageTemplateHero
+        title={currentPage.title}
+        description={currentPage.description}
+        image={imageProps}
+        location={currentPage.location}
+        date={currentPage.date}
+        badgeText={currentPage.eventType}
+      />
+
+      <SectionList entriesIds={additionalContent ?? []} />
+    </>
+  );
 };

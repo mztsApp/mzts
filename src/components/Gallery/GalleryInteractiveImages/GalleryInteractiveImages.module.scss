@@ -26,7 +26,7 @@ $color4: adjust-color(rgba(46, 16, 148, 0.94), $alpha: -0.4);
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @include screens.lg {
+  @include screens.xl {
     grid-template-columns: repeat(3, 1fr);
   }
 

@@ -1,0 +1,60 @@
+@use '/src/styles/gradients';
+@use '/src/styles/typography';
+@use '/src/styles/helpers';
+@use '/src/styles/screens';
+@use '/src/styles/spacings';
+@use '/src/styles/colors';
+@use '/src/styles/boxShadows';
+@use '/src/styles/textEllipsis';
+
+.eventHero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: spacings.$small;
+  width: 100%;
+
+  &_badge {
+    align-self: flex-end;
+    padding: helpers.pxToRem(6, 12);
+    border-radius: helpers.pxToRem(24);
+    color: colors.$text;
+
+    @include gradients.boxGradient();
+  }
+
+  &_image {
+    width: 100%;
+    max-height: helpers.pxToRem(480);
+    object-fit: cover;
+    border-radius: helpers.pxToRem(24);
+    overflow: clip;
+  }
+
+  &_additionalWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: spacings.$small;
+  }
+
+  &_additional {
+    display: flex;
+    gap: spacings.$small;
+    align-items: center;
+    flex-wrap: wrap;
+
+    &Info {
+      display: flex;
+      align-items: center;
+      gap: spacings.$xSmall;
+    }
+
+    &Icon {
+      width: helpers.pxToRem(24);
+      height: helpers.pxToRem(24);
+      color: colors.$accent;
+    }
+  }
+}

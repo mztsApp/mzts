@@ -3,8 +3,8 @@ import { notFound } from 'next/navigation';
 import { appNavigationQuery } from '@/api/appNavigationQuery';
 import { NAVIGATION_EVENTS_PAGE } from '@/components/Navigation/Navigation.constants';
 
-import type { SideNavigationTabsProps } from '../SideNavigationContent/SideNavigationTabs';
 import { getEventsPageData } from './getEventsPageData';
+import type { SideNavigationDialogProps } from '../SideNavigationContent/SideNavigationDialog';
 
 export const getCombinedFullEventsPagesOrGoNotFound = async (slug?: string) => {
   const { data } = await appNavigationQuery();
@@ -25,7 +25,7 @@ export const getCombinedFullEventsPagesOrGoNotFound = async (slug?: string) => {
   );
 
   if (!pagesData.length) {
-    return notFound();
+    // return notFound();
   }
 
   const joinedPageDataWithRelatedSlug = pagesData.map((page) => {
@@ -35,10 +35,15 @@ export const getCombinedFullEventsPagesOrGoNotFound = async (slug?: string) => {
       return slugItem.id === slug.sys.id;
     });
 
-    console.log({ replacedSlug });
-
     return { slug: replacedSlug, ...restPageProps };
-  }) as SideNavigationTabsProps['pages'];
+  }) as SideNavigationDialogProps['pages'];
 
-  return { combinedEventPagesData: joinedPageDataWithRelatedSlug };
+  const currentPageData = joinedPageDataWithRelatedSlug.find(
+    (page) => page.slug.slug === slug,
+  );
+
+  return {
+    combinedEventPagesData: joinedPageDataWithRelatedSlug,
+    currentPage: currentPageData ?? null,
+  };
 };

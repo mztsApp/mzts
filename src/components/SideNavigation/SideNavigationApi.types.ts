@@ -44,8 +44,11 @@ type EventsPageFieldsTypeFromApi = {
     date: string;
     location: string;
     eventType: string;
-    shouldDisplayNewsletter: boolean;
-    shouldDisplayContactForm: boolean;
+    sections: {
+      sys: {
+        id: string;
+      };
+    }[];
   };
 };
 export type EventsPageData = {
@@ -64,8 +67,11 @@ export type EventsPageData = {
   date: string;
   location: string;
   eventType: string;
-  shouldDisplayNewsletter: boolean;
-  shouldDisplayContactForm: boolean;
+  sections: {
+    sys: {
+      id: string;
+    };
+  }[];
 };
 
 export type EventsPageDataTypeFromApi = {

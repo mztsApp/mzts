@@ -1,5 +1,5 @@
 import { getCombinedFullEventsPagesOrGoNotFound } from './api/getCombinedFullEventsPagesOrGoNotFound';
-import { SideNavigationTabs } from './SideNavigationContent/SideNavigationTabs';
+import { SideNavigationDialog } from './SideNavigationContent/SideNavigationDialog';
 
 type SideNavigationProps = {
   slug?: string;
@@ -10,6 +10,6 @@ export const SideNavigation = async ({ slug }: SideNavigationProps) => {
     await getCombinedFullEventsPagesOrGoNotFound(slug);
 
   return (
-    <SideNavigationTabs pages={combinedEventPagesData} currentSlug={slug} />
+    <SideNavigationDialog pages={combinedEventPagesData} currentSlug={slug} />
   );
 };

@@ -17,8 +17,8 @@ import {
   TYPOGRAPHY_VARIANTS,
 } from '@/components/Typography/Typography.constants';
 import { Typography } from '@/components/Typography/Typography.server';
-import { getResolvedTextFromSlug } from '@/utilities/getResolvedTextFromSlug';
 import type { NestedPages } from '@/utilities/getGroupedPagesBySubPage';
+import { getResolvedTextFromSlug } from '@/utilities/getResolvedTextFromSlug';
 
 import { NAVIGATION_ALL_EVENTS_PAGE } from './Navigation.constants';
 import styles from './Navigation.module.scss';
@@ -63,14 +63,7 @@ export const NavigationItemAccordion = ({
                   <React.Fragment key={page}>
                     <li
                       className={styles.navigationItemAccordion_listSeparator}
-                    >
-                      <Typography
-                        as={TYPOGRAPHY_COMPONENTS.SPAN}
-                        variant={TYPOGRAPHY_VARIANTS.BUTTON_TEXT}
-                      >
-                        ...
-                      </Typography>
-                    </li>
+                    />
 
                     <li
                       key={page}

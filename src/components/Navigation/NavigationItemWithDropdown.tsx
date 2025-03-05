@@ -1,27 +1,27 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
-import Link from 'next/link';
-import { twMerge } from 'tailwind-merge';
 import {
   Popover,
   PopoverContent,
   PopoverPortal,
   PopoverTrigger,
 } from '@radix-ui/react-popover';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import React from 'react';
+import { twMerge } from 'tailwind-merge';
 
 import ChevronUpIcon from '@/assets/icons/chevronUp.svg';
-import { Typography } from '@/components/Typography/Typography.server';
 import {
   TYPOGRAPHY_COMPONENTS,
   TYPOGRAPHY_VARIANTS,
 } from '@/components/Typography/Typography.constants';
-import { getResolvedTextFromSlug } from '@/utilities/getResolvedTextFromSlug';
+import { Typography } from '@/components/Typography/Typography.server';
 import type { NestedPages } from '@/utilities/getGroupedPagesBySubPage';
+import { getResolvedTextFromSlug } from '@/utilities/getResolvedTextFromSlug';
 
-import styles from './Navigation.module.scss';
 import { NAVIGATION_ALL_EVENTS_PAGE } from './Navigation.constants';
+import styles from './Navigation.module.scss';
 
 type NavigationItemWithDropdownProps = {
   nestedPage: NestedPages;
@@ -66,14 +66,8 @@ export const NavigationItemWithDropdown = ({
                       className={
                         styles.navigationItemWithDropdown_listSeparator
                       }
-                    >
-                      <Typography
-                        as={TYPOGRAPHY_COMPONENTS.SPAN}
-                        variant={TYPOGRAPHY_VARIANTS.BUTTON_TEXT}
-                      >
-                        ...
-                      </Typography>
-                    </li>
+                    />
+
                     <li className={styles.navigationItemWithDropdown_listItem}>
                       <Link
                         href={`/${nestedPage.subPage}`}

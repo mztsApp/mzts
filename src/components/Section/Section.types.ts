@@ -42,6 +42,7 @@ export type SectionProps = React.PropsWithChildren<{
   description?: string;
   sectionAlignment?: ValueOf<typeof SECTION_ALIGNMENT>;
   headingColor?: ValueOf<typeof SECTION_HEADING_COLOR>;
+  isStatic?: boolean;
   isPriority?: boolean;
 }> &
   HeadingAndComponentConditionalProps;

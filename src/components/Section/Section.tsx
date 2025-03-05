@@ -25,6 +25,7 @@ export const Section = ({
   image: imageProps,
   sectionAlignment,
   isPriority = false,
+  isStatic = false,
   children,
 }: SectionProps) => {
   const isHero = SectionHTMLTag === SECTION_COMPONENT.HEADER;
@@ -44,9 +45,9 @@ export const Section = ({
       >
         {imageProps?.src && (
           <Image
-            src={`https:${imageProps.src}?fm=webp`}
-            width={1440}
-            height={960}
+            src={isStatic ? imageProps.src : `https:${imageProps.src}?fm=webp`}
+            width={imageProps?.width ?? 1440}
+            height={imageProps?.height ?? 960}
             className={styles.section_bgImage}
             alt={imageProps?.alt ?? ''}
             priority={isHero || isPriority}
@@ -132,9 +133,9 @@ export const Section = ({
 
         {!isHero && imageProps?.src && (
           <Image
-            src={`https:${imageProps.src}?fm=webp`}
-            width={1440}
-            height={960}
+            src={isStatic ? imageProps.src : `https:${imageProps.src}?fm=webp`}
+            width={imageProps?.width ?? 1440}
+            height={imageProps.height ?? 960}
             className={styles.section_bgImage}
             alt={imageProps?.alt ?? ''}
           />

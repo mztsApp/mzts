@@ -38,6 +38,7 @@
     @include screens.lg {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
+      gap: spacings.$large;
     }
   }
 
@@ -57,5 +58,13 @@
     width: 100%;
     max-width: helpers.pxToRem(1440);
     height: 100%;
+
+    &[data-is-parent-event-page='true'] {
+      display: none;
+
+      @include screens.lg {
+        display: flex;
+      }
+    }
   }
 }

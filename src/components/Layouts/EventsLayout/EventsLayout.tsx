@@ -24,6 +24,8 @@ export const EventsLayout = async ({
   const userAgent = headers().get('user-agent') || '';
   const isMobileDevice = /mobile|android|iphone|ipad|ipod/i.test(userAgent);
 
+  const isParentEventPage = !slug;
+
   return (
     <MobileDeviceProvider isMobileDevice={isMobileDevice}>
       <LayoutHTMLTag className={styles.eventsLayout}>
@@ -35,7 +37,12 @@ export const EventsLayout = async ({
           <div className={styles.eventsLayout_sideNavigation}>
             <SideNavigation slug={slug} />
           </div>
-          <div className={styles.eventsLayout_content}>{children}</div>
+          <div
+            className={styles.eventsLayout_content}
+            data-is-parent-event-page={isParentEventPage}
+          >
+            {children}
+          </div>
         </div>
 
         <GoToTopButton />

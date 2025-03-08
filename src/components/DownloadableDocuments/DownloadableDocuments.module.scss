@@ -12,6 +12,7 @@
   flex-direction: column;
   align-items: center;
   gap: helpers.pxToRem(16);
+  padding: helpers.pxToRem(32, 0);
 
   &_list {
     display: flex;

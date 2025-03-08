@@ -1,5 +1,6 @@
 import type { FinalDownloadableDocumentsData } from '../SectionList/SectionList.types';
 import {
+  TYPOGRAPHY_ALIGNMENT,
   TYPOGRAPHY_COMPONENTS,
   TYPOGRAPHY_VARIANTS,
 } from '../Typography/Typography.constants';
@@ -26,11 +27,16 @@ export const DownloadableDocuments = async ({
       <Typography
         as={TYPOGRAPHY_COMPONENTS.H2}
         variant={TYPOGRAPHY_VARIANTS.H2}
+        align={TYPOGRAPHY_ALIGNMENT.CENTER}
       >
         {title}
       </Typography>
 
-      {Boolean(description) && <Typography>{description}</Typography>}
+      {Boolean(description) && (
+        <Typography align={TYPOGRAPHY_ALIGNMENT.CENTER}>
+          {description}
+        </Typography>
+      )}
 
       <ul className={styles.downloadableDocuments_list}>
         {data.map((document) => (

@@ -41,6 +41,7 @@
 }
 
 .table {
+  margin: auto;
   margin-top: spacings.$xxLarge;
   border: solid helpers.pxToRem(2) colors.$text;
   border-collapse: separate;

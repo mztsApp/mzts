@@ -34,7 +34,7 @@ export const EventPageTemplate = async ({ slug }: PageTemplateProps) => {
         badgeText={currentPage.eventType}
       />
 
-      <SectionList entriesIds={additionalContent ?? []} />
+      <SectionList forceCenterAlignment entriesIds={additionalContent ?? []} />
     </>
   );
 };

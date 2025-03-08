@@ -1,4 +1,4 @@
-import type { SideNavigationDialogProps } from '../SideNavigationDialog';
+import type { SideNavigationDialogProps } from '../SideNavigationDialog/SideNavigationDialog';
 
 type Pages = SideNavigationDialogProps['pages'];
 

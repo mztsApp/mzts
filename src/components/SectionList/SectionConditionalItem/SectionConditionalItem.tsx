@@ -11,6 +11,8 @@ import {
   getTypographyColorFromApi,
 } from '@/utilities/utilitiesForApi';
 import { EventsPreview } from '@/components/EventsPreview/EventsPreview';
+import { GALLERY_ALIGNMENT } from '@/components/Gallery/Gallery.constants';
+import { TABLE_ALIGNMENT } from '@/components/TablePageSection/TablePageSection.constants';
 
 import { SECTION_COMPONENT_IDENTIFIER } from '../SectionList.constants';
 import type {
@@ -22,9 +24,12 @@ import type {
 } from '../SectionList.types';
 
 export const SectionConditionalItem = (
-  props: FinalSectionListData & { isPriority: boolean },
+  props: FinalSectionListData & {
+    isPriority: boolean;
+    forceCenterAlignment: boolean;
+  },
 ) => {
-  const { identifier, isPriority, ...rest } = props;
+  const { identifier, isPriority, forceCenterAlignment, ...rest } = props;
 
   switch (identifier) {
     case SECTION_COMPONENT_IDENTIFIER.SECTION:
@@ -51,11 +56,29 @@ export const SectionConditionalItem = (
     case SECTION_COMPONENT_IDENTIFIER.GALLERY:
       const galleryProps = rest as FinalGalleryData;
 
-      return <Gallery {...galleryProps} />;
+      return (
+        <Gallery
+          {...galleryProps}
+          alignment={
+            forceCenterAlignment
+              ? GALLERY_ALIGNMENT.CENTER
+              : galleryProps.alignment
+          }
+        />
+      );
     case SECTION_COMPONENT_IDENTIFIER.TABLE:
       const tableProps = rest as FinalTableData;
 
-      return <TablePageSection {...tableProps} />;
+      return (
+        <TablePageSection
+          {...tableProps}
+          alignmentVariant={
+            forceCenterAlignment
+              ? TABLE_ALIGNMENT.CENTER
+              : tableProps.alignmentVariant
+          }
+        />
+      );
     case SECTION_COMPONENT_IDENTIFIER.EVENTS_PREVIEW:
       const eventPreviewProps = rest as FinalEventPreviewData;
 

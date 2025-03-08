@@ -51,13 +51,14 @@
   &_content {
     position: relative;
     display: flex;
-    gap: helpers.pxToRem(32);
     grid-column: span 9;
     flex: 1 0;
     flex-direction: column;
     align-items: center;
+    gap: spacings.$xxLarge;
     width: 100%;
     max-width: helpers.pxToRem(1440);
+    min-height: 90dvh;
     height: 100%;
     padding: helpers.pxToRem(16, 0);
 

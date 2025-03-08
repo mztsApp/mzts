@@ -4,9 +4,13 @@ import styles from './SectionList.module.scss';
 
 type SectionApiWrapperProps = {
   entriesIds: string[];
+  forceCenterAlignment?: boolean;
 };
 
-export const SectionList = async ({ entriesIds }: SectionApiWrapperProps) => {
+export const SectionList = async ({
+  entriesIds,
+  forceCenterAlignment = false,
+}: SectionApiWrapperProps) => {
   const { data } = await getSectionDataQuery(entriesIds);
 
   if (!data) {
@@ -22,6 +26,7 @@ export const SectionList = async ({ entriesIds }: SectionApiWrapperProps) => {
           <li key={section.sectionId} className={styles.sectionList_item}>
             <SectionConditionalItem
               {...section}
+              forceCenterAlignment={forceCenterAlignment}
               isPriority={isFirstListElement}
             />
           </li>

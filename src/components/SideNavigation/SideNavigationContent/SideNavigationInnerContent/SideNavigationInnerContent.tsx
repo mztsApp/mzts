@@ -1,5 +1,3 @@
-'use client';
-
 import {
   ScrollArea,
   ScrollAreaScrollbar,
@@ -8,7 +6,6 @@ import {
 } from '@radix-ui/react-scroll-area';
 import Link from 'next/link';
 
-import type { SinglePageType } from '@/api/appNavigationQuery';
 import AddressIcon from '@/assets/icons/address.svg';
 import CalendarIcon from '@/assets/icons/calendar.svg';
 import {
@@ -17,18 +14,11 @@ import {
 } from '@/components/Typography/Typography.constants';
 import { Typography } from '@/components/Typography/Typography.server';
 
-import type { EventsPageData } from '../SideNavigationApi.types';
-import styles from './SideNavigationDialog.module.scss';
-import { getPagesByDate } from './utilities/getPagesByDate';
+import type { SideNavigationDialogProps } from '../../SideNavigationDialog/SideNavigationDialog';
+import styles from './SideNavigationInnerContent.module.scss';
+import { getPagesByDate } from '../../utilities/getPagesByDate';
 
-type Page = Omit<EventsPageData, 'slug'> & { slug: SinglePageType };
-
-export type SideNavigationDialogProps = {
-  pages: Page[];
-  currentSlug?: string;
-};
-
-export const SideNavigationDialog = ({
+export const SideNavigationInnerContent = ({
   pages,
   currentSlug,
 }: SideNavigationDialogProps) => {

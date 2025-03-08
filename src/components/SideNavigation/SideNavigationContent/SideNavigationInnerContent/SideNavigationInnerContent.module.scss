@@ -13,23 +13,41 @@
   align-items: stretch;
   width: 100%;
   height: 100%;
+  background-color: colors.$background;
+  padding: helpers.pxToRem(16, 0);
+
+  @include screens.lg {
+    position: sticky;
+    bottom: helpers.pxToRem(16);
+    left: 0;
+    width: fit-content;
+    max-width: calc(25vw - 2rem);
+    max-height: 0;
+    padding: 0;
+    margin-right: auto;
+    margin-bottom: helpers.pxToRem(16);
+    overflow-y: visible;
+  }
 
   &_scrollArea {
     display: flex;
     max-height: 100%;
+    height: 100%;
     width: 100%;
 
     @include screens.lg {
+      position: absolute;
+      bottom: 0;
       max-width: helpers.pxToRem(360);
-
-      max-height: calc(100dvh - 126px);
+      height: calc(100dvh - 142px);
+      max-height: 100%;
+      transform: translateY(calc(-100%));
     }
 
     &Viewport {
       display: flex;
       height: 100%;
       width: 100%;
-      padding: spacings.$small 0;
     }
 
     &List {

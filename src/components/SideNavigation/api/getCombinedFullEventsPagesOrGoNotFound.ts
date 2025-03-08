@@ -4,7 +4,7 @@ import { appNavigationQuery } from '@/api/appNavigationQuery';
 import { NAVIGATION_EVENTS_PAGE } from '@/components/Navigation/Navigation.constants';
 
 import { getEventsPageData } from './getEventsPageData';
-import type { SideNavigationDialogProps } from '../SideNavigationContent/SideNavigationDialog';
+import type { SideNavigationDialogProps } from '../SideNavigationDialog/SideNavigationDialog';
 
 export const getCombinedFullEventsPagesOrGoNotFound = async (slug?: string) => {
   const { data } = await appNavigationQuery();

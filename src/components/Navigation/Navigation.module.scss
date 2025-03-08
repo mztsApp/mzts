@@ -7,11 +7,29 @@
 @use '/src/styles/boxShadows';
 @use '/src/styles/textEllipsis';
 
+.spacerBox {
+  display: none;
+  width: 100vw;
+  height: helpers.pxToRem(110);
+
+  @include screens.lg {
+    display: block;
+  }
+}
+
 .navBar {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @include screens.lg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 1;
+  }
 
   &_contact {
     display: flex;

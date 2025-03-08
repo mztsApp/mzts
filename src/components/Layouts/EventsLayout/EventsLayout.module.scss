@@ -62,12 +62,12 @@
     height: 100%;
     padding: helpers.pxToRem(16, 0);
 
-    &[data-is-parent-event-page='true'] {
-      display: none;
+    // &[data-is-parent-event-page='true'] {
+    //   display: none;
 
-      @include screens.lg {
-        display: flex;
-      }
-    }
+    //   @include screens.lg {
+    //     display: flex;
+    //   }
+    // }
   }
 }

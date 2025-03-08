@@ -34,9 +34,7 @@ export const EventsLayout = async ({
         </div>
 
         <div className={styles.eventsLayout_contentContainer}>
-          <div className={styles.eventsLayout_sideNavigation}>
-            <SideNavigation slug={slug} />
-          </div>
+          <div className={styles.eventsLayout_sideNavigation}></div>
           <div
             className={styles.eventsLayout_content}
             data-is-parent-event-page={isParentEventPage}
@@ -47,6 +45,7 @@ export const EventsLayout = async ({
 
         <GoToTopButton />
 
+        <SideNavigation slug={slug} />
         <Footer />
       </LayoutHTMLTag>
     </MobileDeviceProvider>

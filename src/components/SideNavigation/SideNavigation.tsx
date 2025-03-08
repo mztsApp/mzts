@@ -1,5 +1,5 @@
 import { getCombinedFullEventsPagesOrGoNotFound } from './api/getCombinedFullEventsPagesOrGoNotFound';
-import { SideNavigationDialog } from './SideNavigationContent/SideNavigationDialog';
+import { SideNavigationDialog } from './SideNavigationDialog/SideNavigationDialog';
 
 type SideNavigationProps = {
   slug?: string;

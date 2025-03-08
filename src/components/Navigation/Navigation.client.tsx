@@ -86,114 +86,119 @@ export const NavigationClient = ({
   const groupedLinksBySubPages = getGroupedPagesBySubPage(links);
 
   return (
-    <div className={styles.navBar}>
-      <div className={styles.navBar_contact}>{children}</div>
+    <>
+      <div className={styles.spacerBox} />
+      <div className={styles.navBar}>
+        <div className={styles.navBar_contact}>{children}</div>
 
-      <div className={styles.navBar_navigationContainer}>
-        <nav className={styles.navigation} aria-label="Główna nawigacja">
-          <a className={styles.navigation_logoLink} href="/">
-            {isDesktop ? (
-              <DesktopLogo className={styles.navigation_desktopLogo} />
-            ) : (
-              <MobileLogo className={styles.navigation_logo} />
-            )}
-            <span className={styles.navigation_logoTitle}>
-              Mazowiecki związek tańca sportowego
-            </span>
-          </a>
-
-          {!isDesktop && (
-            <button
-              type="button"
-              aria-label="Otwórz / Zamknij menu"
-              aria-describedby={
-                menuState.isMenuOpen
-                  ? 'Naciśnij aby zamknąć menu'
-                  : 'Naciśnij aby otworzyć menu'
-              }
-              className={styles.navigation_toggleMenuButton}
-              onClick={() => handleMenuButtonClick()}
-            >
-              {menuState.isMenuOpen ? (
-                <CloseIcon className={styles.navigation_toggleMenuIcon} />
+        <div className={styles.navBar_navigationContainer}>
+          <nav className={styles.navigation} aria-label="Główna nawigacja">
+            <a className={styles.navigation_logoLink} href="/">
+              {isDesktop ? (
+                <DesktopLogo className={styles.navigation_desktopLogo} />
               ) : (
-                <MenuIcon className={styles.navigation_toggleMenuIcon} />
+                <MobileLogo className={styles.navigation_logo} />
               )}
-            </button>
-          )}
+              <span className={styles.navigation_logoTitle}>
+                Mazowiecki związek tańca sportowego
+              </span>
+            </a>
 
-          {((!isDesktop && menuState.isMenuOpen) || isDesktop) && (
-            <ul
-              className={twMerge(
-                styles.navigation_list,
-                isDesktop && styles.navigation_list__desktop,
-                menuState.isMobileMenuListAlreadyExist &&
-                  styles.navigation_list__fullHeight,
-              )}
-            >
-              {groupedLinksBySubPages.nestedPages.map((nestedPage) => {
-                if (nestedPage.subPage === NAVIGATION_EVENTS_PAGE) {
-                  const nestedNavigationPayload = {
-                    subPage: nestedPage.subPage,
-                    pages: [
-                      ...nestedPage.pages.filter((_, index) => index < 5),
-                      NAVIGATION_ALL_EVENTS_PAGE,
-                    ],
-                  };
+            {!isDesktop && (
+              <button
+                type="button"
+                aria-label="Otwórz / Zamknij menu"
+                aria-describedby={
+                  menuState.isMenuOpen
+                    ? 'Naciśnij aby zamknąć menu'
+                    : 'Naciśnij aby otworzyć menu'
+                }
+                className={styles.navigation_toggleMenuButton}
+                onClick={() => handleMenuButtonClick()}
+              >
+                {menuState.isMenuOpen ? (
+                  <CloseIcon className={styles.navigation_toggleMenuIcon} />
+                ) : (
+                  <MenuIcon className={styles.navigation_toggleMenuIcon} />
+                )}
+              </button>
+            )}
+
+            {((!isDesktop && menuState.isMenuOpen) || isDesktop) && (
+              <ul
+                className={twMerge(
+                  styles.navigation_list,
+                  isDesktop && styles.navigation_list__desktop,
+                  menuState.isMobileMenuListAlreadyExist &&
+                    styles.navigation_list__fullHeight,
+                )}
+              >
+                {groupedLinksBySubPages.nestedPages.map((nestedPage) => {
+                  if (nestedPage.subPage === NAVIGATION_EVENTS_PAGE) {
+                    const nestedNavigationPayload = {
+                      subPage: nestedPage.subPage,
+                      pages: [
+                        ...nestedPage.pages.filter((_, index) => index < 5),
+                        NAVIGATION_ALL_EVENTS_PAGE,
+                      ],
+                    };
+
+                    return (
+                      <li key={nestedPage.subPage}>
+                        {isDesktop ? (
+                          <NavigationItemWithDropdown
+                            nestedPage={nestedNavigationPayload}
+                          />
+                        ) : (
+                          <NavigationItemAccordion
+                            nestedPage={nestedNavigationPayload}
+                            handleLinkClick={() =>
+                              setMenuState(defaultMenuState)
+                            }
+                          />
+                        )}
+                      </li>
+                    );
+                  }
 
                   return (
                     <li key={nestedPage.subPage}>
                       {isDesktop ? (
-                        <NavigationItemWithDropdown
-                          nestedPage={nestedNavigationPayload}
-                        />
+                        <NavigationItemWithDropdown nestedPage={nestedPage} />
                       ) : (
                         <NavigationItemAccordion
-                          nestedPage={nestedNavigationPayload}
+                          nestedPage={nestedPage}
                           handleLinkClick={() => setMenuState(defaultMenuState)}
                         />
                       )}
                     </li>
                   );
-                }
+                })}
 
-                return (
-                  <li key={nestedPage.subPage}>
-                    {isDesktop ? (
-                      <NavigationItemWithDropdown nestedPage={nestedPage} />
-                    ) : (
-                      <NavigationItemAccordion
-                        nestedPage={nestedPage}
-                        handleLinkClick={() => setMenuState(defaultMenuState)}
-                      />
-                    )}
-                  </li>
-                );
-              })}
-
-              {groupedLinksBySubPages.restPages.map((page) => (
-                <li key={page}>
-                  <Link
-                    href={`/${page}`}
-                    onClick={() => setMenuState(defaultMenuState)}
-                    className={twMerge(
-                      styles.navigation_link,
-                      params.includes(page) && styles.navigation_link__active,
-                    )}
-                  >
-                    <Typography
-                      as={TYPOGRAPHY_COMPONENTS.SPAN}
-                      variant={TYPOGRAPHY_VARIANTS.BUTTON_TEXT}
+                {groupedLinksBySubPages.restPages.map((page) => (
+                  <li key={page}>
+                    <Link
+                      href={`/${page}`}
+                      onClick={() => setMenuState(defaultMenuState)}
+                      className={twMerge(
+                        styles.navigation_link,
+                        params.includes(page) && styles.navigation_link__active,
+                      )}
                     >
-                      {getResolvedTextFromSlug(page)}
-                    </Typography>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          )}
-        </nav>
+                      <Typography
+                        as={TYPOGRAPHY_COMPONENTS.SPAN}
+                        variant={TYPOGRAPHY_VARIANTS.BUTTON_TEXT}
+                      >
+                        {getResolvedTextFromSlug(page)}
+                      </Typography>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </nav>
+        </div>
       </div>
-    </div>
+    </>
   );
 };

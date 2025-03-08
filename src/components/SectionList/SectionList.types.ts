@@ -1,3 +1,5 @@
+import type { Document } from '@contentful/rich-text-types';
+
 import type { BgImageType, EntrySysType } from '@/types/pageApiTypes';
 import type { ValueOf } from '@/types';
 
@@ -64,11 +66,20 @@ type eventPreviewConditionalFieldsType = {
   colorVariant: ValueOf<typeof EVENTS_PREVIEW_COLOR_VARIANT>;
 };
 
+type RichTextConditionalFieldsType = {
+  title: string;
+  richText: Document;
+};
+
+type DownloadableDocumentsConditionalFieldsType = object;
+
 export type SectionListConditionalFields = {
   [SECTION_COMPONENT_IDENTIFIER.SECTION]: SectionConditionalFieldsType;
   [SECTION_COMPONENT_IDENTIFIER.GALLERY]: GalleryConditionalFieldsType;
   [SECTION_COMPONENT_IDENTIFIER.TABLE]: TableConditionalFieldsType;
   [SECTION_COMPONENT_IDENTIFIER.EVENTS_PREVIEW]: eventPreviewConditionalFieldsType;
+  [SECTION_COMPONENT_IDENTIFIER.RICH_TEXT]: RichTextConditionalFieldsType;
+  [SECTION_COMPONENT_IDENTIFIER.DOWNLOADABLE_DOCUMENTS]: DownloadableDocumentsConditionalFieldsType;
 };
 
 type SectionListFieldFromApiResponse =
@@ -115,6 +126,17 @@ type SectionListFieldFromApiResponse =
         };
       };
       fields: SectionListConditionalFields[typeof SECTION_COMPONENT_IDENTIFIER.EVENTS_PREVIEW];
+    }
+  | {
+      sys: {
+        id: string;
+        contentType: {
+          sys: {
+            id: typeof SECTION_COMPONENT_IDENTIFIER.RICH_TEXT;
+          };
+        };
+      };
+      fields: SectionListConditionalFields[typeof SECTION_COMPONENT_IDENTIFIER.RICH_TEXT];
     };
 
 export type SectionListItemFromApiResponse = SectionListFieldFromApiResponse[];
@@ -174,11 +196,18 @@ export type DefaultFallbackData = {
 export type FinalEventPreviewData = DefaultFallbackData &
   SectionListConditionalFields[typeof SECTION_COMPONENT_IDENTIFIER.EVENTS_PREVIEW];
 
+export type FinalRichTextData = DefaultFallbackData &
+  SectionListConditionalFields[typeof SECTION_COMPONENT_IDENTIFIER.RICH_TEXT];
+
+export type FinalDownloadableDocumentsData = DefaultFallbackData & {};
+
 export type FinalSectionListData =
   | FinalSectionData
   | FinalGalleryData
   | FinalTableData
   | FinalEventPreviewData
+  | FinalRichTextData
+  | FinalDownloadableDocumentsData
   | DefaultFallbackData;
 
 export type SectionListData = FinalSectionListData[];

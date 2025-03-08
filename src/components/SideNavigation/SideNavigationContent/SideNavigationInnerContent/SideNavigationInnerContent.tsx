@@ -26,7 +26,7 @@ export const SideNavigationInnerContent = ({
 
   return (
     <nav className={styles.sideNavigation} aria-label="wydarzenia - navigacja">
-      <ScrollArea className={styles.sideNavigation_scrollArea}>
+      <ScrollArea className={styles.sideNavigation_scrollArea} type="auto">
         <ScrollAreaViewport
           className={styles.sideNavigation_scrollAreaViewport}
         >

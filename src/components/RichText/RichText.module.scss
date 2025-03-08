@@ -1,0 +1,26 @@
+@use '/src/styles/gradients';
+@use '/src/styles/typography';
+@use '/src/styles/helpers';
+@use '/src/styles/screens';
+@use '/src/styles/spacings';
+@use '/src/styles/colors';
+@use '/src/styles/boxShadows';
+@use '/src/styles/textEllipsis';
+
+.richText {
+  white-space: pre-wrap;
+
+  &_list {
+    list-style-type: square;
+    list-style-position: outside;
+    padding-left: helpers.pxToRem(24);
+    &Item {
+      display: list-item;
+
+      &::marker {
+        font-size: 1em;
+        margin-right: helpers.pxToRem(6);
+      }
+    }
+  }
+}

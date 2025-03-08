@@ -13,11 +13,17 @@
   justify-content: space-between;
   align-items: center;
   width: 100dvw;
+  max-width: helpers.pxToRem(1440);
   min-height: 100vh;
   padding: 0 helpers.pxToRem(24);
+  margin: auto;
 
   @include screens.lg {
     padding: 0 helpers.pxToRem(32);
+  }
+
+  @include screens.xxl {
+    padding: 0;
   }
 
   &_topBarSpace {
@@ -55,19 +61,20 @@
     flex: 1 0;
     flex-direction: column;
     align-items: center;
-    gap: spacings.$xxLarge;
+    gap: spacings.$large;
     width: 100%;
     max-width: helpers.pxToRem(1440);
     min-height: 90dvh;
     height: 100%;
     padding: helpers.pxToRem(16, 0);
 
-    // &[data-is-parent-event-page='true'] {
-    //   display: none;
+    @include screens.lg {
+      gap: spacings.$xxLarge;
+      padding: helpers.pxToRem(16);
+    }
 
-    //   @include screens.lg {
-    //     display: flex;
-    //   }
-    // }
+    @include screens.xl {
+      padding: helpers.pxToRem(16, 0);
+    }
   }
 }

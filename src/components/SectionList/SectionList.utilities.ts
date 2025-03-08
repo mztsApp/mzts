@@ -53,6 +53,16 @@ export const getResolvedSectionListItemsFromApi = (
           identifier: sys.contentType.sys.id,
           sectionId: sys.id,
         };
+
+      case SECTION_COMPONENT_IDENTIFIER.RICH_TEXT:
+        const richTextFields =
+          fields as SectionListConditionalFields[typeof SECTION_COMPONENT_IDENTIFIER.RICH_TEXT];
+
+        return {
+          ...richTextFields,
+          identifier: sys.contentType.sys.id,
+          sectionId: sys.id,
+        };
       default:
         return {
           identifier: sys.contentType.sys.id,

@@ -13,11 +13,13 @@ import {
 import { EventsPreview } from '@/components/EventsPreview/EventsPreview';
 import { GALLERY_ALIGNMENT } from '@/components/Gallery/Gallery.constants';
 import { TABLE_ALIGNMENT } from '@/components/TablePageSection/TablePageSection.constants';
+import { RichText } from '@/components/RichText/RichText';
 
 import { SECTION_COMPONENT_IDENTIFIER } from '../SectionList.constants';
 import type {
   FinalEventPreviewData,
   FinalGalleryData,
+  FinalRichTextData,
   FinalSectionData,
   FinalSectionListData,
   FinalTableData,
@@ -83,6 +85,11 @@ export const SectionConditionalItem = (
       const eventPreviewProps = rest as FinalEventPreviewData;
 
       return <EventsPreview {...eventPreviewProps} />;
+
+    case SECTION_COMPONENT_IDENTIFIER.RICH_TEXT:
+      const richTextProps = rest as FinalRichTextData;
+
+      return <RichText richText={richTextProps.richText} />;
     default:
       return null;
   }

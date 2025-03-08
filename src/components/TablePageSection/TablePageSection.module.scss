@@ -12,6 +12,7 @@
   align-items: flex-start;
   flex-direction: column;
   gap: spacings.$medium;
+  padding: helpers.pxToRem(16, 0);
 
   &_centerAlignment {
     align-items: center;

@@ -1,14 +1,16 @@
-import { getCombinedFullEventsPagesOrGoNotFound } from '@/components/SideNavigation/api/getCombinedFullEventsPagesOrGoNotFound';
-import type { PageTemplateProps } from '@/types/pageApiTypes';
+import { notFound } from 'next/navigation';
+
 import { SectionList } from '@/components/SectionList/SectionList.server';
+import type { PageTemplateProps } from '@/types/pageApiTypes';
+import { getCombinedFullEventsPages } from '@/components/SideNavigation/api/getCombinedFullEventsPages';
 
 import { EventPageTemplateHero } from './EventPageTemplateHero/EventPageTemplateHero';
 
 export const EventPageTemplate = async ({ slug }: PageTemplateProps) => {
-  const { currentPage } = await getCombinedFullEventsPagesOrGoNotFound(slug);
+  const { currentPage } = await getCombinedFullEventsPages(slug);
 
   if (!currentPage) {
-    return;
+    notFound();
   }
 
   const additionalContent = currentPage?.sections?.map(

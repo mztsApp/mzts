@@ -29,7 +29,7 @@ export const Gallery = async ({
   images,
 }: FinalGalleryData) => {
   const { data } = await getGalleryAssetsApi({
-    assetIds: images.map((image) => image.sys.id),
+    assetIds: images?.map((image) => image.sys.id) ?? [],
   });
 
   if (!data) {

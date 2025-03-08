@@ -2,13 +2,12 @@ import type { Metadata } from 'next';
 
 import { EventsLayout } from '@/components/Layouts/EventsLayout/EventsLayout';
 import { LAYOUT_COMPONENT } from '@/components/Layouts/Layout.constants';
-import { getCombinedFullEventsPagesOrGoNotFound } from '@/components/SideNavigation/api/getCombinedFullEventsPagesOrGoNotFound';
+import { getCombinedFullEventsPages } from '@/components/SideNavigation/api/getCombinedFullEventsPages';
 import type { PageParams } from '@/types/pageApiTypes';
 import { EventPageTemplate } from '@/components/PageTemplates/EventPageTemplate/EventPageTemplate';
 
 export async function generateStaticParams() {
-  const { combinedEventPagesData } =
-    await getCombinedFullEventsPagesOrGoNotFound();
+  const { combinedEventPagesData } = await getCombinedFullEventsPages();
 
   if (!combinedEventPagesData) return [];
 
@@ -22,9 +21,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: PageParams): Promise<Metadata> {
-  const { currentPage } = await getCombinedFullEventsPagesOrGoNotFound(
-    params.slug,
-  );
+  const { currentPage } = await getCombinedFullEventsPages(params.slug);
 
   return {
     title: currentPage?.metaTitle ?? '',

@@ -1,12 +1,10 @@
-import { notFound } from 'next/navigation';
-
 import { appNavigationQuery } from '@/api/appNavigationQuery';
 import { NAVIGATION_EVENTS_PAGE } from '@/components/Navigation/Navigation.constants';
 
-import { getEventsPageData } from './getEventsPageData';
 import type { SideNavigationDialogProps } from '../SideNavigationDialog/SideNavigationDialog';
+import { getEventsPageData } from './getEventsPageData';
 
-export const getCombinedFullEventsPagesOrGoNotFound = async (slug?: string) => {
+export const getCombinedFullEventsPages = async (slug?: string) => {
   const { data } = await appNavigationQuery();
   const eventsPages = data?.filter(
     (subpage) => subpage.subpage === NAVIGATION_EVENTS_PAGE,
@@ -17,7 +15,10 @@ export const getCombinedFullEventsPagesOrGoNotFound = async (slug?: string) => {
     !eventsPages.length ||
     !data?.some((link) => link.slug === slug || !slug)
   ) {
-    return notFound();
+    return {
+      combinedEventPagesData: [],
+      currentPage: null,
+    };
   }
 
   const { data: pagesData } = await getEventsPageData(
@@ -25,7 +26,10 @@ export const getCombinedFullEventsPagesOrGoNotFound = async (slug?: string) => {
   );
 
   if (!pagesData.length) {
-    // return notFound();
+    return {
+      combinedEventPagesData: [],
+      currentPage: null,
+    };
   }
 
   const joinedPageDataWithRelatedSlug = pagesData.map((page) => {

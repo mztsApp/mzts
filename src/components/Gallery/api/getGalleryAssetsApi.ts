@@ -26,7 +26,7 @@ export const getGalleryAssetsApi = async ({
 
     const assetsData: AssetDataType = await assetsResponse.json();
 
-    const assets = assetsData.items.map(({ fields }) => fields);
+    const assets = assetsData.items?.map(({ fields }) => fields) ?? [];
 
     data = assets;
   } catch (error) {

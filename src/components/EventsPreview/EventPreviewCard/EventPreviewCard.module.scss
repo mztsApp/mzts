@@ -1,0 +1,84 @@
+@use '/src/styles/gradients';
+@use '/src/styles/typography';
+@use '/src/styles/helpers';
+@use '/src/styles/screens';
+@use '/src/styles/spacings';
+@use '/src/styles/colors';
+@use '/src/styles/boxShadows';
+@use '/src/styles/textEllipsis';
+
+.eventPreviewCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+  flex: 0 1;
+  max-width: helpers.pxToRem(632);
+  height: 100%;
+  border-radius: helpers.pxToRem(20);
+  border: solid helpers.pxToRem(2) colors.$accent;
+  box-shadow: helpers.pxToRem(0, 0, 0, 1) colors.$text;
+  transition: all 200ms ease-in-out;
+  overflow: clip;
+
+  &_imageWrapper {
+    position: relative;
+    width: 100%;
+
+    &Badge {
+      position: absolute;
+      top: helpers.pxToRem(12);
+      right: helpers.pxToRem(12);
+      padding: helpers.pxToRem(4, 12);
+      color: colors.$text;
+      border: solid helpers.pxToRem(1) colors.$text;
+      border-radius: helpers.pxToRem(25);
+
+      @include gradients.boxGradient();
+    }
+
+    &Image {
+      width: 100%;
+      aspect-ratio: 3/2;
+      max-height: fit-content;
+      object-fit: cover;
+    }
+  }
+
+  &_content {
+    display: flex;
+    flex-direction: column;
+    gap: spacings.$medium;
+    width: 100%;
+    padding: helpers.pxToRem(24);
+
+    &Description {
+      @include textEllipsis.createTextEllipsis(4);
+    }
+  }
+
+  &_info {
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    gap: spacings.$small;
+    width: 100%;
+
+    &Text {
+      display: flex;
+      justify-content: space-between;
+      align-content: center;
+      gap: spacings.$xSmall;
+    }
+
+    &Icon {
+      width: helpers.pxToRem(24);
+      height: helpers.pxToRem(24);
+      color: colors.$accent;
+    }
+  }
+
+  &_button {
+    margin: helpers.pxToRem(0, 24, 24);
+  }
+}

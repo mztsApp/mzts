@@ -10,29 +10,33 @@ export const getPagesByDate = (pages: Pages) => {
   const sortedPagesByDate = pages.sort((previous, next) => {
     const previousPageTime = new Date(previous.date).getTime();
     const nextPageTime = new Date(next.date).getTime();
-
-    return nextPageTime - previousPageTime;
+    return previousPageTime - nextPageTime;
   });
 
+  const sortedUpcomingPages = (quantity: number) => {
+    const upcomingPages = sortedPagesByDate.filter(
+      (page) => new Date(page.date).getTime() >= today.getTime(),
+    );
+    return upcomingPages.slice(0, quantity);
+  };
+
+  const { past, upcoming } = sortedPagesByDate.reduce<PagesByDateType>(
+    (accumulator, page) => {
+      const eventDate = new Date(page.date);
+      if (eventDate.getTime() >= today.getTime()) {
+        accumulator.upcoming.push(page);
+      } else {
+        accumulator.past.push(page);
+      }
+      return accumulator;
+    },
+    { past: [], upcoming: [] },
+  );
+
   return {
-    ...sortedPagesByDate.reduce<PagesByDateType>(
-      (accumulator, page) => {
-        const eventDate = new Date(page.date);
-
-        if (eventDate.getTime() >= today.getTime()) {
-          return {
-            past: accumulator.past,
-            upcoming: [...accumulator.upcoming, page],
-          };
-        }
-
-        return {
-          past: [...accumulator.past, page],
-          upcoming: accumulator.upcoming,
-        };
-      },
-      { past: [], upcoming: [] },
-    ),
+    past,
+    upcoming,
+    sortedUpcomingPage: sortedUpcomingPages,
     sortedPagesByDate,
   };
 };

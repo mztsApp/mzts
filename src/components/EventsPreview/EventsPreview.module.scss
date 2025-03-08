@@ -12,4 +12,16 @@
   flex-direction: column;
   align-items: center;
   gap: spacings.$small;
+  padding: helpers.pxToRem(64, 0);
+
+  &_list {
+    display: grid;
+    gap: spacings.$xLarge;
+    margin-top: helpers.pxToRem(64);
+    height: fit-content;
+
+    @include screens.md {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
 }

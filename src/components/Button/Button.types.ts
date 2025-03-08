@@ -36,8 +36,8 @@ type VariantBaseProps =
     }
   | {
       variant?: ValueOf<typeof BUTTON_VARIANTS>;
-      typographySize: never;
-      underline: never;
+      typographySize?: never;
+      underline?: never;
       darkHover?: never;
     };
 

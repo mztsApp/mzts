@@ -1,8 +1,8 @@
+import { SECTION_COMPONENT_IDENTIFIER } from './SectionList.constants';
 import type {
   SectionListConditionalFields,
   SectionListItemFromApiResponse,
 } from './SectionList.types';
-import { SECTION_COMPONENT_IDENTIFIER } from './SectionList.constants';
 
 export const getResolvedSectionListItemsFromApi = (
   items: SectionListItemFromApiResponse,
@@ -63,6 +63,17 @@ export const getResolvedSectionListItemsFromApi = (
           identifier: sys.contentType.sys.id,
           sectionId: sys.id,
         };
+
+      case SECTION_COMPONENT_IDENTIFIER.DOWNLOADABLE_DOCUMENTS:
+        const downloadableDocumentsFieldsType =
+          fields as SectionListConditionalFields[typeof SECTION_COMPONENT_IDENTIFIER.DOWNLOADABLE_DOCUMENTS];
+
+        return {
+          ...downloadableDocumentsFieldsType,
+          identifier: sys.contentType.sys.id,
+          sectionId: sys.id,
+        };
+
       default:
         return {
           identifier: sys.contentType.sys.id,

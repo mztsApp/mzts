@@ -8,7 +8,14 @@
 @use '/src/styles/textEllipsis';
 
 .richText {
+  padding: spacings.$small;
+  border-radius: helpers.pxToRem(24);
+  background: colors.$accent;
   white-space: pre-wrap;
+
+  @include screens.md {
+    padding: spacings.$large;
+  }
 
   &_list {
     list-style-type: square;

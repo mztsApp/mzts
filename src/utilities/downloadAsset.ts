@@ -1,15 +1,21 @@
 const whiteSpaceRegex = /\s+/g;
 
-export const downloadImage = async (imageSource: string, title: string) => {
+export const downloadAsset = async (
+  assetSource: string,
+  title: string,
+  fileExtension?: string,
+) => {
+  const extension = fileExtension ?? 'webp';
+
   try {
-    const response = await fetch(imageSource, { mode: 'cors' });
+    const response = await fetch(assetSource, { mode: 'cors' });
     const blob = await response.blob();
     const url = window.URL.createObjectURL(blob);
 
     const anchor = document.createElement('a');
 
     anchor.href = url;
-    anchor.download = `${title.replace(whiteSpaceRegex, '-')}.webp`;
+    anchor.download = `${title.replace(whiteSpaceRegex, '-')}.${extension}`;
 
     document.body.appendChild(anchor);
 

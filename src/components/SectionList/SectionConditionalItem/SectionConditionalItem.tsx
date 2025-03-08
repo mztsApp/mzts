@@ -14,9 +14,11 @@ import { EventsPreview } from '@/components/EventsPreview/EventsPreview';
 import { GALLERY_ALIGNMENT } from '@/components/Gallery/Gallery.constants';
 import { TABLE_ALIGNMENT } from '@/components/TablePageSection/TablePageSection.constants';
 import { RichText } from '@/components/RichText/RichText';
+import { DownloadableDocuments } from '@/components/DownloadableDocuments/DownloadableDocuments';
 
 import { SECTION_COMPONENT_IDENTIFIER } from '../SectionList.constants';
 import type {
+  FinalDownloadableDocumentsData,
   FinalEventPreviewData,
   FinalGalleryData,
   FinalRichTextData,
@@ -90,6 +92,10 @@ export const SectionConditionalItem = (
       const richTextProps = rest as FinalRichTextData;
 
       return <RichText richText={richTextProps.richText} />;
+    case SECTION_COMPONENT_IDENTIFIER.DOWNLOADABLE_DOCUMENTS:
+      const downloadableDocumentsProps = rest as FinalDownloadableDocumentsData;
+
+      return <DownloadableDocuments {...downloadableDocumentsProps} />;
     default:
       return null;
   }

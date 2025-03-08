@@ -48,8 +48,18 @@
   //sizes
 
   &__large {
+    max-width: 100%;
     height: helpers.pxToRem(58);
     padding: 0 spacings.$large;
+
+    & > span:not(:has(svg)) {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+
+      @include typography.getTypographyValues(16, 600);
+    }
   }
 
   // colors

@@ -18,7 +18,7 @@ import {
   TYPOGRAPHY_VARIANTS,
 } from '@/components/Typography/Typography.constants';
 import { SROnly } from '@/components/SROnly/SROnly';
-import { downloadImage } from '@/utilities/downloadImage';
+import { downloadAsset } from '@/utilities/downloadAsset';
 
 import type { GalleryAssetsDataType } from '../Gallery.types';
 import styles from './GalleryInteractiveImages.module.scss';
@@ -142,7 +142,7 @@ export const GalleryInteractiveImages = ({
                               styles.galleryInteractiveImages_iconButton
                             }
                             onClick={() =>
-                              downloadImage(
+                              downloadAsset(
                                 `https:${image.file.url}?fm=webp`,
                                 image.title,
                               )

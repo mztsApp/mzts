@@ -5,6 +5,7 @@ import React from 'react';
 
 import { Button } from '../Button/Button';
 import {
+  BUTTON_COLORS,
   BUTTON_COMPONENTS,
   BUTTON_SIZES,
   BUTTON_VARIANTS,
@@ -38,6 +39,7 @@ const config: Options = {
           as={BUTTON_COMPONENTS.ANCHOR}
           variant={BUTTON_VARIANTS.TEXT}
           size={BUTTON_SIZES.MEDIUM}
+          color={BUTTON_COLORS.TEXT_COLOR}
         >
           {children}
         </Button>

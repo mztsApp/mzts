@@ -71,7 +71,11 @@ type RichTextConditionalFieldsType = {
   richText: Document;
 };
 
-type DownloadableDocumentsConditionalFieldsType = object;
+type DownloadableDocumentsConditionalFieldsType = {
+  title: string;
+  description?: string;
+  files: { sys: { id: string } }[];
+};
 
 export type SectionListConditionalFields = {
   [SECTION_COMPONENT_IDENTIFIER.SECTION]: SectionConditionalFieldsType;
@@ -137,6 +141,17 @@ type SectionListFieldFromApiResponse =
         };
       };
       fields: SectionListConditionalFields[typeof SECTION_COMPONENT_IDENTIFIER.RICH_TEXT];
+    }
+  | {
+      sys: {
+        id: string;
+        contentType: {
+          sys: {
+            id: typeof SECTION_COMPONENT_IDENTIFIER.RICH_TEXT;
+          };
+        };
+      };
+      fields: SectionListConditionalFields[typeof SECTION_COMPONENT_IDENTIFIER.DOWNLOADABLE_DOCUMENTS];
     };
 
 export type SectionListItemFromApiResponse = SectionListFieldFromApiResponse[];
@@ -199,7 +214,8 @@ export type FinalEventPreviewData = DefaultFallbackData &
 export type FinalRichTextData = DefaultFallbackData &
   SectionListConditionalFields[typeof SECTION_COMPONENT_IDENTIFIER.RICH_TEXT];
 
-export type FinalDownloadableDocumentsData = DefaultFallbackData & {};
+export type FinalDownloadableDocumentsData = DefaultFallbackData &
+  SectionListConditionalFields[typeof SECTION_COMPONENT_IDENTIFIER.DOWNLOADABLE_DOCUMENTS];
 
 export type FinalSectionListData =
   | FinalSectionData

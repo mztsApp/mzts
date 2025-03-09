@@ -1,6 +1,5 @@
 'use client';
 
-import { DocumentDataType } from '@/components/Footer/api/getDocumentsQuery';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -10,8 +9,8 @@ import {
 } from '@radix-ui/react-alert-dialog';
 import React from 'react';
 
+import type { DocumentDataType } from '@/components/Footer/api/getDocumentsQuery';
 import { Button } from '@/components/Button/Button';
-import styles from './AcceptPolicyAlertDialog.module.scss';
 import {
   BUTTON_COLORS,
   BUTTON_COMPONENTS,
@@ -23,11 +22,11 @@ import {
   TYPOGRAPHY_COMPONENTS,
   TYPOGRAPHY_VARIANTS,
 } from '@/components/Typography/Typography.constants';
-
 import CheckIcon from '@/assets/icons/check.svg';
 import LogoIcon from '@/assets/icons/mztsDesktop.svg';
-
 import { ALLOWED_BREAKPOINTS, useMedia } from '@/hooks/useMedia';
+
+import styles from './AcceptPolicyAlertDialog.module.scss';
 import { useHandleClientConsentWithCookies } from './hooks/useHandleClientConsentWithCookies';
 
 export const AcceptPolicyAlertDialog = ({

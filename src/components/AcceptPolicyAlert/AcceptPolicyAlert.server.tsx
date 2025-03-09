@@ -1,5 +1,4 @@
 import { getDocumentsQuery } from '../Footer/api/getDocumentsQuery';
-import { navigationContactListQuery } from '../Navigation/api/navigationContactListQuery';
 import { AcceptPolicyAlertDialog } from './AcceptPolicyAlertDialog/AcceptPolicyAlertDialog';
 
 export const AcceptPolicyAlert = async () => {

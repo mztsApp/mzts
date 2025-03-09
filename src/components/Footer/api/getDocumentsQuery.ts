@@ -43,7 +43,7 @@ type DocsFilesType = {
   file: FileType;
 };
 
-type DocumentDataType = Record<
+export type DocumentDataType = Record<
   'privacyPolicy' | 'cookies' | 'rules',
   {
     title: string;

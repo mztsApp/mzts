@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 
 import { ContactSection } from '@/components/ContactSection/ContactSection.server';
 import { FAQ } from '@/components/FAQ/FAQ.server';
+import { LAYOUT_COMPONENT } from '@/components/Layouts/Layout.constants';
+import { Layout } from '@/components/Layouts/Layout/Layout.server';
 import { Newsletter } from '@/components/Newsletter/Newsletter.server';
 import { Section } from '@/components/Section/Section';
 import {
@@ -13,8 +15,6 @@ import {
   getSectionAlignmentFromApi,
   getTypographyColorFromApi,
 } from '@/utilities/utilitiesForApi';
-import { Layout } from '@/components/Layouts/Layout/Layout.server';
-import { LAYOUT_COMPONENT } from '@/components/Layouts/Layout.constants';
 
 import { getHomePageDataQuery } from '../api/getHomePageDataQuery';
 

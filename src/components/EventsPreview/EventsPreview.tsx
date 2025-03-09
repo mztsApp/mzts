@@ -22,6 +22,10 @@ export const EventsPreview = async ({
 
   const upcomingPage = sortedUpcomingPage(2);
 
+  if (!upcomingPage.length) {
+    return null;
+  }
+
   return (
     <section className={styles.eventsPreview}>
       {Boolean(subTitle) && (

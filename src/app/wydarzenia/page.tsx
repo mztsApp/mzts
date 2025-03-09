@@ -10,6 +10,8 @@ import {
   SECTION_COMPONENT,
   SECTION_HEADING_COMPONENT,
 } from '@/components/Section/Section.constants';
+import { EventsPreview } from '@/components/EventsPreview/EventsPreview';
+import { EVENTS_PREVIEW_COLOR_VARIANT } from '@/components/EventsPreview/EventsPreview.constants';
 
 export async function generateMetadata() {
   return {
@@ -47,6 +49,14 @@ export default async function EventsPage() {
           width: 4096,
           height: 2732,
         }}
+      />
+
+      <EventsPreview
+        identifier="-"
+        sectionId="-"
+        title="Najbliższe Nadchodzące wydarzenia"
+        description="W najbliższym czasie czekają na Ciebie wyjątkowe wydarzenia, które łączą miłośników różnych stylów tanecznych"
+        colorVariant={EVENTS_PREVIEW_COLOR_VARIANT.GRADIENT_RIGHT}
       />
     </EventsLayout>
   );
